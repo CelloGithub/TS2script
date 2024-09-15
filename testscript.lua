@@ -86,9 +86,11 @@ textlabel4.TextColor3 = Color3.new(0, 1, 0)
 -- cframes to go to falling freeway
 -- -234.535, 237.475, 3778.08
 
--- testing
-local codeforskullisland = map.panel.code
+-- testing omg!!!!
+print(map.panel.code.Value)
+
 local codegui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
 local codetext = game.Players.LocalPlayer.PlayerGui.ScreenGui.moneycount:Clone(codegui)
 codegui.Name = "PanelCode"
-codetext.Position =  UDim2.new(0.3, 0,0.02, 0)
+codetext.Position =  UDim2.new(0.3, 0,0.94, 0)
+codetext.Text = map.panel.code.Value

@@ -1,5 +1,4 @@
 local map = game.Workspace.map
-local LP = game.Players.LocalPlayer
 
 -- shortcuts
 local shortcuts = game.Workspace.shortcuts
@@ -12,7 +11,6 @@ for _, shortcutp in pairs(shortcuts:GetChildren()) do
 end
 
 -- cosmic causeway
--- portals
 local spaceportal = map.SpacePortal
 local portalbutton1 = spaceportal.button1.button
 local portalbutton2 = spaceportal.button2.button
@@ -83,15 +81,3 @@ textlabel4.Size = UDim2.new(1, 0, 1, 0)
 textlabel4.BackgroundTransparency = 1
 textlabel4.TextScaled = true
 textlabel4.TextColor3 = Color3.new(0, 1, 0)
-
--- Go to falling freeway
--- sry this has a side effect of opening the settings gui :3
-local gtff = game.Players.LocalPlayer.PlayerGui.ScreenGui.settingsbutton:Clone()
-gtff.Name = "gotofallingfreeway"
-gtff.Parent = game.Players.LocalPlayer.PlayerGui.ScreenGui
-gtff.Text = "Go To Falling Freeway"
-gtff.Position = UDim2.new(0.6, 0, 0.094, 0)
-
-gtff.MouseButton1Click:Connect(function() 
-	LP.Character:FindFirstChild("HumanoidRootPart").CFrame = CFrame.new(-262.961, 237.475, 3767.735)
-end)

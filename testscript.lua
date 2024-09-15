@@ -86,8 +86,8 @@ textlabel4.TextColor3 = Color3.new(0, 1, 0)
 
 -- Go to falling freeway
 local gtff = game.Players.LocalPlayer.PlayerGui.ScreenGui.settingsbutton:Clone()
-gtff.Parent = game.Players.LocalPlayer.PlayerGui.ScreenGui
 gtff.Name = "gotofallingfreeway"
+gtff.Parent = game.Players.LocalPlayer.PlayerGui.ScreenGui
 gtff.Text = "Go To Falling Freeway"
 gtff.Position = UDim2.new(0.6, 0, 0.094, 0)
 

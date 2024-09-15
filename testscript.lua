@@ -1,4 +1,5 @@
 local map = game.Workspace.map
+local LP = game.Players.LocalPlayer
 
 -- shortcuts
 local shortcuts = game.Workspace.shortcuts
@@ -65,7 +66,7 @@ bill3.StudsOffset =  Vector3.new(0, 5, 0)
 bill3.Size = UDim2.new(0, 200, 0, 500)
 bill3.AlwaysOnTop = true
 bill3.MaxDistance = 500
-textlabel3.Text = "Button 1"
+textlabel3.Text = "Button 2"
 textlabel3.Size = UDim2.new(1, 0, 1, 0)
 textlabel3.BackgroundTransparency = 1
 textlabel3.TextScaled = true
@@ -77,20 +78,19 @@ bill4.StudsOffset =  Vector3.new(0, 5, 0)
 bill4.Size = UDim2.new(0, 200, 0, 500)
 bill4.AlwaysOnTop = true
 bill4.MaxDistance = 500
-textlabel4.Text = "Button 1"
+textlabel4.Text = "Button 3"
 textlabel4.Size = UDim2.new(1, 0, 1, 0)
 textlabel4.BackgroundTransparency = 1
 textlabel4.TextScaled = true
 textlabel4.TextColor3 = Color3.new(0, 1, 0)
 
--- cframes to go to falling freeway
--- -234.535, 237.475, 3778.08
+-- Go to falling freeway
+local gtff = game.Players.LocalPlayer.PlayerGui.ScreenGui.settingsbutton:Clone()
+gtff.Parent = game.Players.LocalPlayer.PlayerGui.ScreenGui
+gtff.Name = "gotofallingfreeway"
+gtff.Text = "Go To Falling Freeway"
+gtff.Position = UDim2.new(0.6, 0, 0.094, 0)
 
--- testing omg!!!!
-print(map.panel.code.Value)
-
-local codegui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
-local codetext = game.Players.LocalPlayer.PlayerGui.ScreenGui.moneycount:Clone(codegui)
-codegui.Name = "PanelCode"
-codetext.Position =  UDim2.new(0.3, 0,0.94, 0)
-codetext.Text = map.panel.code.Value
+gtff.MouseButton1Click:Connect(function() 
+	LP.Character.FindFirstChild("HumanoidRootPart").CFrame = CFrame.new(-262.961, 237.475, 3767.735)
+end)

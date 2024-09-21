@@ -168,6 +168,15 @@ Tab1:AddButton({
 	end    
 })
 
+Tab1:AddLabel("Driving Challenge Teleports")
+
+Tab1:AddButton({
+	Name = "Teleport to Death Street",
+	Callback = function()
+		game:GetService("TeleportService"):Teleport(4101035748)
+	end    
+})
+
 --------------------------------------------------------------------------------------- Tab 2
 
 Tab2:AddButton({

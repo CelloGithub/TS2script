@@ -282,6 +282,7 @@ Tab3:AddToggle({
 Tab3:AddButton({
 	Name = "Get All Wrenches",
 	Callback = function()
+		ogc = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 		if lpc.Humanoid.Sit == false then
 			OrionLib:MakeNotification({Name = "Success",Content = "Collecting all Wrenches.",Image = "rbxassetid://7733715400",Time = 5})
 			lpc.HumanoidRootPart.CFrame = CFrame.new(1777.662, 5.113, -94.187)

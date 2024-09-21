@@ -157,6 +157,20 @@ Tab1:AddToggle({
 })
 
 Tab1:AddButton({
+	Name = "Click Cosmic Causeway Buttons",
+	Callback = function()
+		OrionLib:MakeNotification({Name = "Success",Content = "Clicking Buttons",Image = "rbxassetid://7733715400",Time = 5})
+		fireclickdetector(portalbutton1.detect)
+		wait(0.15)
+		fireclickdetector(portalbutton2.detect)
+		wait(0.15)
+		fireclickdetector(portalbutton3.detect)
+		wait(0.15)
+		fireclickdetector(portalbutton4.detect)
+	end    
+})
+
+Tab1:AddButton({
 	Name = "Click Sandy Avenue Buttons",
 	Callback = function()
 		OrionLib:MakeNotification({Name = "Success",Content = "Clicking Buttons",Image = "rbxassetid://7733715400",Time = 5})

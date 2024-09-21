@@ -3,7 +3,23 @@ if not game:IsLoaded() then
 end
 game:GetService("GuiService"):ClearError()
 
+local lpc = game.Players.LocalPlayer.Character
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/DenDenZZZ/Kavo-UI-Library/main/Kavo.lua"))()
+
 if game.PlaceId == 13998146600 then
+	local function flipCharacter()
+		local humanoidRootPart = lpc:WaitForChild("HumanoidRootPart")
+		humanoidRootPart.CFrame = humanoidRootPart.CFrame * CFrame.Angles(math.rad(90), 0, 0)
+	end
+	
+	local CCWindow = Library.CreateLib("Taxi Simulator 2 Hub | Cosmic Causeway", "DarkTheme")
+	local CCTab = Window:NewTab("Home")
+	local CCSection = Tab:NewSection("Cosmic Causeway")
+
+	CCSection:NewButton("Flip Taxi", "ButtonInfo", function()
+		flipCharacter()
+	end)
+	
 	local modelNameToModify = "door"
 	local function destroymodelcollision(name)
 		local model = workspace.map.Model:FindFirstChild(name)
@@ -53,10 +69,13 @@ if game.PlaceId == 13998146600 then
 	safepart5.CFrame = CFrame.new(4126.447, 1179.152, -1516.618)
 	safepart5.Size = Vector3.new(917.25, 53.75, 1455.75)
 	safepart5.Rotation = Vector3.new(5, 0, 0)
+	local safepart6 = Instance.new("Part", workspace)
+	safepart6.Anchored = true
+	safepart6.CFrame = CFrame.new(3267.11, 1225.225, 223.577)
+	safepart6.Size = Vector3.new(282.754, 89.1, 2)
 end
 
-if game.PlaceId == 3068144257 then
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/DenDenZZZ/Kavo-UI-Library/main/Kavo.lua"))()
+if game.PlaceId == 3068144257 then -- base game
 local Window = Library.CreateLib("Taxi Simulator 2 Hub", "DarkTheme")
 
 local Tab = Window:NewTab("Home")
@@ -64,9 +83,6 @@ local Tab1 = Window:NewTab("Driving Challenges")
 local Tab2 = Window:NewTab("Teleports")
 local Tab3 = Window:NewTab("Misc")
 local Section = Tab:NewSection("Section Name")
-------------------------------- 
-local lpc = game.Players.LocalPlayer.Character
-
 ------------------------------- Cosmic Causeway Portal Buttons
 
 local spaceportal = game.Workspace.map.SpacePortal

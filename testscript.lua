@@ -104,9 +104,13 @@ local safeguardfolder = Instance.new("Folder", workspace)
 safeguardfolder.Name = "SafeGuards"
 
 -- Unfinished road safeguard
-local urwedge1 = Instance.new("WedgePart", game.Workspace:FindFirstChild("SafeGuards"))
-local urwedge2 = Instance.new("WedgePart", game.Workspace:FindFirstChild("SafeGuards"))
-local urpart1 = Instance.new("Part", game.Workspace:FindFirstChild("SafeGuards"))
+local urwedge1 = Instance.new("WedgePart", game.Workspace.SafeGuards)
+local urwedge2 = Instance.new("WedgePart", game.Workspace.SafeGuards)
+local urpart1 = Instance.new("Part", game.Workspace.SafeGuards)
+
+urwedge1.Anchored = true
+urwedge2.Anchored = true
+urpart1.Anchored = true
 
 urwedge1.Transparency = 1
 urwedge2.Transparency = 1
@@ -120,9 +124,12 @@ urwedge1.Size = Vector3.new(95.6, 2.8, 29.957)
 urwedge2.Size = Vector3.new(95.6, 3, 22.457)
 urpart1.Size = Vector3.new(378.5, 2.25, 100.274)
 
-urwedge1.Position = CFrame.new(1615.004, 2.45, 83.25)
-urwedge2.Position = CFrame.new(1210.297, 2.35, 83.25)
-urpart1.Position = CFrame.new(1410.776, 2.725, 80.913)
+urwedge1.Position = Vector3.new(1615.004, 2.45, 83.25)
+urwedge2.Position = Vector3.new(1210.297, 2.35, 83.25)
+urpart1.Position = Vector3.new(1410.776, 2.725, 80.913)
+
+urwedge1.Rotation =  Vector3.new(0, -90, 0)
+urwedge2.Rotation =  Vector3.new(0, 90, 0)
 
 --------------------------------------------------------------------------------------- Tab 1
 
@@ -132,7 +139,7 @@ Tab1:AddToggle({
 	Callback = function(Value)
 		ShowCosmec = Value
 		if ShowCosmec == false then
-			OrionLib:MakeNotification({Name = "Success",Content = "Hid CC Buttons",Image = "rbxassetid://7733963797",Time = 5})
+			OrionLib:MakeNotification({Name = "Success",Content = "Hid CC Buttons",Image = "rbxassetid://7733963797",Time = 2})
 			hlgtpbutton1.Enabled = false
 			bill1.Enabled = false
 			hlgtpbutton2.Enabled = false
@@ -143,7 +150,7 @@ Tab1:AddToggle({
 			bill4.Enabled = false
 		end
 		if ShowCosmec == true then
-			OrionLib:MakeNotification({Name = "Success",Content = "Shown CC Buttons",Image = "rbxassetid://7733964016",Time = 5})
+			OrionLib:MakeNotification({Name = "Success",Content = "Shown CC Buttons",Image = "rbxassetid://7733964016",Time = 2})
 			hlgtpbutton1.Enabled = true
 			bill1.Enabled = true
 			hlgtpbutton2.Enabled = true
@@ -159,7 +166,7 @@ Tab1:AddToggle({
 Tab1:AddButton({
 	Name = "Click Cosmic Causeway Buttons",
 	Callback = function()
-		OrionLib:MakeNotification({Name = "Success",Content = "Clicking Buttons",Image = "rbxassetid://7733715400",Time = 5})
+		OrionLib:MakeNotification({Name = "Success",Content = "Clicking Buttons",Image = "rbxassetid://7733715400",Time = 2})
 		fireclickdetector(portalbutton1.detect)
 		wait(0.15)
 		fireclickdetector(portalbutton2.detect)
@@ -173,7 +180,7 @@ Tab1:AddButton({
 Tab1:AddButton({
 	Name = "Click Sandy Avenue Buttons",
 	Callback = function()
-		OrionLib:MakeNotification({Name = "Success",Content = "Clicking Buttons",Image = "rbxassetid://7733715400",Time = 5})
+		OrionLib:MakeNotification({Name = "Success",Content = "Clicking Buttons",Image = "rbxassetid://7733715400",Time = 2})
 		fireclickdetector(game.Workspace.map.SandQuest.sandbutton1:FindFirstDescendant("detect"))
 		wait(0.15)
 		fireclickdetector(game.Workspace.map.SandQuest.sandbutton2:FindFirstDescendant("detect"))
@@ -197,10 +204,10 @@ Tab2:AddButton({
 	Name = "TP to Garage",
 	Callback = function()
 		if lpc.Humanoid.Sit == false then
-			OrionLib:MakeNotification({Name = "Success",Content = "Teleported to Garage",Image = "rbxassetid://7733715400",Time = 5})
+			OrionLib:MakeNotification({Name = "Success",Content = "Teleported to Garage",Image = "rbxassetid://7733715400",Time = 2})
 			lpc.HumanoidRootPart.CFrame = CFrame.new(824.588, 11.825, 675.77)
 		elseif lpc.Humanoid.Sit == true then
-			OrionLib:MakeNotification({Name = "Error",Content = "You are sitting.",Image = "rbxassetid://7733658504",Time = 5})
+			OrionLib:MakeNotification({Name = "Error",Content = "You are sitting.",Image = "rbxassetid://7733658504",Time = 3})
 		end
 	end    
 })
@@ -209,10 +216,10 @@ Tab2:AddButton({
 	Name = "TP to Part Store",
 	Callback = function()
 		if lpc.Humanoid.Sit == false then
-			OrionLib:MakeNotification({Name = "Success",Content = "Teleported to Part Store",Image = "rbxassetid://7733715400",Time = 5})
+			OrionLib:MakeNotification({Name = "Success",Content = "Teleported to Part Store",Image = "rbxassetid://7733715400",Time = 2})
 			lpc.HumanoidRootPart.CFrame = CFrame.new(869.063, 12.4, 675.758)
 		elseif lpc.Humanoid.Sit == true then
-			OrionLib:MakeNotification({Name = "Error",Content = "You are sitting.",Image = "rbxassetid://7733658504",Time = 5})
+			OrionLib:MakeNotification({Name = "Error",Content = "You are sitting.",Image = "rbxassetid://7733658504",Time = 35})
 		end
 	end    
 })
@@ -221,10 +228,10 @@ Tab2:AddButton({
 	Name = "TP to Taxi Shop",
 	Callback = function()
 		if lpc.Humanoid.Sit == false then
-			OrionLib:MakeNotification({Name = "Success",Content = "Teleported to Taxi Shop",Image = "rbxassetid://7733715400",Time = 5})
+			OrionLib:MakeNotification({Name = "Success",Content = "Teleported to Taxi Shop",Image = "rbxassetid://7733715400",Time = 2})
 			lpc.HumanoidRootPart.CFrame = CFrame.new(846.888, 11.825, 675.77)
 		elseif lpc.Humanoid.Sit == true then
-			OrionLib:MakeNotification({Name = "Error",Content = "You are sitting.",Image = "rbxassetid://7733658504",Time = 5})
+			OrionLib:MakeNotification({Name = "Error",Content = "You are sitting.",Image = "rbxassetid://7733658504",Time = 3})
 		end
 	end    
 })
@@ -233,10 +240,10 @@ Tab2:AddButton({
 	Name = "TP to Garage (Part World)",
 	Callback = function()
 		if lpc.Humanoid.Sit == false then
-			OrionLib:MakeNotification({Name = "Success",Content = "Teleported to Garage (Part World)",Image = "rbxassetid://7733715400",Time = 5})
+			OrionLib:MakeNotification({Name = "Success",Content = "Teleported to Garage (Part World)",Image = "rbxassetid://7733715400",Time = 2})
 			lpc.HumanoidRootPart.CFrame = CFrame.new(510.382, 11.825, 3643.592)
 		elseif lpc.Humanoid.Sit == true then
-			OrionLib:MakeNotification({Name = "Error",Content = "You are sitting.",Image = "rbxassetid://7733658504",Time = 5})
+			OrionLib:MakeNotification({Name = "Error",Content = "You are sitting.",Image = "rbxassetid://7733658504",Time = 3})
 		end
 	end    
 })
@@ -245,10 +252,10 @@ Tab2:AddButton({
 	Name = "TP to Part World",
 	Callback = function()
 		if lpc.Humanoid.Sit == false then
-			OrionLib:MakeNotification({Name = "Success",Content = "Teleported to Part World",Image = "rbxassetid://7733715400",Time = 5})
+			OrionLib:MakeNotification({Name = "Success",Content = "Teleported to Part World",Image = "rbxassetid://7733715400",Time = 2})
 			lpc.HumanoidRootPart.CFrame = CFrame.new(454.366, 12.4, 3646.1)
 		elseif lpc.Humanoid.Sit == true then
-			OrionLib:MakeNotification({Name = "Error",Content = "You are sitting.",Image = "rbxassetid://7733658504",Time = 5})
+			OrionLib:MakeNotification({Name = "Error",Content = "You are sitting.",Image = "rbxassetid://7733658504",Time = 3})
 		end
 	end    
 })
@@ -284,7 +291,7 @@ Tab3:AddButton({
 	Callback = function()
 		ogc = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 		if lpc.Humanoid.Sit == false then
-			OrionLib:MakeNotification({Name = "Success",Content = "Collecting all Wrenches.",Image = "rbxassetid://7733715400",Time = 5})
+			OrionLib:MakeNotification({Name = "Success",Content = "Collecting all Wrenches.",Image = "rbxassetid://7733715400",Time = 2})
 			lpc.HumanoidRootPart.CFrame = CFrame.new(1777.662, 5.113, -94.187)
 			task.wait(0.25)
 			lpc.HumanoidRootPart.CFrame = CFrame.new(1166.916, 3.508, 1599.638)
@@ -311,7 +318,7 @@ Tab3:AddButton({
 			task.wait(0.25)
 			lpc.HumanoidRootPart.CFrame = ogc
 		elseif lpc.Humanoid.Sit == true then
-			OrionLib:MakeNotification({Name = "Error",Content = "You are sitting.",Image = "rbxassetid://7733658504",Time = 5})
+			OrionLib:MakeNotification({Name = "Error",Content = "You are sitting.",Image = "rbxassetid://7733658504",Time = 3})
 		end
 	end    
 })

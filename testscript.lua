@@ -3,6 +3,45 @@ if not game:IsLoaded() then
 end
 game:GetService("GuiService"):ClearError()
 
+if game.PlaceId == 13998146600 then
+	local safepart1 = Instance.new("Part", workspace)
+	safepart1.Anchored = true
+	safepart1.CFrame = CFrame.new(1181.46, 1180.05, 2239.274)
+	safepart1.Size = Vector3.new(55.129, 0.75, 159.848)
+	local safepart2 = Instance.new("Part", workspace)
+	safepart2.Anchored = true
+	safepart2.CFrame = CFrame.new(1181.454, 1205.3, 2096.998)
+	safepart2.Size = Vector3.new(55.113, 49.25, 2)
+	local safewedge1 = Instance.new("WedgePart", workspace)
+	safewedge1.Anchored = true
+	safewedge1.CFrame = CFrame.new(1860.699, 1187.075, 1609.081)
+	safewedge1.Size = Vector3.new(47.05, 12.8, 92.739)
+	safewedge1.Rotation = Vector3.new(0, 180, 0)
+	local safepart3 = Instance.new("Part", workspace)
+	safepart3.Anchored = true
+	safepart3.CFrame = CFrame.new(1170.796, 1205.3, 629.523)
+	safepart3.Size = Vector3.new(88, 49.25, 2)
+	local safepart4 = Instance.new("Part", workspace)
+	safepart4.Anchored = true
+	safepart4.CFrame = CFrame.new(3267.11, 1225.25, 272.655)
+	safepart4.Size = Vector3.new(282.753, 89.05, 2)
+	local safepart5 = Instance.new("Part", workspace)
+	safepart5.Anchored = true
+	safepart5.CFrame = CFrame.new(3702.532, 1180.125, 126.965)
+	safepart5.Size = Vector3.new(47.05, 1, 49.315)
+	local safewedge2 = Instance.new("WedgePart", workspace)
+	safewedge2.Anchored = true
+	safewedge2.CFrame = CFrame.new(3702.565, 1180.175, -437.329)
+	safewedge2.Size = Vector3.new(1, 46.996, 49.375)
+	safewedge2.Rotation = Vector3.new(0, 0, 90)
+	local safepart5 = Instance.new("Part", workspace)
+	safepart5.Anchored = true
+	safepart5.CFrame = CFrame.new(4126.447, 1179.152, -1516.618)
+	safepart5.Size = Vector3.new(917.25, 53.75, 1455.75)
+	safepart5.Rotation = Vector3.new(5, 0, 0)
+end
+
+if game.PlaceId == 3068144257 then
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/DenDenZZZ/Kavo-UI-Library/main/Kavo.lua"))()
 local Window = Library.CreateLib("Taxi Simulator 2 Hub", "DarkTheme")
 
@@ -486,3 +525,4 @@ Section5:NewToggle("Auto Delivery (Slow)", "Automatically deliver customers", fu
 		task.wait(15)
 	end
 end)
+end

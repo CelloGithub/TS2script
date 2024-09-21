@@ -1,36 +1,17 @@
 if not game:IsLoaded() then
 	game.Loaded:Wait()
 end
-
 game:GetService("GuiService"):ClearError()
 
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/DenDenZZZ/Kavo-UI-Library/main/Kavo.lua"))()
+local Window = Library.CreateLib("Taxi Simulator 2 Hub", "DarkTheme")
 
-local Window = OrionLib:MakeWindow({Name = "Taxi Simulator 2 Hub", HidePremium = true, IntroEnabled = false, SaveConfig = false, ConfigFolder = "OrionTest"})
+local Tab = Window:NewTab("Home")
+local Tab1 = Window:NewTab("Driving Challenges")
+local Tab2 = Window:NewTab("Teleports")
+local Tab3 = Window:NewTab("Misc")
 
-local Tab = Window:MakeTab({
-	Name = "Home",
-	Icon = "http://www.roblox.com/asset/?id=4370345144",
-	PremiumOnly = false
-})
-
-local Tab1 = Window:MakeTab({
-	Name = "Driving Challenges",
-	Icon = "http://www.roblox.com/asset/?id=7733708835",
-	PremiumOnly = false
-})
-
-local Tab2 = Window:MakeTab({
-	Name = "Teleports",
-	Icon = "http://www.roblox.com/asset/?id=7743869612",
-	PremiumOnly = false
-})
-
-local Tab3 = Window:MakeTab({
-	Name = "Misc",
-	Icon = "http://www.roblox.com/asset/?id=7734040271",
-	PremiumOnly = false
-})
+local Section = Tab:NewSection("Section Name")
 
 local lpc = game.Players.LocalPlayer.Character
 
@@ -131,222 +112,263 @@ urpart1.Position = Vector3.new(1410.776, 2.725, 80.913)
 urwedge1.Rotation =  Vector3.new(0, -90, 0)
 urwedge2.Rotation =  Vector3.new(0, 90, 0)
 
---------------------------------------------------------------------------------------- Tab 1
+-------------------------------------------------------------- Tab | Testing Place
 
-Tab1:AddToggle({
-	Name = "Show Cosmic Causeway Buttons",
-	Default = false,
-	Callback = function(Value)
-		ShowCosmec = Value
-		if ShowCosmec == false then
-			OrionLib:MakeNotification({Name = "Success",Content = "Hid CC Buttons",Image = "rbxassetid://7733963797",Time = 2})
-			hlgtpbutton1.Enabled = false
-			bill1.Enabled = false
-			hlgtpbutton2.Enabled = false
-			bill2.Enabled = false
-			hlgtpbutton3.Enabled = false
-			bill3.Enabled = false
-			hlgtpbutton4.Enabled = false
-			bill4.Enabled = false
-		end
-		if ShowCosmec == true then
-			OrionLib:MakeNotification({Name = "Success",Content = "Shown CC Buttons",Image = "rbxassetid://7733964016",Time = 2})
-			hlgtpbutton1.Enabled = true
-			bill1.Enabled = true
-			hlgtpbutton2.Enabled = true
-			bill2.Enabled = true
-			hlgtpbutton3.Enabled = true
-			bill3.Enabled = true
-			hlgtpbutton4.Enabled = true
-			bill4.Enabled = true
-		end
+Section:NewToggle("ToggleText", "ToggleInfo", function(state)
+	if state then
+		print("Toggle On")
+	else
+		print("Toggle Off")
 	end
-})
+end)
 
-Tab1:AddButton({
-	Name = "Click Cosmic Causeway Buttons",
-	Callback = function()
-		OrionLib:MakeNotification({Name = "Success",Content = "Clicking Buttons",Image = "rbxassetid://7733715400",Time = 2})
-		fireclickdetector(portalbutton1.detect)
-		wait(0.15)
-		fireclickdetector(portalbutton2.detect)
-		wait(0.15)
-		fireclickdetector(portalbutton3.detect)
-		wait(0.15)
-		fireclickdetector(portalbutton4.detect)
-	end    
-})
+Section:NewButton("ButtonText", "ButtonInfo", function()
+	print("Clicked")
+end)
 
-Tab1:AddButton({
-	Name = "Click Sandy Avenue Buttons",
-	Callback = function()
-		OrionLib:MakeNotification({Name = "Success",Content = "Clicking Buttons",Image = "rbxassetid://7733715400",Time = 2})
-		fireclickdetector(game.Workspace.map.SandQuest.sandbutton1:FindFirstDescendant("detect"))
-		wait(0.15)
-		fireclickdetector(game.Workspace.map.SandQuest.sandbutton2:FindFirstDescendant("detect"))
-		wait(0.15)
-		fireclickdetector(game.Workspace.map.SandQuest.sandbutton3:FindFirstDescendant("detect"))
-	end    
-})
+Section:NewSlider("SliderText", "SliderInfo", 500, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
 
-Tab1:AddLabel("Driving Challenge Teleports")
+Section:NewTextBox("TextboxText", "TextboxInfo", function(txt)
+	print(txt)
+end)
 
-Tab1:AddButton({
-	Name = "Teleport to Death Street",
-	Callback = function()
-		game:GetService("TeleportService"):Teleport(4101035748)
-	end    
-})
+Section:NewKeybind("KeybindText", "KeybindInfo", Enum.KeyCode.F, function()
+	print("You just clicked the bind")
+end)
 
---------------------------------------------------------------------------------------- Tab 2
+Section:NewDropdown("DropdownText", "DropdownInf", {"Option 1", "Option 2", "Option 3"}, function(currentOption)
+	print(currentOption)
+end)
 
-Tab2:AddButton({
-	Name = "TP to Garage",
-	Callback = function()
-		if lpc.Humanoid.Sit == false then
-			OrionLib:MakeNotification({Name = "Success",Content = "Teleported to Garage",Image = "rbxassetid://7733715400",Time = 2})
-			lpc.HumanoidRootPart.CFrame = CFrame.new(824.588, 11.825, 675.77)
-		elseif lpc.Humanoid.Sit == true then
-			OrionLib:MakeNotification({Name = "Error",Content = "You are sitting.",Image = "rbxassetid://7733658504",Time = 3})
-		end
-	end    
-})
+local oldList = {
+	"2019",
+	"2020"
+}
+local newList = {
+	"2021",
+	"2022"
+}
+local dropdown = Section:NewDropdown("Dropdown","Info", oldList, function()
 
-Tab2:AddButton({
-	Name = "TP to Part Store",
-	Callback = function()
-		if lpc.Humanoid.Sit == false then
-			OrionLib:MakeNotification({Name = "Success",Content = "Teleported to Part Store",Image = "rbxassetid://7733715400",Time = 2})
-			lpc.HumanoidRootPart.CFrame = CFrame.new(869.063, 12.4, 675.758)
-		elseif lpc.Humanoid.Sit == true then
-			OrionLib:MakeNotification({Name = "Error",Content = "You are sitting.",Image = "rbxassetid://7733658504",Time = 35})
-		end
-	end    
-})
+end)
+Section:NewButton("Update Dropdown", "Refreshes Dropdown", function()
+	dropdown:Refresh(newList)
+end)
 
-Tab2:AddButton({
-	Name = "TP to Taxi Shop",
-	Callback = function()
-		if lpc.Humanoid.Sit == false then
-			OrionLib:MakeNotification({Name = "Success",Content = "Teleported to Taxi Shop",Image = "rbxassetid://7733715400",Time = 2})
-			lpc.HumanoidRootPart.CFrame = CFrame.new(846.888, 11.825, 675.77)
-		elseif lpc.Humanoid.Sit == true then
-			OrionLib:MakeNotification({Name = "Error",Content = "You are sitting.",Image = "rbxassetid://7733658504",Time = 3})
-		end
-	end    
-})
+-------------------------------------------------------------- Tab 1 | Driving Challenges
+local Section1 = Tab1:NewSection("Buttons Related")
+local Section2 = Tab1:NewSection("Teleports")
 
-Tab2:AddButton({
-	Name = "TP to Garage (Part World)",
-	Callback = function()
-		if lpc.Humanoid.Sit == false then
-			OrionLib:MakeNotification({Name = "Success",Content = "Teleported to Garage (Part World)",Image = "rbxassetid://7733715400",Time = 2})
-			lpc.HumanoidRootPart.CFrame = CFrame.new(510.382, 11.825, 3643.592)
-		elseif lpc.Humanoid.Sit == true then
-			OrionLib:MakeNotification({Name = "Error",Content = "You are sitting.",Image = "rbxassetid://7733658504",Time = 3})
-		end
-	end    
-})
+Section1:NewToggle("Show Cosmic Causeway Buttons", "Enables / Disables billboard gui on the buttons", function(state)
+	if state then
+		hlgtpbutton1.Enabled = false
+		bill1.Enabled = false
+		hlgtpbutton2.Enabled = false
+		bill2.Enabled = false
+		hlgtpbutton3.Enabled = false
+		bill3.Enabled = false
+		hlgtpbutton4.Enabled = false
+		bill4.Enabled = false
+	else
+		hlgtpbutton1.Enabled = true
+		bill1.Enabled = true
+		hlgtpbutton2.Enabled = true
+		bill2.Enabled = true
+		hlgtpbutton3.Enabled = true
+		bill3.Enabled = true
+		hlgtpbutton4.Enabled = true
+		bill4.Enabled = true
+	end
+end)
 
-Tab2:AddButton({
-	Name = "TP to Part World",
-	Callback = function()
-		if lpc.Humanoid.Sit == false then
-			OrionLib:MakeNotification({Name = "Success",Content = "Teleported to Part World",Image = "rbxassetid://7733715400",Time = 2})
-			lpc.HumanoidRootPart.CFrame = CFrame.new(454.366, 12.4, 3646.1)
-		elseif lpc.Humanoid.Sit == true then
-			OrionLib:MakeNotification({Name = "Error",Content = "You are sitting.",Image = "rbxassetid://7733658504",Time = 3})
-		end
-	end    
-})
+Section1:NewButton("Click Cosmic Causeway Buttons", "Clicks all the buttons related to the driving challenge", function()
+	fireclickdetector(portalbutton1.detect)
+	wait(0.15)
+	fireclickdetector(portalbutton2.detect)
+	wait(0.15)
+	fireclickdetector(portalbutton3.detect)
+	wait(0.15)
+	fireclickdetector(portalbutton4.detect)
+end)
 
---------------------------------------------------------------------------------------- Tab 3
+Section1:NewButton("Click Sandy Avenue Buttons", "Clicks all the buttons related to the driving challenge", function()
+	fireclickdetector(game.Workspace.map.SandQuest.sandbutton1:FindFirstDescendant("detect"))
+	wait(0.15)
+	fireclickdetector(game.Workspace.map.SandQuest.sandbutton2:FindFirstDescendant("detect"))
+	wait(0.15)
+	fireclickdetector(game.Workspace.map.SandQuest.sandbutton3:FindFirstDescendant("detect"))
+end)
 
-Tab3:AddToggle({
-	Name = "Show Shortcuts",
-	Default = false,
-	Callback = function(Value)
-		ShowShortcuts = Value
-		if ShowShortcuts == false then
-			for i, shortcutpart in ipairs(game.Players:GetChildren()) do
-				if shortcutpart:IsA("BasePart") then
-					shortcutpart.Transparency = 1
-					shortcutpart.BrickColor = BrickColor.new("Medium stone grey")
-				end
+Section2:NewButton("Teleport to Death Street", "Teleports you to said Driving Challenge", function()
+	game:GetService("TeleportService"):Teleport(4101035748)
+end)
+
+-------------------------------------------------------------- Tab 2 | Teleports
+local Section3 = Tab2:NewSection("Location Teleports")
+
+Section3:NewButton("Teleport to Garage", "Teleports you to said Location", function()
+	if lpc.Humanoid.Sit == false then
+		lpc.HumanoidRootPart.CFrame = CFrame.new(824.588, 11.825, 675.77)
+	elseif lpc.Humanoid.Sit == true then
+		game:GetService("StarterGui"):SetCore("SendNotification",{
+			Title = "Error";
+			Text = "Cannot teleport while sitting.";
+			Duration = 3;
+		})
+	end
+end)
+
+Section3:NewButton("Teleport to Part Store", "Teleports you to said Location", function()
+	if lpc.Humanoid.Sit == false then
+		lpc.HumanoidRootPart.CFrame = CFrame.new(869.063, 12.4, 675.758)
+	elseif lpc.Humanoid.Sit == true then
+		game:GetService("StarterGui"):SetCore("SendNotification",{
+			Title = "Error";
+			Text = "Cannot teleport while sitting.";
+			Duration = 3;
+		})
+	end
+end)
+
+Section3:NewButton("Teleport to Taxi Shop", "Teleports you to said Location", function()
+	if lpc.Humanoid.Sit == false then
+		lpc.HumanoidRootPart.CFrame = CFrame.new(846.888, 11.825, 675.77)
+	elseif lpc.Humanoid.Sit == true then
+		game:GetService("StarterGui"):SetCore("SendNotification",{
+			Title = "Error";
+			Text = "Cannot teleport while sitting.";
+			Duration = 3;
+		})
+	end
+end)
+
+Section3:NewButton("Teleport to Garage (Part World)", "Teleports you to said Location", function()
+	if lpc.Humanoid.Sit == false then
+		lpc.HumanoidRootPart.CFrame = CFrame.new(510.382, 11.825, 3643.592)
+	elseif lpc.Humanoid.Sit == true then
+		game:GetService("StarterGui"):SetCore("SendNotification",{
+			Title = "Error";
+			Text = "Cannot teleport while sitting.";
+			Duration = 3;
+		})
+	end
+end)
+
+Section3:NewButton("Teleport to Part World", "Teleports you to said Location", function()
+	if lpc.Humanoid.Sit == false then
+		lpc.HumanoidRootPart.CFrame = CFrame.new(454.366, 12.4, 3646.1)
+	elseif lpc.Humanoid.Sit == true then
+		game:GetService("StarterGui"):SetCore("SendNotification",{
+			Title = "Error";
+			Text = "Cannot teleport while sitting.";
+			Duration = 3;
+		})
+	end
+end)
+
+-------------------------------------------------------------- Tab 3 | Misc
+local Section4 = Tab3:NewSection("Misc")
+
+Section4:NewToggle("Show Shortucts", "Makes Shortcuts Visible", function(state)
+	if state then
+		game:GetService("StarterGui"):SetCore("SendNotification",{
+			Title = "Success";
+			Text = "Made Shortcuts Visible";
+			Duration = 3;
+		})
+		for i, shortcutpart in ipairs(game.Workspace.shortcuts:GetChildren()) do
+			if shortcutpart:IsA("BasePart") then
+				shortcutpart.Transparency = 0.75
+				shortcutpart.BrickColor = BrickColor.new("Bright red")
 			end
 		end
-		if ShowShortcuts == true then
-			for i, shortcutpart in ipairs(game.Workspace.shortcuts:GetChildren()) do
-				if shortcutpart:IsA("BasePart") then
-					shortcutpart.Transparency = 0.75
-					shortcutpart.BrickColor = BrickColor.new("Bright red")
-				end
+	else
+		game:GetService("StarterGui"):SetCore("SendNotification",{
+			Title = "Success";
+			Text = "Made Shortcuts Invisible";
+			Duration = 3;
+		})
+		for i, shortcutpart in ipairs(game.Players:GetChildren()) do
+			if shortcutpart:IsA("BasePart") then
+				shortcutpart.Transparency = 1
+				shortcutpart.BrickColor = BrickColor.new("Medium stone grey")
 			end
 		end
 	end
-})
+end)
 
-Tab3:AddButton({
-	Name = "Get All Wrenches",
-	Callback = function()
-		ogc = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-		if lpc.Humanoid.Sit == false then
-			OrionLib:MakeNotification({Name = "Success",Content = "Collecting all Wrenches.",Image = "rbxassetid://7733715400",Time = 2})
-			lpc.HumanoidRootPart.CFrame = CFrame.new(1777.662, 5.113, -94.187)
-			task.wait(0.25)
-			lpc.HumanoidRootPart.CFrame = CFrame.new(1166.916, 3.508, 1599.638)
-			task.wait(0.25)
-			lpc.HumanoidRootPart.CFrame = CFrame.new(-75.189, 5.113, 329.388)
-			task.wait(0.25)
-			lpc.HumanoidRootPart.CFrame = CFrame.new(753.087, 44.388, 882.613)
-			task.wait(0.25)
-			lpc.HumanoidRootPart.CFrame = CFrame.new(1172.136, -16.812, 1382.738)
-			task.wait(0.25)
-			lpc.HumanoidRootPart.CFrame = CFrame.new(60.916, 5.108, 204.238)
-			task.wait(0.25)
-			lpc.HumanoidRootPart.CFrame = CFrame.new(-210.934, -73.692, 1007.838)
-			task.wait(0.25)
-			lpc.HumanoidRootPart.CFrame = CFrame.new(276.116, 39.258, -49.812)
-			task.wait(0.25)
-			lpc.HumanoidRootPart.CFrame = CFrame.new(1493.308, -3.742, 2260.246)
-			task.wait(0.25)
-			lpc.HumanoidRootPart.CFrame = CFrame.new(-156.179, 25.258, 3498.343)
-			task.wait(0.25)
-			lpc.HumanoidRootPart.CFrame = CFrame.new(-1692.723, 53.558, 3112.965)
-			task.wait(0.25)
-			lpc.HumanoidRootPart.CFrame = CFrame.new(259.364, 3.658, 4186.648)
-			task.wait(0.25)
-			lpc.HumanoidRootPart.CFrame = ogc
-		elseif lpc.Humanoid.Sit == true then
-			OrionLib:MakeNotification({Name = "Error",Content = "You are sitting.",Image = "rbxassetid://7733658504",Time = 3})
-		end
-	end    
-})
+Section4:NewToggle("Safeguards", "Toggles Invisible parts on locations where your vechicle may be damaged.", function(state)
+	if state then
+		game:GetService("StarterGui"):SetCore("SendNotification",{
+			Title = "Success";
+			Text = "Enabled Safeguards";
+			Duration = 3;
+		})
+		-- unfin road
+		urwedge1.Transparency = 0.5
+		urwedge2.Transparency = 0.5
+		urpart1.Transparency = 0.5
 
-Tab3:AddToggle({
-	Name = "Safeguards",
-	Default = false,
-	Callback = function(Value)
-		Safeguard = Value
-		if Safeguard == false then
-			-- unfin road
-			urwedge1.Transparency = 1
-			urwedge2.Transparency = 1
-			urpart1.Transparency = 1
+		urwedge1.CanCollide = true
+		urwedge2.CanCollide = true
+		urpart1.CanCollide = true
+	else
+		game:GetService("StarterGui"):SetCore("SendNotification",{
+			Title = "Success";
+			Text = "Disabled Safeguards";
+			Duration = 3;
+		})
+		-- unfin road
+		urwedge1.Transparency = 1
+		urwedge2.Transparency = 1
+		urpart1.Transparency = 1
 
-			urwedge1.CanCollide = false
-			urwedge2.CanCollide = false
-			urpart1.CanCollide = false
-		end
-		if Safeguard == true then
-			-- unfin road
-			urwedge1.Transparency = 0.5
-			urwedge2.Transparency = 0.5
-			urpart1.Transparency = 0.5
-
-			urwedge1.CanCollide = true
-			urwedge2.CanCollide = true
-			urpart1.CanCollide = true
-		end
+		urwedge1.CanCollide = false
+		urwedge2.CanCollide = false
+		urpart1.CanCollide = false
 	end
-})
+end)
+
+Section4:NewButton("Get All Wrenches", "Self-Explanatory", function()
+	ogc = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+	if lpc.Humanoid.Sit == false then
+		game:GetService("StarterGui"):SetCore("SendNotification",{
+			Title = "Success";
+			Text = "Collecting All Wrenches.";
+			Duration = 3;
+		})
+		lpc.HumanoidRootPart.CFrame = CFrame.new(1777.662, 5.113, -94.187)
+		task.wait(0.25)
+		lpc.HumanoidRootPart.CFrame = CFrame.new(1166.916, 3.508, 1599.638)
+		task.wait(0.25)
+		lpc.HumanoidRootPart.CFrame = CFrame.new(-75.189, 5.113, 329.388)
+		task.wait(0.25)
+		lpc.HumanoidRootPart.CFrame = CFrame.new(753.087, 44.388, 882.613)
+		task.wait(0.25)
+		lpc.HumanoidRootPart.CFrame = CFrame.new(1172.136, -16.812, 1382.738)
+		task.wait(0.25)
+		lpc.HumanoidRootPart.CFrame = CFrame.new(60.916, 5.108, 204.238)
+		task.wait(0.25)
+		lpc.HumanoidRootPart.CFrame = CFrame.new(-210.934, -73.692, 1007.838)
+		task.wait(0.25)
+		lpc.HumanoidRootPart.CFrame = CFrame.new(276.116, 39.258, -49.812)
+		task.wait(0.25)
+		lpc.HumanoidRootPart.CFrame = CFrame.new(1493.308, -3.742, 2260.246)
+		task.wait(0.25)
+		lpc.HumanoidRootPart.CFrame = CFrame.new(-156.179, 25.258, 3498.343)
+		task.wait(0.25)
+		lpc.HumanoidRootPart.CFrame = CFrame.new(-1692.723, 53.558, 3112.965)
+		task.wait(0.25)
+		lpc.HumanoidRootPart.CFrame = CFrame.new(259.364, 3.658, 4186.648)
+		task.wait(0.25)
+		lpc.HumanoidRootPart.CFrame = ogc
+	elseif lpc.Humanoid.Sit == true then
+		game:GetService("StarterGui"):SetCore("SendNotification",{
+			Title = "Error";
+			Text = "Cannot teleport while sitting.";
+			Duration = 3;
+		})
+	end
+end)

@@ -149,6 +149,25 @@ for _, h in ipairs(game.Workspace.map.SandQuest.sandbutton3:GetChildren()) do
 	end
 end
 
+------------------------------- Atmospheric Alleyway things
+
+local atmos = game.Workspace.map.AtmoPortal
+local aimpoint = atmos.aimpoint
+local signa = atmos.signa
+local signb = atmos.signb
+
+local rockclicker = nil
+
+for _, u in ipairs(atmos:GetChildren()) do
+	if u:IsA("Part") or u:IsA("MeshPart") then
+		local detector = u:FindFirstChildOfClass("ClickDetector")
+		if detector then
+			rockclicker = detector
+			break
+		end
+	end
+end
+
 -------------------------------------------------------------- Tab | Testing Place
 
 Section:NewToggle("ToggleText", "ToggleInfo", function(state)
@@ -237,6 +256,12 @@ Section1:NewButton("Click Sandy Avenue Buttons", "Clicks all the buttons related
 	fireclickdetector(sandyclicker3)
 end)
 
+Section1:NewButton("Click Atmospheric Alleyway", "Clicks the button related to the driving challenge", function()
+	signa.CFrame = aimpoint.CFrame
+	signb.CFrame = aimpoint.CFrame
+	fireclickdetector(rockclicker)
+end)
+
 -------------------------------------------------------------- Tab 2 | Teleports
 local Section3 = Tab2:NewSection("Location Teleports")
 
@@ -302,7 +327,7 @@ end)
 
 -------------------------------------------------------------- Tab 3 | Misc
 local Section4 = Tab3:NewSection("Misc")
-local Section5 = Tab3:NewSection("Only enable these when you're on a Small / Solo server OR your own private server")
+local Section5 = Tab3:NewSection("Only enable these when you're on a Small server")
 
 Section4:NewToggle("Show Shortucts", "Makes Shortcuts Visible", function(showshortc)
 	if showshortc then
@@ -365,7 +390,7 @@ Section4:NewToggle("Safeguards", "Toggles Invisible parts on locations where you
 end)
 
 Section4:NewButton("Get All Wrenches", "Self-Explanatory", function()
-	ogc = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+	ogc = lpc.HumanoidRootPart.CFrame
 	if lpc.Humanoid.Sit == false then
 		game:GetService("StarterGui"):SetCore("SendNotification",{
 			Title = "Success";
@@ -406,14 +431,17 @@ Section4:NewButton("Get All Wrenches", "Self-Explanatory", function()
 	end
 end)
 
-Section5:NewToggle("Ocean Collision", "Toggles collision on the ocean", function(safeguard)
-	if safeguard then
+Section5:NewToggle("Ocean Collision", "Toggles collision on the ocean", function(oceanfloor)
+	while oceanfloor do
+		game.Workspace.map.oceanwater.CanCollide = true
+		task.wait()
+	end
+	if oceanfloor then
 		game:GetService("StarterGui"):SetCore("SendNotification",{
 			Title = "Success";
 			Text = "Enabled Water Collision";
 			Duration = 2;
 		})
-		game.Workspace.map.oceanwater.CanCollide = true
 	else
 		game:GetService("StarterGui"):SetCore("SendNotification",{
 			Title = "Success";
@@ -423,4 +451,29 @@ Section5:NewToggle("Ocean Collision", "Toggles collision on the ocean", function
 		game.Workspace.map.oceanwater.CanCollide = false
 	end
 end)
+
+Section5:NewToggle("Auto Delivery (Slow)", "Automatically deliver customers", function(auto)
+	local npclocation = game.Workspace.npcs.Customer.location
+	local location = game.Workspace.locations:FindFirstChild(npclocation)
 	
+	while auto do
+		task.wait()
+		lpc.HumanoidRootPart.CFrame = game.Workspace.npcs.Customer.HumanoidrootPart.CFrame
+		task.wait(5)
+		lpc.HumanoidRootPart.CFrame = location.CFrame
+		task.wait(15)
+	end
+	if auto then
+		game:GetService("StarterGui"):SetCore("SendNotification",{
+			Title = "Success";
+			Text = "Enabled Auto Delivery";
+			Duration = 2;
+		})
+	else
+		game:GetService("StarterGui"):SetCore("SendNotification",{
+			Title = "Success";
+			Text = "Disabled Auto Delivery";
+			Duration = 2;
+		})
+	end
+end)

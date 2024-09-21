@@ -4,6 +4,20 @@ end
 game:GetService("GuiService"):ClearError()
 
 if game.PlaceId == 13998146600 then
+	local modelNameToModify = "door"
+	local function destroymodelcollision(name)
+		local model = workspace.map.Model:FindFirstChild(name)
+		if model and model:IsA("Model") then
+			for _, child in pairs(model:GetChildren()) do
+				if child:IsA("Part") then
+					child.CanCollide = false
+					child.Transparency = 0.5
+				end
+			end
+		end
+	end
+	destroymodelcollision(modelNameToModify)
+	
 	local safepart1 = Instance.new("Part", workspace)
 	safepart1.Anchored = true
 	safepart1.CFrame = CFrame.new(1181.46, 1180.05, 2239.274)

@@ -10,10 +10,11 @@ local Tab = Window:NewTab("Home")
 local Tab1 = Window:NewTab("Driving Challenges")
 local Tab2 = Window:NewTab("Teleports")
 local Tab3 = Window:NewTab("Misc")
-
 local Section = Tab:NewSection("Section Name")
-
+------------------------------- 
 local lpc = game.Players.LocalPlayer.Character
+
+------------------------------- Cosmic Causeway Portal Buttons
 
 local spaceportal = game.Workspace.map.SpacePortal
 local portalbutton1 = spaceportal.button1.button
@@ -81,10 +82,12 @@ textlabel4.BackgroundTransparency = 1
 textlabel4.TextScaled = true
 textlabel4.TextColor3 = Color3.new(0, 1, 0)
 
+------------------------------- Safeguards
+
 local safeguardfolder = Instance.new("Folder", workspace)
 safeguardfolder.Name = "SafeGuards"
 
--- Unfinished road safeguard
+--------------------------------------  Unfinished road safeguard
 local urwedge1 = Instance.new("WedgePart", game.Workspace.SafeGuards)
 local urwedge2 = Instance.new("WedgePart", game.Workspace.SafeGuards)
 local urpart1 = Instance.new("Part", game.Workspace.SafeGuards)
@@ -112,37 +115,38 @@ urpart1.Position = Vector3.new(1410.776, 2.725, 80.913)
 urwedge1.Rotation =  Vector3.new(0, -90, 0)
 urwedge2.Rotation =  Vector3.new(0, 90, 0)
 
+------------------------------- Sandy Avenue Buttons
 
 local sandyclicker1 = nil
 local sandyclicker2 = nil
 local sandyclicker3 = nil
 
-for _, sandyclicker1 in ipairs(game.Workspace.map.SandQuest.sandbutton1:GetChildren()) do
-    if sandyclicker1:IsA("Part") or sandyclicker1:IsA("MeshPart") then
-        local detector = sandyclicker1:FindFirstChildOfClass("ClickDetector")
-        if detector then
-            sandyclicker1 = detector
-            break
-        end
-    end
+for _, n in ipairs(game.Workspace.map.SandQuest.sandbutton1:GetChildren()) do
+	if n:IsA("Part") or n:IsA("MeshPart") then
+		local detector = n:FindFirstChildOfClass("ClickDetector")
+		if detector then
+			sandyclicker1 = detector
+			break
+		end
+	end
 end
-for _, sandyclicker2 in ipairs(game.Workspace.map.SandQuest.sandbutton2:GetChildren()) do
-    if sandyclicker2:IsA("Part") or sandyclicker2:IsA("MeshPart") then
-        local detector = sandyclicker2:FindFirstChildOfClass("ClickDetector")
-        if detector then
-            sandyclicker2 = detector
-            break
-        end
-    end
+for _, j in ipairs(game.Workspace.map.SandQuest.sandbutton2:GetChildren()) do
+	if j:IsA("Part") or j:IsA("MeshPart") then
+		local detector = j:FindFirstChildOfClass("ClickDetector")
+		if detector then
+			sandyclicker2 = detector
+			break
+		end
+	end
 end
-for _, sandyclicker3 in ipairs(game.Workspace.map.SandQuest.sandbutton3:GetChildren()) do
-    if sandyclicker3:IsA("Part") or sandyclicker3:IsA("MeshPart") then
-        local detector = sandyclicker3:FindFirstChildOfClass("ClickDetector")
-        if detector then
-            sandyclicker3 = detector
-            break
-        end
-    end
+for _, h in ipairs(game.Workspace.map.SandQuest.sandbutton3:GetChildren()) do
+	if h:IsA("Part") or h:IsA("MeshPart") then
+		local detector = h:FindFirstChildOfClass("ClickDetector")
+		if detector then
+			sandyclicker3 = detector
+			break
+		end
+	end
 end
 
 -------------------------------------------------------------- Tab | Testing Place
@@ -192,19 +196,9 @@ end)
 
 -------------------------------------------------------------- Tab 1 | Driving Challenges
 local Section1 = Tab1:NewSection("Buttons Related")
-local Section2 = Tab1:NewSection("Teleports")
 
-Section1:NewToggle("Show Cosmic Causeway Buttons", "Enables / Disables billboard gui on the buttons", function(showccbuttons)
+Section1:NewToggle("Show Cosmic Causeway Buttons", "Enables / Disables the Billboard gui on the buttons", function(showccbuttons)
 	if showccbuttons then
-		hlgtpbutton1.Enabled = false
-		bill1.Enabled = false
-		hlgtpbutton2.Enabled = false
-		bill2.Enabled = false
-		hlgtpbutton3.Enabled = false
-		bill3.Enabled = false
-		hlgtpbutton4.Enabled = false
-		bill4.Enabled = false
-	else
 		hlgtpbutton1.Enabled = true
 		bill1.Enabled = true
 		hlgtpbutton2.Enabled = true
@@ -213,6 +207,15 @@ Section1:NewToggle("Show Cosmic Causeway Buttons", "Enables / Disables billboard
 		bill3.Enabled = true
 		hlgtpbutton4.Enabled = true
 		bill4.Enabled = true
+	else
+		hlgtpbutton1.Enabled = false
+		bill1.Enabled = false
+		hlgtpbutton2.Enabled = false
+		bill2.Enabled = false
+		hlgtpbutton3.Enabled = false
+		bill3.Enabled = false
+		hlgtpbutton4.Enabled = false
+		bill4.Enabled = false
 	end
 end)
 
@@ -232,14 +235,6 @@ Section1:NewButton("Click Sandy Avenue Buttons", "Clicks all the buttons related
 	fireclickdetector(sandyclicker2)
 	wait(0.15)
 	fireclickdetector(sandyclicker3)
-end)
-
-Section2:NewButton("Teleport to Death Street", "Teleports you to said Driving Challenge", function()
-	game:GetService("TeleportService"):Teleport(4101035748)
-end)
-
-Section2:NewButton("Teleport to Windy Lane", "Teleports you to said Driving Challenge", function()
-	game:GetService("TeleportService"):Teleport(4581988516)
 end)
 
 -------------------------------------------------------------- Tab 2 | Teleports
@@ -307,6 +302,7 @@ end)
 
 -------------------------------------------------------------- Tab 3 | Misc
 local Section4 = Tab3:NewSection("Misc")
+local Section5 = Tab3:NewSection("Only enable these when you're on a Small / Solo server OR your own private server")
 
 Section4:NewToggle("Show Shortucts", "Makes Shortcuts Visible", function(showshortc)
 	if showshortc then
@@ -336,7 +332,7 @@ Section4:NewToggle("Show Shortucts", "Makes Shortcuts Visible", function(showsho
 	end
 end)
 
-Section4:NewToggle("Safeguards", "Toggles Invisible parts on locations where your vechicle may be damaged.", function(safeguard)
+Section4:NewToggle("Safeguards", "Toggles Invisible parts on locations where your vechicle may be damaged", function(safeguard)
 	if safeguard then
 		game:GetService("StarterGui"):SetCore("SendNotification",{
 			Title = "Success";
@@ -409,3 +405,22 @@ Section4:NewButton("Get All Wrenches", "Self-Explanatory", function()
 		})
 	end
 end)
+
+Section5:NewToggle("Ocean Collision", "Toggles collision on the ocean", function(safeguard)
+	if safeguard then
+		game:GetService("StarterGui"):SetCore("SendNotification",{
+			Title = "Success";
+			Text = "Enabled Water Collision";
+			Duration = 2;
+		})
+		game.Workspace.map.oceanwater.CanCollide = true
+	else
+		game:GetService("StarterGui"):SetCore("SendNotification",{
+			Title = "Success";
+			Text = "Disabled Water Collision";
+			Duration = 2;
+		})
+		game.Workspace.map.oceanwater.CanCollide = false
+	end
+end)
+	

@@ -14,7 +14,7 @@ if game.PlaceId == 13998146600 then
 	
 	local CCWindow = Library.CreateLib("Taxi Simulator 2 Hub | Cosmic Causeway", "DarkTheme")
 	local CCTab = Window:NewTab("Home")
-	local CCSection = Tab:NewSection("Cosmic Causeway")
+	local CCSection = CCTab:NewSection("Cosmic Causeway")
 
 	CCSection:NewButton("Flip Taxi", "ButtonInfo", function()
 		flipCharacter()

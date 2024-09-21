@@ -82,6 +82,15 @@ textlabel4.BackgroundTransparency = 1
 textlabel4.TextScaled = true
 textlabel4.TextColor3 = Color3.new(0, 1, 0)
 
+hlgtpbutton1.Enabled = false
+bill1.Enabled = false
+hlgtpbutton2.Enabled = false
+bill2.Enabled = false
+hlgtpbutton3.Enabled = false
+bill3.Enabled = false
+hlgtpbutton4.Enabled = false
+bill4.Enabled = false
+
 ------------------------------- Safeguards
 
 local safeguardfolder = Instance.new("Folder", workspace)
@@ -432,10 +441,6 @@ Section4:NewButton("Get All Wrenches", "Self-Explanatory", function()
 end)
 
 Section5:NewToggle("Ocean Collision", "Toggles collision on the ocean", function(oceanfloor)
-	while oceanfloor do
-		game.Workspace.map.oceanwater.CanCollide = true
-		task.wait()
-	end
 	if oceanfloor then
 		game:GetService("StarterGui"):SetCore("SendNotification",{
 			Title = "Success";
@@ -450,19 +455,16 @@ Section5:NewToggle("Ocean Collision", "Toggles collision on the ocean", function
 		})
 		game.Workspace.map.oceanwater.CanCollide = false
 	end
+	while oceanfloor do
+		game.Workspace.map.oceanwater.CanCollide = true
+		task.wait()
+	end
 end)
 
 Section5:NewToggle("Auto Delivery (Slow)", "Automatically deliver customers", function(auto)
 	local npclocation = game.Workspace.npcs.Customer.location
 	local location = game.Workspace.locations:FindFirstChild(npclocation)
 	
-	while auto do
-		task.wait()
-		lpc.HumanoidRootPart.CFrame = game.Workspace.npcs.Customer.HumanoidrootPart.CFrame
-		task.wait(5)
-		lpc.HumanoidRootPart.CFrame = location.CFrame
-		task.wait(15)
-	end
 	if auto then
 		game:GetService("StarterGui"):SetCore("SendNotification",{
 			Title = "Success";
@@ -475,5 +477,12 @@ Section5:NewToggle("Auto Delivery (Slow)", "Automatically deliver customers", fu
 			Text = "Disabled Auto Delivery";
 			Duration = 2;
 		})
+	end
+	while auto do
+		task.wait()
+		lpc.HumanoidRootPart.CFrame = game.Workspace.npcs.Customer.HumanoidrootPart.CFrame
+		task.wait(5)
+		lpc.HumanoidRootPart.CFrame = location.CFrame
+		task.wait(15)
 	end
 end)

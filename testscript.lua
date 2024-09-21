@@ -112,6 +112,39 @@ urpart1.Position = Vector3.new(1410.776, 2.725, 80.913)
 urwedge1.Rotation =  Vector3.new(0, -90, 0)
 urwedge2.Rotation =  Vector3.new(0, 90, 0)
 
+
+local sandyclicker1 = nil
+local sandyclicker2 = nil
+local sandyclicker3 = nil
+
+for _, sandyclicker1 in ipairs(game.Workspace.map.SandQuest.sandbutton1:GetChildren()) do
+    if sandyclicker1:IsA("Part") or sandyclicker1:IsA("MeshPart") then
+        local detector = sandyclicker1:FindFirstChildOfClass("ClickDetector")
+        if detector then
+            sandyclicker1 = detector
+            break
+        end
+    end
+end
+for _, sandyclicker2 in ipairs(game.Workspace.map.SandQuest.sandbutton2:GetChildren()) do
+    if sandyclicker2:IsA("Part") or sandyclicker2:IsA("MeshPart") then
+        local detector = sandyclicker2:FindFirstChildOfClass("ClickDetector")
+        if detector then
+            sandyclicker2 = detector
+            break
+        end
+    end
+end
+for _, sandyclicker3 in ipairs(game.Workspace.map.SandQuest.sandbutton3:GetChildren()) do
+    if sandyclicker3:IsA("Part") or sandyclicker3:IsA("MeshPart") then
+        local detector = sandyclicker3:FindFirstChildOfClass("ClickDetector")
+        if detector then
+            sandyclicker3 = detector
+            break
+        end
+    end
+end
+
 -------------------------------------------------------------- Tab | Testing Place
 
 Section:NewToggle("ToggleText", "ToggleInfo", function(state)
@@ -161,8 +194,8 @@ end)
 local Section1 = Tab1:NewSection("Buttons Related")
 local Section2 = Tab1:NewSection("Teleports")
 
-Section1:NewToggle("Show Cosmic Causeway Buttons", "Enables / Disables billboard gui on the buttons", function(state)
-	if state then
+Section1:NewToggle("Show Cosmic Causeway Buttons", "Enables / Disables billboard gui on the buttons", function(showccbuttons)
+	if showccbuttons then
 		hlgtpbutton1.Enabled = false
 		bill1.Enabled = false
 		hlgtpbutton2.Enabled = false
@@ -194,15 +227,19 @@ Section1:NewButton("Click Cosmic Causeway Buttons", "Clicks all the buttons rela
 end)
 
 Section1:NewButton("Click Sandy Avenue Buttons", "Clicks all the buttons related to the driving challenge", function()
-	fireclickdetector(game.Workspace.map.SandQuest.sandbutton1:FindFirstDescendant("detect"))
+	fireclickdetector(sandyclicker1)
 	wait(0.15)
-	fireclickdetector(game.Workspace.map.SandQuest.sandbutton2:FindFirstDescendant("detect"))
+	fireclickdetector(sandyclicker2)
 	wait(0.15)
-	fireclickdetector(game.Workspace.map.SandQuest.sandbutton3:FindFirstDescendant("detect"))
+	fireclickdetector(sandyclicker3)
 end)
 
 Section2:NewButton("Teleport to Death Street", "Teleports you to said Driving Challenge", function()
 	game:GetService("TeleportService"):Teleport(4101035748)
+end)
+
+Section2:NewButton("Teleport to Windy Lane", "Teleports you to said Driving Challenge", function()
+	game:GetService("TeleportService"):Teleport(4581988516)
 end)
 
 -------------------------------------------------------------- Tab 2 | Teleports
@@ -271,12 +308,12 @@ end)
 -------------------------------------------------------------- Tab 3 | Misc
 local Section4 = Tab3:NewSection("Misc")
 
-Section4:NewToggle("Show Shortucts", "Makes Shortcuts Visible", function(state)
-	if state then
+Section4:NewToggle("Show Shortucts", "Makes Shortcuts Visible", function(showshortc)
+	if showshortc then
 		game:GetService("StarterGui"):SetCore("SendNotification",{
 			Title = "Success";
 			Text = "Made Shortcuts Visible";
-			Duration = 3;
+			Duration = 2;
 		})
 		for i, shortcutpart in ipairs(game.Workspace.shortcuts:GetChildren()) do
 			if shortcutpart:IsA("BasePart") then
@@ -288,9 +325,9 @@ Section4:NewToggle("Show Shortucts", "Makes Shortcuts Visible", function(state)
 		game:GetService("StarterGui"):SetCore("SendNotification",{
 			Title = "Success";
 			Text = "Made Shortcuts Invisible";
-			Duration = 3;
+			Duration = 2;
 		})
-		for i, shortcutpart in ipairs(game.Players:GetChildren()) do
+		for i, shortcutpart in ipairs(game.Workspace.shortcuts:GetChildren()) do
 			if shortcutpart:IsA("BasePart") then
 				shortcutpart.Transparency = 1
 				shortcutpart.BrickColor = BrickColor.new("Medium stone grey")
@@ -299,12 +336,12 @@ Section4:NewToggle("Show Shortucts", "Makes Shortcuts Visible", function(state)
 	end
 end)
 
-Section4:NewToggle("Safeguards", "Toggles Invisible parts on locations where your vechicle may be damaged.", function(state)
-	if state then
+Section4:NewToggle("Safeguards", "Toggles Invisible parts on locations where your vechicle may be damaged.", function(safeguard)
+	if safeguard then
 		game:GetService("StarterGui"):SetCore("SendNotification",{
 			Title = "Success";
 			Text = "Enabled Safeguards";
-			Duration = 3;
+			Duration = 2;
 		})
 		-- unfin road
 		urwedge1.Transparency = 0.5
@@ -318,7 +355,7 @@ Section4:NewToggle("Safeguards", "Toggles Invisible parts on locations where you
 		game:GetService("StarterGui"):SetCore("SendNotification",{
 			Title = "Success";
 			Text = "Disabled Safeguards";
-			Duration = 3;
+			Duration = 2;
 		})
 		-- unfin road
 		urwedge1.Transparency = 1
@@ -337,7 +374,7 @@ Section4:NewButton("Get All Wrenches", "Self-Explanatory", function()
 		game:GetService("StarterGui"):SetCore("SendNotification",{
 			Title = "Success";
 			Text = "Collecting All Wrenches.";
-			Duration = 3;
+			Duration = 2;
 		})
 		lpc.HumanoidRootPart.CFrame = CFrame.new(1777.662, 5.113, -94.187)
 		task.wait(0.25)

@@ -598,29 +598,84 @@ elseif game.PlaceId == 7060888292 then -- Sandy Avenue
 	waterpart1.Size = Vector3.new(2048, 1, 2048)
 	waterpart1.CFrame = CFrame.new(-48.447, 1275.325, 713.549)
 	
-	local waterpart2 = waterpart1:Clone()
-	local waterpart3 = waterpart1:Clone()
-	local waterpart4 = waterpart1:Clone()
-	local waterpart5 = waterpart1:Clone()
-	local waterpart6 = waterpart1:Clone()
-	local waterpart7 = waterpart1:Clone()
-	local waterpart8 = waterpart1:Clone()
-	local waterpart9 = waterpart1:Clone()
-	local waterpart10 = waterpart1:Clone()
-	local waterpart11 = waterpart1:Clone()
-	local waterpart12 = waterpart1:Clone()
-	
+	local waterpart2 = Instance.new("Part", waterfolder)
+	waterpart2.Anchored = true
+	waterpart2.Transparency = 1
+	waterpart2.CanCollide = false
+	waterpart2.Size = Vector3.new(2048, 1, 2048)
 	waterpart2.CFrame = CFrame.new(-2093.947, 1275.325, 713.549)
+	
+	local waterpart3 = Instance.new("Part", waterfolder)
+	waterpart3.Anchored = true
+	waterpart3.Transparency = 1
+	waterpart3.CanCollide = false
+	waterpart3.Size = Vector3.new(2048, 1, 2048)
 	waterpart3.CFrame = CFrame.new(4028.053, 1275.325, 713.549)
+	
+	local waterpart4 = Instance.new("Part", waterfolder)
+	waterpart4.Anchored = true
+	waterpart4.Transparency = 1
+	waterpart4.CanCollide = false
+	waterpart4.Size = Vector3.new(2048, 1, 2048)
 	waterpart4.CFrame = CFrame.new(1982.553, 1275.325, 713.549)
+	
+	local waterpart5 = Instance.new("Part", waterfolder)
+	waterpart5.Anchored = true
+	waterpart5.Transparency = 1
+	waterpart5.CanCollide = false
+	waterpart5.Size = Vector3.new(2048, 1, 2048)
 	waterpart5.CFrame = CFrame.new(-48.447, 1275.325, 2672.049)
+	
+	local waterpart6 = Instance.new("Part", waterfolder)
+	waterpart6.Anchored = true
+	waterpart6.Transparency = 1
+	waterpart6.CanCollide = false
+	waterpart6.Size = Vector3.new(2048, 1, 2048)
 	waterpart6.CFrame = CFrame.new(4028.053, 1275.325, 2672.049)
+	
+	local waterpart7 = Instance.new("Part", waterfolder)
+	waterpart7.Anchored = true
+	waterpart7.Transparency = 1
+	waterpart7.CanCollide = false
+	waterpart7.Size = Vector3.new(2048, 1, 2048)
 	waterpart7.CFrame = CFrame.new(-2093.947, 1275.325, 2672.049)
+	
+	local waterpart8 = Instance.new("Part", waterfolder)
+	waterpart8.Anchored = true
+	waterpart8.Transparency = 1
+	waterpart8.CanCollide = false
+	waterpart8.Size = Vector3.new(2048, 1, 2048)
 	waterpart8.CFrame = CFrame.new(1982.553, 1275.325, 2672.049)
+	
+	local waterpart9 = Instance.new("Part", waterfolder)
+	waterpart9.Anchored = true
+	waterpart9.Transparency = 1
+	waterpart9.CanCollide = false
+	waterpart9.Size = Vector3.new(2048, 1, 2048)
 	waterpart9.CFrame = CFrame.new(4028.053, 1275.325, 4712.799)
+	
+	local waterpart10 = Instance.new("Part", waterfolder)
+	waterpart10.Anchored = true
+	waterpart10.Transparency = 1
+	waterpart10.CanCollide = false
+	waterpart10.Size = Vector3.new(2048, 1, 2048)
 	waterpart10.CFrame = CFrame.new(-2093.947, 1275.325, 4712.799)
+	
+	local waterpart11 = Instance.new("Part", waterfolder)
+	waterpart11.Anchored = true
+	waterpart11.Transparency = 1
+	waterpart11.CanCollide = false
+	waterpart11.Size = Vector3.new(2048, 1, 2048)
 	waterpart11.CFrame = CFrame.new(-48.447, 1275.325, 4712.799)
+	
+	local waterpart12 = Instance.new("Part", waterfolder)
+	waterpart12.Anchored = true
+	waterpart12.Transparency = 1
+	waterpart12.CanCollide = false
+	waterpart12.Size = Vector3.new(2048, 1, 2048)
 	waterpart12.CFrame = CFrame.new(1982.553, 1275.325, 4712.799)
+	
+	-----------------------------------------------------------------------------------------------
 	
 	local SAWindow = Library.CreateLib("Taxi Simulator 2 Hub | Sandy Avenue", "DarkTheme")
 	local SATab = SAWindow:NewTab("Home")

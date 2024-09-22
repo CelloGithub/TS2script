@@ -710,13 +710,8 @@ elseif game.PlaceId == 7060888292 then -- Sandy Avenue
 	end)
 	
 	else -- if not base game / supported driving challenge
-		game:GetService("StarterGui"):SetCore("SendNotification",{
-			Title = "Error";
-			Text = "Game / Driving Challenge Not Supported.";
-			Duration = 5;
-	})
 	local notsupported = Instance.new("Hint", workspace)
-	notsupported.Text = "ERROR! | This Game / Driving Challenge is not supported."
+	notsupported.Text = "Game is not supported"
 	task.wait(5)
 	notsupported:Destroy()
 end

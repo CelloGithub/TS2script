@@ -129,24 +129,24 @@ if game.PlaceId == 3068144257 then -- base game
 
 	urwedge1.Rotation =  Vector3.new(0, -90, 0)
 	urwedge2.Rotation =  Vector3.new(0, 90, 0)
-	
+
 	--------------------------------------  Spooky Island safeguard
 	if halloweenbool.Value == true then
 		local wedgetospook1 = Instance.new("WedgePart", game.Workspace.SafeGuards)
-	
+
 		wedgetospook1.Anchored = true
-	
+
 		wedgetospook1.Transparency = 1
 
 		wedgetospook1.CanCollide = false
 
 		wedgetospook1.Size = Vector3.new(1632.694, 54.3, 429.204)
-	
-		wedgetospook1.Position = CFrame.new(771.147, 27.155, -470.598)
-	
+
+		wedgetospook1.Position = Vector3.new(771.147, 27.155, -470.598)
+
 		wedgetospook1.Rotation = Vector3.new(0, 180, 0)
 	end
-	
+
 	------------------------------- Sandy Avenue Buttons
 
 	local sandyclicker1 = nil
@@ -357,7 +357,7 @@ if game.PlaceId == 3068144257 then -- base game
 			})
 		end
 	end)
-	
+
 	Section3:NewButton("Teleport to Katy's Cool Taxi Parts", "Teleports you to said Location", function()
 		if lpc.Humanoid.Sit == false then
 			lpc.HumanoidRootPart.CFrame = CFrame.new(1479.911, 9.289, -87.287)
@@ -369,7 +369,7 @@ if game.PlaceId == 3068144257 then -- base game
 			})
 		end
 	end)
-	
+
 	Section3:NewButton("Teleport to Garage (Katy's Cool Taxi Parts)", "Teleports you to said Location", function()
 		if lpc.Humanoid.Sit == false then
 			lpc.HumanoidRootPart.CFrame = CFrame.new(1438.488, 11.773, -89.705)
@@ -381,7 +381,7 @@ if game.PlaceId == 3068144257 then -- base game
 			})
 		end
 	end)
-	
+
 	-------------------------------------------------------------- Tab 3 | Misc
 	local Section4 = Tab3:NewSection("Misc")
 	local Section5 = Tab3:NewSection("Only enable these when you're on a Small server")
@@ -502,11 +502,11 @@ if game.PlaceId == 3068144257 then -- base game
 			})
 		end
 	end)
-	
+
 	if spookmap then
 		if halloweenbool.Value == true then
 			local HallowSection1 = Tab3:NewSection("Halloween Stuff")
-			
+
 			HallowSection1:NewButton("Teleport to Skull A", "Self-Explanatory", function()
 				if lpc.Humanoid.Sit == false then
 					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skulla.Part.CFrame
@@ -518,7 +518,7 @@ if game.PlaceId == 3068144257 then -- base game
 					})
 				end
 			end)
-			
+
 			HallowSection1:NewButton("Teleport to Skull B", "Self-Explanatory", function()
 				if lpc.Humanoid.Sit == false then
 					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skullb.Part.CFrame
@@ -530,7 +530,7 @@ if game.PlaceId == 3068144257 then -- base game
 					})
 				end
 			end)
-			
+
 			HallowSection1:NewButton("Teleport to Skull C", "Self-Explanatory", function()
 				if lpc.Humanoid.Sit == false then
 					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skullc.Part.CFrame
@@ -542,7 +542,7 @@ if game.PlaceId == 3068144257 then -- base game
 					})
 				end
 			end)
-			
+
 			HallowSection1:NewButton("Teleport to Skull D", "Self-Explanatory", function()
 				if lpc.Humanoid.Sit == false then
 					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skulld.Part.CFrame

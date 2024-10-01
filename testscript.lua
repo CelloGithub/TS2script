@@ -421,28 +421,25 @@ if game.PlaceId == 3068144257 then -- base game
 				Text = "Enabled Safeguards";
 				Duration = 2;
 			})
-			-- unfin road
-			urwedge1.Transparency = 0.5
-			urwedge2.Transparency = 0.5
-			urpart1.Transparency = 0.5
-
-			urwedge1.CanCollide = true
-			urwedge2.CanCollide = true
-			urpart1.CanCollide = true
+			for _, child in pairs(game.Workspace.Safeguards:GetChildren()) do
+				if child:IsA("Part") then
+					child.CanCollide = true
+					child.Transparency = 0.5
+				end
+			end
 		else
 			game:GetService("StarterGui"):SetCore("SendNotification",{
 				Title = "Success";
 				Text = "Disabled Safeguards";
 				Duration = 2;
 			})
-			-- unfin road
-			urwedge1.Transparency = 1
-			urwedge2.Transparency = 1
-			urpart1.Transparency = 1
-
-			urwedge1.CanCollide = false
-			urwedge2.CanCollide = false
-			urpart1.CanCollide = false
+			
+			for _, child in pairs(game.Workspace.Safeguards:GetChildren()) do
+				if child:IsA("Part") then
+					child.CanCollide = false
+					child.Transparency = 1
+				end
+			end
 		end
 	end)
 

@@ -421,11 +421,9 @@ if game.PlaceId == 3068144257 then -- base game
 				Text = "Enabled Safeguards";
 				Duration = 2;
 			})
-			for _, child in pairs(game.Workspace.Safeguards:GetChildren()) do
-				if child:IsA("Part") then
-					child.CanCollide = true
-					child.Transparency = 0.5
-				end
+			for _, child in pairs(game.Workspace.SafeGuards:GetChildren()) do
+				child.CanCollide = true
+				child.Transparency = 0.5
 			end
 		else
 			game:GetService("StarterGui"):SetCore("SendNotification",{
@@ -434,11 +432,9 @@ if game.PlaceId == 3068144257 then -- base game
 				Duration = 2;
 			})
 			
-			for _, child in pairs(game.Workspace.Safeguards:GetChildren()) do
-				if child:IsA("Part") then
-					child.CanCollide = false
-					child.Transparency = 1
-				end
+			for _, child in pairs(game.Workspace.SafeGuards:GetChildren()) do
+				child.CanCollide = false
+				child.Transparency = 1
 			end
 		end
 	end)

@@ -3,9 +3,15 @@ if not game:IsLoaded() then
 end
 game:GetService("GuiService"):ClearError()
 
+local halloweenbool = game.Workspace.halloween
+local winterbool = game.Workspace.winter
+
+local spookmap = game.Workspace.map:FindFirstChild("SpookyStuff")
+local wintermap = nil
+
 local lpc = game.Players.LocalPlayer.Character
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/DenDenZZZ/Kavo-UI-Library/main/Kavo.lua"))()
-	
+
 if game.PlaceId == 3068144257 then -- base game
 	local Window = Library.CreateLib("Taxi Simulator 2 Hub", "DarkTheme")
 
@@ -123,7 +129,24 @@ if game.PlaceId == 3068144257 then -- base game
 
 	urwedge1.Rotation =  Vector3.new(0, -90, 0)
 	urwedge2.Rotation =  Vector3.new(0, 90, 0)
+	
+	--------------------------------------  Spooky Island safeguard
+	if halloweenbool.Value == true then
+		local wedgetospook1 = Instance.new("WedgePart", game.Workspace.SafeGuards)
+	
+		wedgetospook1.Anchored = true
+	
+		wedgetospook1.Transparency = 1
 
+		wedgetospook1.CanCollide = false
+
+		wedgetospook1.Size = Vector3.new(1632.694, 54.3, 429.204)
+	
+		wedgetospook1.Position = CFrame.new(771.147, 27.155, -470.598)
+	
+		wedgetospook1.Rotation = Vector3.new(0, 180, 0)
+	end
+	
 	------------------------------- Sandy Avenue Buttons
 
 	local sandyclicker1 = nil
@@ -334,7 +357,31 @@ if game.PlaceId == 3068144257 then -- base game
 			})
 		end
 	end)
-
+	
+	Section3:NewButton("Teleport to Katy's Cool Taxi Parts", "Teleports you to said Location", function()
+		if lpc.Humanoid.Sit == false then
+			lpc.HumanoidRootPart.CFrame = CFrame.new(1479.911, 9.289, -87.287)
+		elseif lpc.Humanoid.Sit == true then
+			game:GetService("StarterGui"):SetCore("SendNotification",{
+				Title = "Error";
+				Text = "Cannot teleport while sitting.";
+				Duration = 3;
+			})
+		end
+	end)
+	
+	Section3:NewButton("Teleport to Garage (Katy's Cool Taxi Parts)", "Teleports you to said Location", function()
+		if lpc.Humanoid.Sit == false then
+			lpc.HumanoidRootPart.CFrame = CFrame.new(1438.488, 11.773, -89.705)
+		elseif lpc.Humanoid.Sit == true then
+			game:GetService("StarterGui"):SetCore("SendNotification",{
+				Title = "Error";
+				Text = "Cannot teleport while sitting.";
+				Duration = 3;
+			})
+		end
+	end)
+	
 	-------------------------------------------------------------- Tab 3 | Misc
 	local Section4 = Tab3:NewSection("Misc")
 	local Section5 = Tab3:NewSection("Only enable these when you're on a Small server")
@@ -431,6 +478,21 @@ if game.PlaceId == 3068144257 then -- base game
 			task.wait(0.25)
 			lpc.HumanoidRootPart.CFrame = CFrame.new(259.364, 3.658, 4186.648)
 			task.wait(0.25)
+			if spookmap then	
+				if halloweenbool.Value == true then
+					lpc.HumanoidRootPart.CFrame = CFrame.new(-343.428, 45.17, 4052.268)
+					task.wait(0.25)
+					lpc.HumanoidRootPart.CFrame = CFrame.new(-1212.561, 2.545, 3800.685)
+					task.wait(0.25)
+					lpc.HumanoidRootPart.CFrame = CFrame.new(259.999, 69.77, 3908.613)
+					task.wait(0.25)
+					lpc.HumanoidRootPart.CFrame = CFrame.new(-680.994, -4.555, 2816.196)
+					task.wait(0.25)
+					lpc.HumanoidRootPart.CFrame = CFrame.new(611.124, 65.645, -1644.312)
+					task.wait(0.25)
+					lpc.HumanoidRootPart.CFrame = CFrame.new(-203.46, 378.145, 3656.213)
+				end
+			end
 			lpc.HumanoidRootPart.CFrame = ogc
 		elseif lpc.Humanoid.Sit == true then
 			game:GetService("StarterGui"):SetCore("SendNotification",{
@@ -441,246 +503,272 @@ if game.PlaceId == 3068144257 then -- base game
 		end
 	end)
 	
-	local npclocation = game.Workspace.npcs.Customer.location
-	local location = game.Workspace.locations:FindFirstChild(npclocation)
+	if spookmap then
+		if halloweenbool.Value == true then
+			local HallowSection1 = Tab3:NewSection("Halloween Stuff")
+			
+			HallowSection1:NewButton("Teleport to Skull A", "Self-Explanatory", function()
+				if lpc.Humanoid.Sit == false then
+					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skulla.Part.CFrame
+				elseif lpc.Humanoid.Sit == true then
+					game:GetService("StarterGui"):SetCore("SendNotification",{
+						Title = "Error";
+						Text = "Cannot teleport while sitting.";
+						Duration = 3;
+					})
+				end
+			end)
+			
+			HallowSection1:NewButton("Teleport to Skull B", "Self-Explanatory", function()
+				if lpc.Humanoid.Sit == false then
+					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skullb.Part.CFrame
+				elseif lpc.Humanoid.Sit == true then
+					game:GetService("StarterGui"):SetCore("SendNotification",{
+						Title = "Error";
+						Text = "Cannot teleport while sitting.";
+						Duration = 3;
+					})
+				end
+			end)
+			
+			HallowSection1:NewButton("Teleport to Skull C", "Self-Explanatory", function()
+				if lpc.Humanoid.Sit == false then
+					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skullc.Part.CFrame
+				elseif lpc.Humanoid.Sit == true then
+					game:GetService("StarterGui"):SetCore("SendNotification",{
+						Title = "Error";
+						Text = "Cannot teleport while sitting.";
+						Duration = 3;
+					})
+				end
+			end)
+			
+			HallowSection1:NewButton("Teleport to Skull D", "Self-Explanatory", function()
+				if lpc.Humanoid.Sit == false then
+					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skulld.Part.CFrame
+				elseif lpc.Humanoid.Sit == true then
+					game:GetService("StarterGui"):SetCore("SendNotification",{
+						Title = "Error";
+						Text = "Cannot teleport while sitting.";
+						Duration = 3;
+					})
+				end
+			end)
+		end
+	end
 
-	Section5:NewToggle("Auto Delivery (Slow)", "Automatically deliver customers", function(autoslow)
+elseif game.PlaceId == 13998146600 then -- cosmic causeway
+	local CCWindow = Library.CreateLib("Taxi Simulator 2 Hub | Cosmic Causeway", "DarkTheme")
+	local CCTab = CCWindow:NewTab("Home")
+	local CCSection = CCTab:NewSection("Cosmic Causeway")
 
-		if autoslow then
+	local modelNameToModify = "door"
+	local function destroymodelcollision(name)
+		local model = workspace.map.Model:FindFirstChild(name)
+		if model and model:IsA("Model") then
+			for _, child in pairs(model:GetChildren()) do
+				if child:IsA("Part") then
+					child.CanCollide = false
+					child.Transparency = 0.5
+				end
+			end
+		end
+	end
+
+	local function readdmodelcollision(name)
+		local model = workspace.map.Model:FindFirstChild(name)
+		if model and model:IsA("Model") then
+			for _, child in pairs(model:GetChildren()) do
+				if child:IsA("Part") then
+					child.CanCollide = true
+					child.Transparency = 0
+				end
+			end
+		end
+	end
+
+	local safeguardfolder = Instance.new("Folder", workspace)
+	safeguardfolder.Name = "Safeguards"
+	local safepart1 = Instance.new("Part", safeguardfolder)
+	safepart1.Anchored = true
+	safepart1.CFrame = CFrame.new(1181.46, 1180.05, 2239.274)
+	safepart1.Size = Vector3.new(55.129, 0.75, 159.848)
+	local safepart2 = Instance.new("Part", safeguardfolder)
+	safepart2.Anchored = true
+	safepart2.CFrame = CFrame.new(1181.454, 1205.3, 2096.998)
+	safepart2.Size = Vector3.new(55.113, 49.25, 2)
+	local safewedge1 = Instance.new("WedgePart", safeguardfolder)
+	safewedge1.Anchored = true
+	safewedge1.CFrame = CFrame.new(1860.699, 1187.075, 1609.081)
+	safewedge1.Size = Vector3.new(47.05, 12.8, 92.739)
+	safewedge1.Rotation = Vector3.new(0, 180, 0)
+	local safepart3 = Instance.new("Part", safeguardfolder)
+	safepart3.Anchored = true
+	safepart3.CFrame = CFrame.new(1170.796, 1205.3, 629.523)
+	safepart3.Size = Vector3.new(88, 49.25, 2)
+	local safepart4 = Instance.new("Part", safeguardfolder)
+	safepart4.Anchored = true
+	safepart4.CFrame = CFrame.new(3267.11, 1225.25, 272.655)
+	safepart4.Size = Vector3.new(282.753, 89.05, 2)
+	local safepart5 = Instance.new("Part", safeguardfolder)
+	safepart5.Anchored = true
+	safepart5.CFrame = CFrame.new(3702.532, 1180.125, 126.965)
+	safepart5.Size = Vector3.new(47.05, 1, 49.315)
+	local safewedge2 = Instance.new("WedgePart", safeguardfolder)
+	safewedge2.Anchored = true
+	safewedge2.CFrame = CFrame.new(3702.565, 1180.175, -437.329)
+	safewedge2.Size = Vector3.new(1, 46.996, 49.375)
+	safewedge2.Rotation = Vector3.new(0, 0, 90)
+	local safepart5 = Instance.new("Part", safeguardfolder)
+	safepart5.Anchored = true
+	safepart5.CFrame = CFrame.new(4126.447, 1179.152, -1516.618)
+	safepart5.Size = Vector3.new(917.25, 53.75, 1455.75)
+	safepart5.Rotation = Vector3.new(5, 0, 0)
+	local safepart6 = Instance.new("Part", safeguardfolder)
+	safepart6.Anchored = true
+	safepart6.CFrame = CFrame.new(3267.11, 1225.225, 223.577)
+	safepart6.Size = Vector3.new(282.754, 89.1, 2)
+
+	CCSection:NewToggle("Safeguards", "Toggles Invisible parts on locations where your vechicle may be damaged", function(safeguard)
+		if safeguard then
 			game:GetService("StarterGui"):SetCore("SendNotification",{
 				Title = "Success";
-				Text = "Enabled Auto Delivery";
+				Text = "Enabled Safeguards";
 				Duration = 2;
 			})
+			for _, child in pairs(game.Workspace.Safeguards:GetChildren()) do
+				if child:IsA("Part") then
+					child.CanCollide = true
+					child.Transparency = 0
+				end
+			end
 		else
 			game:GetService("StarterGui"):SetCore("SendNotification",{
 				Title = "Success";
-				Text = "Disabled Auto Delivery";
+				Text = "Disabled Safeguards";
 				Duration = 2;
 			})
+			for _, child in pairs(game.Workspace.Safeguards:GetChildren()) do
+				if child:IsA("Part") then
+					child.CanCollide = false
+					child.Transparency = 1
+				end
+			end
 		end
 	end)
-	
-	while autoslow do
-		task.wait()
-		lpc.HumanoidRootPart.CFrame = game.Workspace.npcs.Customer.HumanoidrootPart.CFrame
-		task.wait(5)
-		lpc.HumanoidRootPart.CFrame = location.CFrame
-		task.wait(15)
-	end
-	
-	elseif game.PlaceId == 13998146600 then -- cosmic causeway
-		local CCWindow = Library.CreateLib("Taxi Simulator 2 Hub | Cosmic Causeway", "DarkTheme")
-		local CCTab = CCWindow:NewTab("Home")
-		local CCSection = CCTab:NewSection("Cosmic Causeway")
 
-		local modelNameToModify = "door"
-		local function destroymodelcollision(name)
-			local model = workspace.map.Model:FindFirstChild(name)
-			if model and model:IsA("Model") then
-				for _, child in pairs(model:GetChildren()) do
-					if child:IsA("Part") then
-						child.CanCollide = false
-						child.Transparency = 0.5
-					end
-				end
-			end
+	CCSection:NewToggle("Door Collision", "Toggles Collisions on the doors (Some may not be disabled)", function(doorcollision)
+		if doorcollision then
+			game:GetService("StarterGui"):SetCore("SendNotification",{
+				Title = "Success";
+				Text = "Disabled Door Collisions";
+				Duration = 2;
+			})
+			readdmodelcollision(modelNameToModify)
+		else
+			game:GetService("StarterGui"):SetCore("SendNotification",{
+				Title = "Success";
+				Text = "Enabled Door Collisions";
+				Duration = 2;
+			})
+			destroymodelcollision(modelNameToModify)
 		end
-
-		local function readdmodelcollision(name)
-			local model = workspace.map.Model:FindFirstChild(name)
-			if model and model:IsA("Model") then
-				for _, child in pairs(model:GetChildren()) do
-					if child:IsA("Part") then
-						child.CanCollide = true
-						child.Transparency = 0
-					end
-				end
-			end
-		end
-
-		local safeguardfolder = Instance.new("Folder", workspace)
-		safeguardfolder.Name = "Safeguards"
-		local safepart1 = Instance.new("Part", safeguardfolder)
-		safepart1.Anchored = true
-		safepart1.CFrame = CFrame.new(1181.46, 1180.05, 2239.274)
-		safepart1.Size = Vector3.new(55.129, 0.75, 159.848)
-		local safepart2 = Instance.new("Part", safeguardfolder)
-		safepart2.Anchored = true
-		safepart2.CFrame = CFrame.new(1181.454, 1205.3, 2096.998)
-		safepart2.Size = Vector3.new(55.113, 49.25, 2)
-		local safewedge1 = Instance.new("WedgePart", safeguardfolder)
-		safewedge1.Anchored = true
-		safewedge1.CFrame = CFrame.new(1860.699, 1187.075, 1609.081)
-		safewedge1.Size = Vector3.new(47.05, 12.8, 92.739)
-		safewedge1.Rotation = Vector3.new(0, 180, 0)
-		local safepart3 = Instance.new("Part", safeguardfolder)
-		safepart3.Anchored = true
-		safepart3.CFrame = CFrame.new(1170.796, 1205.3, 629.523)
-		safepart3.Size = Vector3.new(88, 49.25, 2)
-		local safepart4 = Instance.new("Part", safeguardfolder)
-		safepart4.Anchored = true
-		safepart4.CFrame = CFrame.new(3267.11, 1225.25, 272.655)
-		safepart4.Size = Vector3.new(282.753, 89.05, 2)
-		local safepart5 = Instance.new("Part", safeguardfolder)
-		safepart5.Anchored = true
-		safepart5.CFrame = CFrame.new(3702.532, 1180.125, 126.965)
-		safepart5.Size = Vector3.new(47.05, 1, 49.315)
-		local safewedge2 = Instance.new("WedgePart", safeguardfolder)
-		safewedge2.Anchored = true
-		safewedge2.CFrame = CFrame.new(3702.565, 1180.175, -437.329)
-		safewedge2.Size = Vector3.new(1, 46.996, 49.375)
-		safewedge2.Rotation = Vector3.new(0, 0, 90)
-		local safepart5 = Instance.new("Part", safeguardfolder)
-		safepart5.Anchored = true
-		safepart5.CFrame = CFrame.new(4126.447, 1179.152, -1516.618)
-		safepart5.Size = Vector3.new(917.25, 53.75, 1455.75)
-		safepart5.Rotation = Vector3.new(5, 0, 0)
-		local safepart6 = Instance.new("Part", safeguardfolder)
-		safepart6.Anchored = true
-		safepart6.CFrame = CFrame.new(3267.11, 1225.225, 223.577)
-		safepart6.Size = Vector3.new(282.754, 89.1, 2)
-
-		CCSection:NewToggle("Safeguards", "Toggles Invisible parts on locations where your vechicle may be damaged", function(safeguard)
-			if safeguard then
-				game:GetService("StarterGui"):SetCore("SendNotification",{
-					Title = "Success";
-					Text = "Enabled Safeguards";
-					Duration = 2;
-				})
-				for _, child in pairs(game.Workspace.Safeguards:GetChildren()) do
-					if child:IsA("Part") then
-						child.CanCollide = true
-						child.Transparency = 0
-					end
-				end
-			else
-				game:GetService("StarterGui"):SetCore("SendNotification",{
-					Title = "Success";
-					Text = "Disabled Safeguards";
-					Duration = 2;
-				})
-				for _, child in pairs(game.Workspace.Safeguards:GetChildren()) do
-					if child:IsA("Part") then
-						child.CanCollide = false
-						child.Transparency = 1
-					end
-				end
-			end
-		end)
-
-		CCSection:NewToggle("Door Collision", "Toggles Collisions on the doors (Some may not be disabled)", function(doorcollision)
-			if doorcollision then
-				game:GetService("StarterGui"):SetCore("SendNotification",{
-					Title = "Success";
-					Text = "Disabled Door Collisions";
-					Duration = 2;
-				})
-				readdmodelcollision(modelNameToModify)
-			else
-				game:GetService("StarterGui"):SetCore("SendNotification",{
-					Title = "Success";
-					Text = "Enabled Door Collisions";
-					Duration = 2;
-				})
-				destroymodelcollision(modelNameToModify)
-			end
-		end)
+	end)
 
 elseif game.PlaceId == 7060888292 then -- Sandy Avenue
 	local waterfolder = Instance.new("Folder", workspace)
 	waterfolder.Name = "Safeguards"
-	
+
 	local waterpart1 = Instance.new("Part", waterfolder)
 	waterpart1.Anchored = true
 	waterpart1.Transparency = 1
 	waterpart1.CanCollide = false
 	waterpart1.Size = Vector3.new(2048, 1, 2048)
 	waterpart1.CFrame = CFrame.new(-48.447, 1275.325, 713.549)
-	
+
 	local waterpart2 = Instance.new("Part", waterfolder)
 	waterpart2.Anchored = true
 	waterpart2.Transparency = 1
 	waterpart2.CanCollide = false
 	waterpart2.Size = Vector3.new(2048, 1, 2048)
 	waterpart2.CFrame = CFrame.new(-2093.947, 1275.325, 713.549)
-	
+
 	local waterpart3 = Instance.new("Part", waterfolder)
 	waterpart3.Anchored = true
 	waterpart3.Transparency = 1
 	waterpart3.CanCollide = false
 	waterpart3.Size = Vector3.new(2048, 1, 2048)
 	waterpart3.CFrame = CFrame.new(4028.053, 1275.325, 713.549)
-	
+
 	local waterpart4 = Instance.new("Part", waterfolder)
 	waterpart4.Anchored = true
 	waterpart4.Transparency = 1
 	waterpart4.CanCollide = false
 	waterpart4.Size = Vector3.new(2048, 1, 2048)
 	waterpart4.CFrame = CFrame.new(1982.553, 1275.325, 713.549)
-	
+
 	local waterpart5 = Instance.new("Part", waterfolder)
 	waterpart5.Anchored = true
 	waterpart5.Transparency = 1
 	waterpart5.CanCollide = false
 	waterpart5.Size = Vector3.new(2048, 1, 2048)
 	waterpart5.CFrame = CFrame.new(-48.447, 1275.325, 2672.049)
-	
+
 	local waterpart6 = Instance.new("Part", waterfolder)
 	waterpart6.Anchored = true
 	waterpart6.Transparency = 1
 	waterpart6.CanCollide = false
 	waterpart6.Size = Vector3.new(2048, 1, 2048)
 	waterpart6.CFrame = CFrame.new(4028.053, 1275.325, 2672.049)
-	
+
 	local waterpart7 = Instance.new("Part", waterfolder)
 	waterpart7.Anchored = true
 	waterpart7.Transparency = 1
 	waterpart7.CanCollide = false
 	waterpart7.Size = Vector3.new(2048, 1, 2048)
 	waterpart7.CFrame = CFrame.new(-2093.947, 1275.325, 2672.049)
-	
+
 	local waterpart8 = Instance.new("Part", waterfolder)
 	waterpart8.Anchored = true
 	waterpart8.Transparency = 1
 	waterpart8.CanCollide = false
 	waterpart8.Size = Vector3.new(2048, 1, 2048)
 	waterpart8.CFrame = CFrame.new(1982.553, 1275.325, 2672.049)
-	
+
 	local waterpart9 = Instance.new("Part", waterfolder)
 	waterpart9.Anchored = true
 	waterpart9.Transparency = 1
 	waterpart9.CanCollide = false
 	waterpart9.Size = Vector3.new(2048, 1, 2048)
 	waterpart9.CFrame = CFrame.new(4028.053, 1275.325, 4712.799)
-	
+
 	local waterpart10 = Instance.new("Part", waterfolder)
 	waterpart10.Anchored = true
 	waterpart10.Transparency = 1
 	waterpart10.CanCollide = false
 	waterpart10.Size = Vector3.new(2048, 1, 2048)
 	waterpart10.CFrame = CFrame.new(-2093.947, 1275.325, 4712.799)
-	
+
 	local waterpart11 = Instance.new("Part", waterfolder)
 	waterpart11.Anchored = true
 	waterpart11.Transparency = 1
 	waterpart11.CanCollide = false
 	waterpart11.Size = Vector3.new(2048, 1, 2048)
 	waterpart11.CFrame = CFrame.new(-48.447, 1275.325, 4712.799)
-	
+
 	local waterpart12 = Instance.new("Part", waterfolder)
 	waterpart12.Anchored = true
 	waterpart12.Transparency = 1
 	waterpart12.CanCollide = false
 	waterpart12.Size = Vector3.new(2048, 1, 2048)
 	waterpart12.CFrame = CFrame.new(1982.553, 1275.325, 4712.799)
-	
+
 	-----------------------------------------------------------------------------------------------
-	
+
 	local SAWindow = Library.CreateLib("Taxi Simulator 2 Hub | Sandy Avenue", "DarkTheme")
 	local SATab = SAWindow:NewTab("Home")
 	local SASection = SATab:NewSection("Sandy Avenue")
-	
+
 	SASection:NewToggle("Ocean Collision", "Toggles Collisions on the water", function(waterfloor)
 		if waterfloor then
 			game:GetService("StarterGui"):SetCore("SendNotification",{
@@ -708,8 +796,8 @@ elseif game.PlaceId == 7060888292 then -- Sandy Avenue
 			end
 		end
 	end)
-	
-	else -- if not base game / supported driving challenge
+
+else -- if not base game / supported driving challenge
 	local notsupported = Instance.new("Hint", workspace)
 	notsupported.Text = "Game is not supported"
 	task.wait(5)

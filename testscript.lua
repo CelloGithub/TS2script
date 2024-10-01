@@ -295,6 +295,60 @@ if game.PlaceId == 3068144257 then -- base game
 		fireclickdetector(rockclicker)
 	end)
 
+	if spookmap then
+		if halloweenbool.Value == true then
+			local HallowSection1 = Tab1:NewSection("Spooky Drive")
+
+			HallowSection1:NewButton("Teleport to Skull A", "Self-Explanatory", function()
+				if lpc.Humanoid.Sit == false then
+					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skulla.Part.CFrame
+				elseif lpc.Humanoid.Sit == true then
+					game:GetService("StarterGui"):SetCore("SendNotification",{
+						Title = "Error";
+						Text = "Cannot teleport while sitting.";
+						Duration = 3;
+					})
+				end
+			end)
+
+			HallowSection1:NewButton("Teleport to Skull B", "Self-Explanatory", function()
+				if lpc.Humanoid.Sit == false then
+					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skullb.Part.CFrame
+				elseif lpc.Humanoid.Sit == true then
+					game:GetService("StarterGui"):SetCore("SendNotification",{
+						Title = "Error";
+						Text = "Cannot teleport while sitting.";
+						Duration = 3;
+					})
+				end
+			end)
+
+			HallowSection1:NewButton("Teleport to Skull C", "Self-Explanatory", function()
+				if lpc.Humanoid.Sit == false then
+					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skullc.Part.CFrame
+				elseif lpc.Humanoid.Sit == true then
+					game:GetService("StarterGui"):SetCore("SendNotification",{
+						Title = "Error";
+						Text = "Cannot teleport while sitting.";
+						Duration = 3;
+					})
+				end
+			end)
+
+			HallowSection1:NewButton("Teleport to Skull D", "Self-Explanatory", function()
+				if lpc.Humanoid.Sit == false then
+					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skulld.Part.CFrame
+				elseif lpc.Humanoid.Sit == true then
+					game:GetService("StarterGui"):SetCore("SendNotification",{
+						Title = "Error";
+						Text = "Cannot teleport while sitting.";
+						Duration = 3;
+					})
+				end
+			end)
+		end
+	end
+
 	-------------------------------------------------------------- Tab 2 | Teleports
 	local Section3 = Tab2:NewSection("Location Teleports")
 
@@ -495,61 +549,7 @@ if game.PlaceId == 3068144257 then -- base game
 			})
 		end
 	end)
-
-	if spookmap then
-		if halloweenbool.Value == true then
-			local HallowSection1 = Tab3:NewSection("Halloween Stuff")
-
-			HallowSection1:NewButton("Teleport to Skull A", "Self-Explanatory", function()
-				if lpc.Humanoid.Sit == false then
-					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skulla.Part.CFrame
-				elseif lpc.Humanoid.Sit == true then
-					game:GetService("StarterGui"):SetCore("SendNotification",{
-						Title = "Error";
-						Text = "Cannot teleport while sitting.";
-						Duration = 3;
-					})
-				end
-			end)
-
-			HallowSection1:NewButton("Teleport to Skull B", "Self-Explanatory", function()
-				if lpc.Humanoid.Sit == false then
-					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skullb.Part.CFrame
-				elseif lpc.Humanoid.Sit == true then
-					game:GetService("StarterGui"):SetCore("SendNotification",{
-						Title = "Error";
-						Text = "Cannot teleport while sitting.";
-						Duration = 3;
-					})
-				end
-			end)
-
-			HallowSection1:NewButton("Teleport to Skull C", "Self-Explanatory", function()
-				if lpc.Humanoid.Sit == false then
-					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skullc.Part.CFrame
-				elseif lpc.Humanoid.Sit == true then
-					game:GetService("StarterGui"):SetCore("SendNotification",{
-						Title = "Error";
-						Text = "Cannot teleport while sitting.";
-						Duration = 3;
-					})
-				end
-			end)
-
-			HallowSection1:NewButton("Teleport to Skull D", "Self-Explanatory", function()
-				if lpc.Humanoid.Sit == false then
-					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skulld.Part.CFrame
-				elseif lpc.Humanoid.Sit == true then
-					game:GetService("StarterGui"):SetCore("SendNotification",{
-						Title = "Error";
-						Text = "Cannot teleport while sitting.";
-						Duration = 3;
-					})
-				end
-			end)
-		end
-	end
-
+	
 elseif game.PlaceId == 13998146600 then -- cosmic causeway
 	local CCWindow = Library.CreateLib("Taxi Simulator 2 Hub | Cosmic Causeway", "DarkTheme")
 	local CCTab = CCWindow:NewTab("Home")

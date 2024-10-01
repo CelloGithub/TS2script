@@ -3,8 +3,8 @@ if not game:IsLoaded() then
 end
 game:GetService("GuiService"):ClearError()
 
-local halloweenbool = game.Workspace.halloween
-local winterbool = game.Workspace.winter
+local halloweenbool = game.Workspace:FindFirstChild("halloween")
+local winterbool = game.Workspace:FindFirstChild("winter")
 
 local spookmap = game.Workspace.map:FindFirstChild("SpookyStuff")
 local wintermap = nil
@@ -792,7 +792,7 @@ elseif game.PlaceId == 7060888292 then -- Sandy Avenue
 
 else -- if not base game / supported driving challenge
 	local notsupported = Instance.new("Hint", workspace)
-	notsupported.Text = "Game is not supported"
+	notsupported.Text = "Driving Challenge not supported. Sorry!"
 	task.wait(5)
 	notsupported:Destroy()
 end

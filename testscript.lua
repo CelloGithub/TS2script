@@ -7,7 +7,7 @@ game:GetService("GuiService"):ClearError()
 local halloweenbool = game.Workspace:FindFirstChild("halloween")
 local winterbool = game.Workspace:FindFirstChild("winter")
 
-local spookmap = game.Workspace.map:FindFirstChild("SpookyStuff")
+local spookmap = game.Workspace:FindFirstChild("map"):FindFirstChild("SpookyStuff")
 
 --- script
 local lpc = game.Players.LocalPlayer.Character

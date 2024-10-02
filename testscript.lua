@@ -3,12 +3,6 @@ if not game:IsLoaded() then
 end
 game:GetService("GuiService"):ClearError()
 
---- checkers
-local halloweenbool = game.Workspace:FindFirstChild("halloween")
-local winterbool = game.Workspace:FindFirstChild("winter")
-
-local spookmap = game.Workspace:FindFirstChild("map"):FindFirstChild("SpookyStuff")
-
 --- script
 local lpc = game.Players.LocalPlayer.Character
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/DenDenZZZ/Kavo-UI-Library/main/Kavo.lua"))()
@@ -21,6 +15,13 @@ function dcnotsupported()
 end
 
 if game.PlaceId == 3068144257 then -- base game
+	local halloweenbool = game.Workspace.halloween
+	local winterbool = game.Workspace.winter
+
+	local spookmap = game.Workspace.map.SpookyStuff
+
+	-------
+	
 	local Window = Library.CreateLib("Taxi Simulator 2 Hub", "DarkTheme")
 
 	local Tab = Window:NewTab("Home")

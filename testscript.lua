@@ -130,21 +130,23 @@ if game.PlaceId == 3068144257 then -- base game
 	urwedge1.Rotation =  Vector3.new(0, -90, 0)
 	urwedge2.Rotation =  Vector3.new(0, 90, 0)
 
-	--------------------------------------  Spooky Island safeguard
-	if halloweenbool.Value == true then
-		local wedgetospook1 = Instance.new("WedgePart", game.Workspace.SafeGuards)
+	--------------------------------------  Halloween exclusive safeguards
+	if spookmap then
+		if halloweenbool.Value == true then
+			local wedgetospook1 = Instance.new("WedgePart", game.Workspace.SafeGuards)
 
-		wedgetospook1.Anchored = true
+			wedgetospook1.Anchored = true
 
-		wedgetospook1.Transparency = 1
+			wedgetospook1.Transparency = 1
 
-		wedgetospook1.CanCollide = false
+			wedgetospook1.CanCollide = false
 
-		wedgetospook1.Size = Vector3.new(1632.694, 54.3, 429.204)
+			wedgetospook1.Size = Vector3.new(1632.694, 54.3, 429.204)
 
-		wedgetospook1.Position = Vector3.new(771.147, 27.155, -470.598)
+			wedgetospook1.Position = Vector3.new(771.147, 27.155, -470.598)
 
-		wedgetospook1.Rotation = Vector3.new(0, 180, 0)
+			wedgetospook1.Rotation = Vector3.new(0, 180, 0)
+		end
 	end
 
 	------------------------------- Sandy Avenue Buttons
@@ -180,8 +182,6 @@ if game.PlaceId == 3068144257 then -- base game
 			end
 		end
 	end
-	-------------------------------
-	local autoslow
 	------------------------------- Atmospheric Alleyway things
 
 	local atmos = game.Workspace.map.AtmoPortal
@@ -297,7 +297,7 @@ if game.PlaceId == 3068144257 then -- base game
 
 	if spookmap then
 		if halloweenbool.Value == true then
-			local HallowSection1 = Tab1:NewSection("Spooky Drive")
+			local HallowSection1 = Tab1:NewSection("Spooky Drive | Skull Location Teleports")
 
 			HallowSection1:NewButton("Teleport to Skull A", "Self-Explanatory", function()
 				if lpc.Humanoid.Sit == false then
@@ -438,7 +438,7 @@ if game.PlaceId == 3068144257 then -- base game
 
 	-------------------------------------------------------------- Tab 3 | Misc
 	local Section4 = Tab3:NewSection("Misc")
-	local Section5 = Tab3:NewSection("Only enable these when you're on a Small server")
+	--local Section5 = Tab3:NewSection("Only enable these when you're on a Small server")
 
 	Section4:NewToggle("Show Shortucts", "Makes Shortcuts Visible", function(showshortc)
 		if showshortc then

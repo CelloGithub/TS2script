@@ -3,14 +3,22 @@ if not game:IsLoaded() then
 end
 game:GetService("GuiService"):ClearError()
 
+--- checkers
 local halloweenbool = game.Workspace:FindFirstChild("halloween")
 local winterbool = game.Workspace:FindFirstChild("winter")
 
 local spookmap = game.Workspace.map:FindFirstChild("SpookyStuff")
-local wintermap = nil
 
+--- script
 local lpc = game.Players.LocalPlayer.Character
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/DenDenZZZ/Kavo-UI-Library/main/Kavo.lua"))()
+
+function dcnotsupported()
+	local dcnotsupported = Instance.new("Hint", workspace)
+	dcnotsupported.Text = "This driving challenge is not supported yet. Sorry!"
+	task.wait(5)
+	dcnotsupported:Destroy()
+end
 
 if game.PlaceId == 3068144257 then -- base game
 	local Window = Library.CreateLib("Taxi Simulator 2 Hub", "DarkTheme")
@@ -485,7 +493,7 @@ if game.PlaceId == 3068144257 then -- base game
 				Text = "Disabled Safeguards";
 				Duration = 2;
 			})
-			
+
 			for _, child in pairs(game.Workspace.SafeGuards:GetChildren()) do
 				child.CanCollide = false
 				child.Transparency = 1
@@ -549,7 +557,7 @@ if game.PlaceId == 3068144257 then -- base game
 			})
 		end
 	end)
-	
+
 elseif game.PlaceId == 13998146600 then -- cosmic causeway
 	local CCWindow = Library.CreateLib("Taxi Simulator 2 Hub | Cosmic Causeway", "DarkTheme")
 	local CCTab = CCWindow:NewTab("Home")
@@ -770,10 +778,8 @@ elseif game.PlaceId == 7060888292 then -- Sandy Avenue
 				Duration = 2;
 			})
 			for _, child in pairs(game.Workspace.Safeguards:GetChildren()) do
-				if child:IsA("Part") then
-					child.CanCollide = true
-					child.Transparency = 0.5
-				end
+				child.CanCollide = true
+				child.Transparency = 0.5
 			end
 		else
 			game:GetService("StarterGui"):SetCore("SendNotification",{
@@ -782,17 +788,40 @@ elseif game.PlaceId == 7060888292 then -- Sandy Avenue
 				Duration = 2;
 			})
 			for _, child in pairs(game.Workspace.Safeguards:GetChildren()) do
-				if child:IsA("Part") then
-					child.CanCollide = false
-					child.Transparency = 1
-				end
+				child.CanCollide = false
+				child.Transparency = 1
 			end
 		end
 	end)
-
-else -- if not base game / supported driving challenge
-	local notsupported = Instance.new("Hint", workspace)
-	notsupported.Text = "Driving Challenge not supported. Sorry!"
+	
+	-----------------------------------------------------------------------------------------------------
+	
+elseif game.PlaceId == 4101035748 then -- death street
+	dcnotsupported()
+elseif game.PlaceId == 4581988516 then -- windy lane
+	dcnotsupported()
+elseif game.PlaceId == 5790960130 then -- spooky drive
+	dcnotsupported()
+elseif game.PlaceId == 6037225278 then -- frosty road
+	dcnotsupported()
+elseif game.PlaceId == 6514486037 then -- burning boulevard
+	dcnotsupported()
+elseif game.PlaceId == 12131373233 then -- falling freeway
+	dcnotsupported()
+elseif game.PlaceId == 15553343420 then -- atmospheric alleyway
+	dcnotsupported()
+elseif game.PlaceId == 17756256295 then -- mysterious facility
+	dcnotsupported()
+	
+elseif game.PlaceId == 4814869969 then -- delivery racing
+	local drace = Instance.new("Hint", workspace)
+	drace.Text = "Delivery Racing is not supported."
 	task.wait(5)
-	notsupported:Destroy()
+	drace:Destroy()
+	
+elseif game.PlaceId ~= 3068144257 or game.PlaceId ~= 3821470750 or game.PlaceId ~= 3830469901 or game.PlaceId ~= 3830928891 or game.PlaceId ~= 3831276218 or game.PlaceId ~= 3837353855 or game.PlaceId ~= 3859231454 or game.PlaceId ~= 3875639153 or game.PlaceId ~= 4101035748 or game.PlaceId ~= 4339979136 or game.PlaceId ~= 4581988516 or game.PlaceId ~= 4814869969 or game.PlaceId ~= 5790960130 or game.PlaceId ~= 6037225278 or game.PlaceId ~= 6514486037 or game.PlaceId ~= 7060888292 or game.PlaceId ~= 12131373233 or game.PlaceId ~= 13998146600 or game.PlaceId ~= 15553343420 or game.PlaceId ~= 17756256295 then
+	local aintts2 = Instance.new("Hint", workspace)
+	aintts2.Text = "This is not Taxi Simulator 2."
+	task.wait(5)
+	aintts2:Destroy()
 end

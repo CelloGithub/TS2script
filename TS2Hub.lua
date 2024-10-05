@@ -226,10 +226,6 @@ if game.PlaceId == 3068144257 then -- base game
 	hometab.newLabel("5/10/2024 | Update Log")
 	hometab.newLabel("- Added Support for Spooky Drive")
 
-	hometab.newButton("Hide UI", "Hides the UI", function()
-		TS2MainWindow:Hide()
-	end)
-
 	--[[hometab.newButton("Button", "Prints Hello!", function()
 		print('Hello!')
 	end)
@@ -616,10 +612,8 @@ elseif game.PlaceId == 5790960130 then -- spooky drive
 	SpookyHome.newLabel("5/10/2024 | Update Log")
 	SpookyHome.newLabel("- Added Support for Spooky Drive")
 	
-	SpookyHome.newButton("Hide UI", "Hides the UI", function()
-		TS2SpookyWindow:Hide()
-	end)
-	
+	--------------------------------------------------------
+
 	SpookyDrive.newToggle("Direct End Road Access", "(Almost) A direct access to the end", false, function(directroad)
 		if directroad then
 			game:GetService("StarterGui"):SetCore("SendNotification",{

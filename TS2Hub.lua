@@ -212,9 +212,9 @@ if game.PlaceId == 3068144257 then -- base game
 
 	local TS2MainWindow = Library:Load("Taxi Simulator 2 Hub", "Default")
 	local hometab = Library.newTab("Home", "7733960981")
-	local dctab = Library.newTab("Challenges", "7733708835")
-	local tptab = Library.newTab("Tps", "7733746980")
-	local misctab = Library.newTab("Misc", "7743878358")
+	local dctab = Library.newTab("Driving Challenges", "7733708835")
+	local tptab = Library.newTab("Location Teleports", "7733746980")
+	local misctab = Library.newTab("Miscellaneous", "7743878358")
 
 	-------------------------------------------------------------- Tab | Testing Place
 	hometab.newLabel("Library Testing Place")
@@ -247,6 +247,7 @@ if game.PlaceId == 3068144257 then -- base game
 		fireclickdetector(portalbutton2.detect)
 		fireclickdetector(portalbutton3.detect)
 		fireclickdetector(portalbutton4.detect)
+		wait(1)
 		fireclickdetector(spawnportal)
 	end)
 

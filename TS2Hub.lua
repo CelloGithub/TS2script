@@ -25,7 +25,7 @@ if game.PlaceId == 3068144257 then -- base game
 	local portalbutton3 = spaceportal.button3.button
 	local portalbutton4 = spaceportal.button4.button
 	local spawnportal = nil
-	
+
 	for _, pt in ipairs(game.Workspace.map.SpacePortal.portbutton:GetChildren()) do
 		if pt:IsA("Part") or pt:IsA("MeshPart") then
 			local detector = pt:FindFirstChildOfClass("ClickDetector")
@@ -212,9 +212,9 @@ if game.PlaceId == 3068144257 then -- base game
 
 	local TS2MainWindow = Library:Load("Taxi Simulator 2 Hub", "Default")
 	local hometab = Library.newTab("Home", "7733960981")
-	local dctab = Library.newTab("Driving Challenges", "7733708835")
-	local tptab = Library.newTab("Location Teleports", "7733746980")
-	local misctab = Library.newTab("Miscellaneous", "7743878358")
+	local dctab = Library.newTab("Challenges", "7733708835")
+	local tptab = Library.newTab("TPs", "7733746980")
+	local misctab = Library.newTab("Misc", "7743878358")
 
 	-------------------------------------------------------------- Tab | Testing Place
 	hometab.newLabel("Library Testing Place")
@@ -242,7 +242,7 @@ if game.PlaceId == 3068144257 then -- base game
 	-------------------------------------------------------------- Tab 1 | Driving Challenges
 	dctab.newLabel("Cosmic Causeway (CC)")
 
-	dctab.newButton("Spawn CC Portal", "Automatically Presses the buttons to open the CC Portal", function()
+	dctab.newButton("Spawn CC Portal", "", function()
 		fireclickdetector(portalbutton1.detect)
 		fireclickdetector(portalbutton2.detect)
 		fireclickdetector(portalbutton3.detect)
@@ -251,7 +251,7 @@ if game.PlaceId == 3068144257 then -- base game
 		fireclickdetector(spawnportal)
 	end)
 
-	dctab.newToggle("Show CC Buttons", "Enables / Disables billboard guis on the buttons (Textlabel uses internal button name)", false, function(showccbuttons)
+	dctab.newToggle("Show CC Buttons", "Enables / Disables billboard guis on the buttons", true, function(showccbuttons)
 		if showccbuttons then
 			hlgtpbutton1.Enabled = true
 			bill1.Enabled = true
@@ -274,7 +274,7 @@ if game.PlaceId == 3068144257 then -- base game
 	end)
 
 	dctab.newLabel("Sandy Avenue")
-	dctab.newButton("Spawn Sandy Avenue Portal", "Automatically Presses the buttons to open the Sandy Avenue Portal", function()
+	dctab.newButton("Click Sandy Avenue Buttons", "", function()
 		fireclickdetector(sandyclicker1)
 		fireclickdetector(sandyclicker2)
 		fireclickdetector(sandyclicker3)
@@ -284,7 +284,7 @@ if game.PlaceId == 3068144257 then -- base game
 		if halloweenbool.Value == true then
 			dctab.newLabel("Spooky Drive")
 
-			dctab.newButton("Teleport to Skull A", "Teleports your character to Skull A (Internal name)", function()
+			dctab.newButton("Teleport to Skull A", "", function()
 				if lpc.Humanoid.Sit == false then
 					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skulla.Part.CFrame
 				elseif lpc.Humanoid.Sit == true then
@@ -296,7 +296,7 @@ if game.PlaceId == 3068144257 then -- base game
 				end
 			end)
 
-			dctab.newButton("Teleport to Skull B", "Teleports your character to Skull B (Internal name)", function()
+			dctab.newButton("Teleport to Skull B", "", function()
 				if lpc.Humanoid.Sit == false then
 					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skullb.Part.CFrame
 				elseif lpc.Humanoid.Sit == true then
@@ -308,7 +308,7 @@ if game.PlaceId == 3068144257 then -- base game
 				end
 			end)
 
-			dctab.newButton("Teleport to Skull C", "Teleports your character to Skull C (Internal name)", function()
+			dctab.newButton("Teleport to Skull C", "", function()
 				if lpc.Humanoid.Sit == false then
 					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skullc.Part.CFrame
 				elseif lpc.Humanoid.Sit == true then
@@ -320,7 +320,7 @@ if game.PlaceId == 3068144257 then -- base game
 				end
 			end)
 
-			dctab.newButton("Teleport to Skull D", "Teleports your character to Skull D (Internal name)", function()
+			dctab.newButton("Teleport to Skull D", "", function()
 				if lpc.Humanoid.Sit == false then
 					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skulld.Part.CFrame
 				elseif lpc.Humanoid.Sit == true then
@@ -426,7 +426,7 @@ if game.PlaceId == 3068144257 then -- base game
 	end)
 
 	-------------------------------------------------------------- Tab 3 | Misc
-	misctab.newButton("Collect all Collectable Parts", "Automatically Teleports you to all collectable parts (Halloween Collectables Supported)", function()
+	misctab.newButton("Collect all Collectable Wrench Parts", "", function()
 		ogc = lpc.HumanoidRootPart.CFrame
 		if lpc.Humanoid.Sit == false then
 			game:GetService("StarterGui"):SetCore("SendNotification",{
@@ -482,8 +482,8 @@ if game.PlaceId == 3068144257 then -- base game
 			})
 		end
 	end)
-	
-	misctab.newToggle("Show Shortcuts", "Makes Shortcuts Visible / Invisible", false, function(showrtcuts)
+
+	misctab.newToggle("Show Shortcuts", "Makes Shortcuts Visible / Invisible", true, function(showrtcuts)
 		if showrtcuts then
 			game:GetService("StarterGui"):SetCore("SendNotification",{
 				Title = "Success";
@@ -510,8 +510,8 @@ if game.PlaceId == 3068144257 then -- base game
 			end
 		end
 	end)
-	
-	misctab.newToggle("Safeguards", "Toggles Invisible parts on locations where your vechicle may be damaged", false, function(safeguard)
+
+	misctab.newToggle("Safeguards", "Toggles Invisible parts on locations where your vechicle may be damaged", true, function(safeguard)
 		if safeguard then
 			game:GetService("StarterGui"):SetCore("SendNotification",{
 				Title = "Success";

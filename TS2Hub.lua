@@ -1,6 +1,10 @@
 local lp = game.Players.LocalPlayer
 local lpc = lp.Character
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))() --ty drray
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))() --ty chill.z
+
+--- colors
+local mainColor = Color3.fromRGB(10, 30, 10)
+local secondColor = Color3.fromRGB(50, 50, 10)
 
 function dcnotsupported()
 	local dcnotsupported = Instance.new("Hint", workspace)
@@ -10,7 +14,17 @@ function dcnotsupported()
 end
 
 if game.PlaceId == 3068144257 then -- base game
-	------------------------------- Event Checkers
+	-------------------------------------------------------------------------------
+
+	local TS2MainWindow = Library:Load("Taxi Simulator 2 Hub", "Default")
+	local hometab = Library.newTab("Home", "7733960981")
+	local dctab = Library.newTab("Challenges", "7733708835")
+	local tptab = Library.newTab("TPs", "7733746980")
+	local misctab = Library.newTab("Misc", "7743878358")
+	
+	TS2MainWindow:SetTheme(mainColor, secondColor)
+	
+	------------------------------------------------------------------------------- Event Checkers
 
 	local halloweenbool = game.Workspace.halloween
 	local winterbool = game.Workspace.winter
@@ -208,20 +222,18 @@ if game.PlaceId == 3068144257 then -- base game
 			end
 		end
 	end
-	-------------------------------------------------------------------------------
-
-	local TS2MainWindow = Library:Load("Taxi Simulator 2 Hub", "Default")
-	local hometab = Library.newTab("Home", "7733960981")
-	local dctab = Library.newTab("Challenges", "7733708835")
-	local tptab = Library.newTab("TPs", "7733746980")
-	local misctab = Library.newTab("Misc", "7743878358")
 
 	-------------------------------------------------------------- Tab | Testing Place
-	hometab.newLabel("Script created by fandy")
 	
-	hometab.newLabel("Update Log:")
+	hometab.newLabel("Script created by fandy")
+	hometab.newLabel("UI Library by Chill.z")
+
+	hometab.newLabel("5/10/2024 | Update Log")
 	hometab.newLabel("- Added Support for Spooky Drive")
-	hometab.newLabel("5/10/2024")
+
+	hometab.newButton("Hide UI", "Hides the UI", function()
+		TS2MainWindow:Hide()
+	end)
 
 	--[[hometab.newButton("Button", "Prints Hello!", function()
 		print('Hello!')
@@ -594,18 +606,28 @@ elseif game.PlaceId == 5790960130 then -- spooky drive
 	part1.CanCollide = false
 	part2.CanCollide = false
 	part3.CanCollide = false
-	---------------------------------------------------------------------
+	
+	-------------------------------------------------------------------------------
+	
 	local TS2SpookyWindow = Library:Load("Spooky Drive | TS2H", "Default")
 	local SpookyHome = Library.newTab("Home", "7733960981")
 	local SpookyDrive = Library.newTab("Spooky Drive", "7733708835")
 	
-	SpookyHome.newLabel("Script created by fandy")
-
-	SpookyHome.newLabel("Update Log:")
-	SpookyHome.newLabel("- Added Support for Spooky Drive")
-	SpookyHome.newLabel("5/10/2024")
+	TS2SpookyWindow:SetTheme(mainColor, secondColor)
 	
-	SpookyHome.newToggle("Direct End Road Access", "(Almost) A direct access to the end", false, function(directroad)
+	-------------------------------------------------------------------------------
+	
+	SpookyHome.newLabel("Script created by fandy")
+	SpookyHome.newLabel("UI Library by Chill.z")
+
+	SpookyHome.newLabel("5/10/2024 | Update Log")
+	SpookyHome.newLabel("- Added Support for Spooky Drive")
+	
+	SpookyHome.newButton("Hide UI", "Hides the UI", function()
+		TS2SpookyWindow:Hide()
+	end)
+	
+	SpookyDrive.newToggle("Direct End Road Access", "(Almost) A direct access to the end", false, function(directroad)
 		if directroad then
 			game:GetService("StarterGui"):SetCore("SendNotification",{
 				Title = "Success";

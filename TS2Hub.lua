@@ -1,6 +1,6 @@
 local lp = game.Players.LocalPlayer
 local lpc = lp.Character
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))() --ty drray
 
 function dcnotsupported()
 	local dcnotsupported = Instance.new("Hint", workspace)
@@ -24,6 +24,17 @@ if game.PlaceId == 3068144257 then -- base game
 	local portalbutton2 = spaceportal.button2.button
 	local portalbutton3 = spaceportal.button3.button
 	local portalbutton4 = spaceportal.button4.button
+	local spawnportal = nil
+	
+	for _, pt in ipairs(game.Workspace.map.SpacePortal.portbutton:GetChildren()) do
+		if pt:IsA("Part") or pt:IsA("MeshPart") then
+			local detector = pt:FindFirstChildOfClass("ClickDetector")
+			if detector then
+				spawnportal = detector
+				break
+			end
+		end
+	end
 
 	local hlgtpbutton1 = Instance.new("Highlight", portalbutton1)
 	local bill1 = Instance.new("BillboardGui", portalbutton1)
@@ -201,9 +212,9 @@ if game.PlaceId == 3068144257 then -- base game
 
 	local TS2MainWindow = Library:Load("Taxi Simulator 2 Hub", "Default")
 	local hometab = Library.newTab("Home", "7733960981")
-	local dctab = Library.newTab("Driving Challenges", "7733708835")
-	local tptab = Library.newTab("Location Teleports", "7733746980")
-	local misctab = Library.newTab("Miscellaneous", "7743878358")
+	local dctab = Library.newTab("Challenges", "7733708835")
+	local tptab = Library.newTab("Tps", "7733746980")
+	local misctab = Library.newTab("Misc", "7743878358")
 
 	-------------------------------------------------------------- Tab | Testing Place
 	hometab.newLabel("Library Testing Place")
@@ -231,14 +242,12 @@ if game.PlaceId == 3068144257 then -- base game
 	-------------------------------------------------------------- Tab 1 | Driving Challenges
 	dctab.newLabel("Cosmic Causeway (CC)")
 
-	dctab.newButton("Click Cosmic Causeway Buttons", "Clicks said driving challenge buttons", function()
+	dctab.newButton("Spawn CC Portal", "", function()
 		fireclickdetector(portalbutton1.detect)
-		wait(0.15)
 		fireclickdetector(portalbutton2.detect)
-		wait(0.15)
 		fireclickdetector(portalbutton3.detect)
-		wait(0.15)
 		fireclickdetector(portalbutton4.detect)
+		fireclickdetector(spawnportal)
 	end)
 
 	dctab.newToggle("Show CC Buttons", "Enables / Disables billboard guis on the buttons", false, function(showccbuttons)
@@ -264,11 +273,9 @@ if game.PlaceId == 3068144257 then -- base game
 	end)
 
 	dctab.newLabel("Sandy Avenue")
-	dctab.newButton("Click Sandy Avenue Buttons", "Clicks said driving challenge buttons", function()
+	dctab.newButton("Click Sandy Avenue Buttons", "", function()
 		fireclickdetector(sandyclicker1)
-		wait(0.15)
 		fireclickdetector(sandyclicker2)
-		wait(0.15)
 		fireclickdetector(sandyclicker3)
 	end)
 
@@ -276,7 +283,7 @@ if game.PlaceId == 3068144257 then -- base game
 		if halloweenbool.Value == true then
 			dctab.newLabel("Spooky Drive")
 
-			dctab.newButton("Teleport to Skull A", "Self Explanatory", function()
+			dctab.newButton("Teleport to Skull A", "", function()
 				if lpc.Humanoid.Sit == false then
 					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skulla.Part.CFrame
 				elseif lpc.Humanoid.Sit == true then
@@ -288,7 +295,7 @@ if game.PlaceId == 3068144257 then -- base game
 				end
 			end)
 
-			dctab.newButton("Teleport to Skull B", "Self Explanatory", function()
+			dctab.newButton("Teleport to Skull B", "", function()
 				if lpc.Humanoid.Sit == false then
 					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skullb.Part.CFrame
 				elseif lpc.Humanoid.Sit == true then
@@ -300,7 +307,7 @@ if game.PlaceId == 3068144257 then -- base game
 				end
 			end)
 
-			dctab.newButton("Teleport to Skull C", "Self Explanatory", function()
+			dctab.newButton("Teleport to Skull C", "", function()
 				if lpc.Humanoid.Sit == false then
 					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skullc.Part.CFrame
 				elseif lpc.Humanoid.Sit == true then
@@ -312,7 +319,7 @@ if game.PlaceId == 3068144257 then -- base game
 				end
 			end)
 
-			dctab.newButton("Teleport to Skull D", "Self Explanatory", function()
+			dctab.newButton("Teleport to Skull D", "", function()
 				if lpc.Humanoid.Sit == false then
 					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skulld.Part.CFrame
 				elseif lpc.Humanoid.Sit == true then
@@ -329,7 +336,7 @@ if game.PlaceId == 3068144257 then -- base game
 	-------------------------------------------------------------- Tab 2 | Teleports
 	tptab.newLabel("Teleports | Main Island (5 Locations)")
 
-	tptab.newButton("Teleport to Garage", "Teleports you to said Location", function()
+	tptab.newButton("Teleport to Garage", "", function()
 		if lpc.Humanoid.Sit == false then
 			lpc.HumanoidRootPart.CFrame = CFrame.new(824.588, 11.825, 675.77)
 		elseif lpc.Humanoid.Sit == true then
@@ -341,7 +348,7 @@ if game.PlaceId == 3068144257 then -- base game
 		end
 	end)
 
-	tptab.newButton("Teleport to Part Store", "Teleports you to said Location", function()
+	tptab.newButton("Teleport to Part Store", "", function()
 		if lpc.Humanoid.Sit == false then
 			lpc.HumanoidRootPart.CFrame = CFrame.new(869.063, 12.4, 675.758)
 		elseif lpc.Humanoid.Sit == true then
@@ -353,7 +360,7 @@ if game.PlaceId == 3068144257 then -- base game
 		end
 	end)
 
-	tptab.newButton("Teleport to Taxi Shop", "Teleports you to said Location", function()
+	tptab.newButton("Teleport to Taxi Shop", "", function()
 		if lpc.Humanoid.Sit == false then
 			lpc.HumanoidRootPart.CFrame = CFrame.new(846.888, 11.825, 675.77)
 		elseif lpc.Humanoid.Sit == true then
@@ -365,9 +372,9 @@ if game.PlaceId == 3068144257 then -- base game
 		end
 	end)
 
-	-----
+	tptab.newLabel("Cool Katy")
 
-	tptab.newButton("Teleport to Cool Katy's Taxi Parts", "Teleports you to said Location", function()
+	tptab.newButton("Teleport to Cool Katy's Taxi Parts", "", function()
 		if lpc.Humanoid.Sit == false then
 			lpc.HumanoidRootPart.CFrame = CFrame.new(1479.911, 9.289, -87.287)
 		elseif lpc.Humanoid.Sit == true then
@@ -379,7 +386,7 @@ if game.PlaceId == 3068144257 then -- base game
 		end
 	end)
 
-	tptab.newButton("Teleport to Garage (Cool Katy's Taxi Parts)", "Teleports you to said Location", function()
+	tptab.newButton("Teleport to Garage (Cool Katy's Taxi Parts)", "", function()
 		if lpc.Humanoid.Sit == false then
 			lpc.HumanoidRootPart.CFrame = CFrame.new(1438.488, 11.773, -89.705)
 		elseif lpc.Humanoid.Sit == true then
@@ -393,7 +400,7 @@ if game.PlaceId == 3068144257 then -- base game
 
 	tptab.newLabel("Teleports | Secondary Island (2 Locations)") ------------------------------------------------
 
-	tptab.newButton("Teleport to Part World", "Teleports you to said Location", function()
+	tptab.newButton("Teleport to Part World", "", function()
 		if lpc.Humanoid.Sit == false then
 			lpc.HumanoidRootPart.CFrame = CFrame.new(454.366, 12.4, 3646.1)
 		elseif lpc.Humanoid.Sit == true then
@@ -405,7 +412,7 @@ if game.PlaceId == 3068144257 then -- base game
 		end
 	end)
 
-	tptab.newButton("Teleport to Garage (Part World)", "Teleports you to said Location", function()
+	tptab.newButton("Teleport to Garage (Part World)", "", function()
 		if lpc.Humanoid.Sit == false then
 			lpc.HumanoidRootPart.CFrame = CFrame.new(510.382, 11.825, 3643.592)
 		elseif lpc.Humanoid.Sit == true then
@@ -418,4 +425,113 @@ if game.PlaceId == 3068144257 then -- base game
 	end)
 
 	-------------------------------------------------------------- Tab 3 | Misc
+	misctab.newButton("Collect all Collectable Wrench Parts", "", function()
+		ogc = lpc.HumanoidRootPart.CFrame
+		if lpc.Humanoid.Sit == false then
+			game:GetService("StarterGui"):SetCore("SendNotification",{
+				Title = "Success";
+				Text = "Collecting All Wrenches.";
+				Duration = 2;
+			})
+			lpc.HumanoidRootPart.CFrame = CFrame.new(1777.662, 5.113, -94.187)
+			task.wait(0.25)
+			lpc.HumanoidRootPart.CFrame = CFrame.new(1166.916, 3.508, 1599.638)
+			task.wait(0.25)
+			lpc.HumanoidRootPart.CFrame = CFrame.new(-75.189, 5.113, 329.388)
+			task.wait(0.25)
+			lpc.HumanoidRootPart.CFrame = CFrame.new(753.087, 44.388, 882.613)
+			task.wait(0.25)
+			lpc.HumanoidRootPart.CFrame = CFrame.new(1172.136, -16.812, 1382.738)
+			task.wait(0.25)
+			lpc.HumanoidRootPart.CFrame = CFrame.new(60.916, 5.108, 204.238)
+			task.wait(0.25)
+			lpc.HumanoidRootPart.CFrame = CFrame.new(-210.934, -73.692, 1007.838)
+			task.wait(0.25)
+			lpc.HumanoidRootPart.CFrame = CFrame.new(276.116, 39.258, -49.812)
+			task.wait(0.25)
+			lpc.HumanoidRootPart.CFrame = CFrame.new(1493.308, -3.742, 2260.246)
+			task.wait(0.25)
+			lpc.HumanoidRootPart.CFrame = CFrame.new(-156.179, 25.258, 3498.343)
+			task.wait(0.25)
+			lpc.HumanoidRootPart.CFrame = CFrame.new(-1692.723, 53.558, 3112.965)
+			task.wait(0.25)
+			lpc.HumanoidRootPart.CFrame = CFrame.new(259.364, 3.658, 4186.648)
+			task.wait(0.25)
+			if spookmap then	
+				if halloweenbool.Value == true then
+					lpc.HumanoidRootPart.CFrame = CFrame.new(-343.428, 45.17, 4052.268)
+					task.wait(0.25)
+					lpc.HumanoidRootPart.CFrame = CFrame.new(-1212.561, 2.545, 3800.685)
+					task.wait(0.25)
+					lpc.HumanoidRootPart.CFrame = CFrame.new(259.999, 69.77, 3908.613)
+					task.wait(0.25)
+					lpc.HumanoidRootPart.CFrame = CFrame.new(-680.994, -4.555, 2816.196)
+					task.wait(0.25)
+					lpc.HumanoidRootPart.CFrame = CFrame.new(611.124, 65.645, -1644.312)
+					task.wait(0.25)
+					lpc.HumanoidRootPart.CFrame = CFrame.new(-203.46, 378.145, 3656.213)
+				end
+			end
+			lpc.HumanoidRootPart.CFrame = ogc
+		elseif lpc.Humanoid.Sit == true then
+			game:GetService("StarterGui"):SetCore("SendNotification",{
+				Title = "Error";
+				Text = "Cannot teleport while sitting.";
+				Duration = 3;
+			})
+		end
+	end)
+	
+	misctab.newToggle("Show Shortcuts", "Makes Shortcuts Visible / Invisible", false, function(showrtcuts)
+		if showrtcuts then
+			game:GetService("StarterGui"):SetCore("SendNotification",{
+				Title = "Success";
+				Text = "Made Shortcuts Visible";
+				Duration = 2;
+			})
+			for i, shortcutpart in ipairs(game.Workspace.shortcuts:GetChildren()) do
+				if shortcutpart:IsA("BasePart") then
+					shortcutpart.Transparency = 0.75
+					shortcutpart.BrickColor = BrickColor.new("Bright red")
+				end
+			end
+		else
+			game:GetService("StarterGui"):SetCore("SendNotification",{
+				Title = "Success";
+				Text = "Made Shortcuts Invisible";
+				Duration = 2;
+			})
+			for i, shortcutpart in ipairs(game.Workspace.shortcuts:GetChildren()) do
+				if shortcutpart:IsA("BasePart") then
+					shortcutpart.Transparency = 1
+					shortcutpart.BrickColor = BrickColor.new("Medium stone grey")
+				end
+			end
+		end
+	end)
+	
+	misctab.newToggle("Safeguards", "Toggles Invisible parts on locations where your vechicle may be damaged", false, function(safeguard)
+		if safeguard then
+			game:GetService("StarterGui"):SetCore("SendNotification",{
+				Title = "Success";
+				Text = "Enabled Safeguards";
+				Duration = 2;
+			})
+			for _, child in pairs(game.Workspace.SafeGuards:GetChildren()) do
+				child.CanCollide = true
+				child.Transparency = 0.5
+			end
+		else
+			game:GetService("StarterGui"):SetCore("SendNotification",{
+				Title = "Success";
+				Text = "Disabled Safeguards";
+				Duration = 2;
+			})
+
+			for _, child in pairs(game.Workspace.SafeGuards:GetChildren()) do
+				child.CanCollide = false
+				child.Transparency = 1
+			end
+		end
+	end)
 end

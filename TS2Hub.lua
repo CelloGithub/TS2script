@@ -1,6 +1,6 @@
 local lp = game.Players.LocalPlayer
 local lpc = lp.Character
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))() -- ty drray
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))()
 
 function dcnotsupported()
 	local dcnotsupported = Instance.new("Hint", workspace)
@@ -197,60 +197,6 @@ if game.PlaceId == 3068144257 then -- base game
 			end
 		end
 	end
-
-	------ Player ESP Funcs
-
-	local plresp = false
-
-	local function addHighlight(character)
-		if character and character:IsA("Model") then
-			local highlight = Instance.new("Highlight")
-			highlight.Adornee = character
-			highlight.FillColor = Color3.fromRGB(255, 255, 0) -- Yellow color for the highlight
-			highlight.FillTransparency = 0.5 -- Adjust transparency as needed
-			highlight.OutlineColor = Color3.fromRGB(0, 0, 0) -- Black outline
-			highlight.OutlineTransparency = 0 -- No outline transparency
-			highlight.Parent = character
-		end
-	end
-
-	local function removeHighlight(character)
-		if character and character:FindFirstChildOfClass("Highlight") then
-			character:FindFirstChildOfClass("Highlight"):Destroy()
-		end
-	end
-
-	for _, player in ipairs(game.Players:GetPlayers()) do
-		if plresp == true then
-			if player.Character then
-				addHighlight(player.Character)
-			end
-		end
-	end
-
-	game.Players.PlayerAdded:Connect(function(player)
-		player.CharacterAdded:Connect(function(character)
-			addHighlight(character)
-		end)
-	end)
-
-	if lpc then
-		if plresp == true then
-			addHighlight(lpc.Character)
-		end
-	end
-	lp.CharacterAdded:Connect(function(character)
-		if plresp == true then
-			addHighlight(character)
-		end
-	end)
-
-	game.Players.PlayerRemoving:Connect(function(player)
-		if player.Character then
-			removeHighlight(player.Character)
-		end
-	end)
-
 	-------------------------------------------------------------------------------
 
 	local TS2MainWindow = Library:Load("Taxi Simulator 2 Hub", "Default")
@@ -472,12 +418,4 @@ if game.PlaceId == 3068144257 then -- base game
 	end)
 
 	-------------------------------------------------------------- Tab 3 | Misc
-
-	dctab.newToggle("Player ESP", "Toggles Player Esps", false, function(plresp)
-		if plresp == true then
-			print("ye")
-		else
-			print("nop")
-		end
-	end)
 end

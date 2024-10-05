@@ -251,7 +251,7 @@ if game.PlaceId == 3068144257 then -- base game
 		fireclickdetector(spawnportal)
 	end)
 
-	dctab.newToggle("Show CC Buttons", "Enables / Disables billboard guis on the buttons", true, function(showccbuttons)
+	dctab.newToggle("Show CC Buttons", "Enables / Disables billboard guis on the buttons", false, function(showccbuttons)
 		if showccbuttons then
 			hlgtpbutton1.Enabled = true
 			bill1.Enabled = true
@@ -483,7 +483,7 @@ if game.PlaceId == 3068144257 then -- base game
 		end
 	end)
 	
-	misctab.newToggle("Show Shortcuts", "Makes Shortcuts Visible / Invisible", true, function(showrtcuts)
+	misctab.newToggle("Show Shortcuts", "Makes Shortcuts Visible / Invisible", false, function(showrtcuts)
 		if showrtcuts then
 			game:GetService("StarterGui"):SetCore("SendNotification",{
 				Title = "Success";
@@ -511,7 +511,7 @@ if game.PlaceId == 3068144257 then -- base game
 		end
 	end)
 	
-	misctab.newToggle("Safeguards", "Toggles Invisible parts on locations where your vechicle may be damaged", true, function(safeguard)
+	misctab.newToggle("Safeguards", "Toggles Invisible parts on locations where your vechicle may be damaged", false, function(safeguard)
 		if safeguard then
 			game:GetService("StarterGui"):SetCore("SendNotification",{
 				Title = "Success";

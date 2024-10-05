@@ -1,6 +1,6 @@
 local lp = game.Players.LocalPlayer
 local lpc = lp.Character
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))() -- ty drray
 
 function dcnotsupported()
 	local dcnotsupported = Instance.new("Hint", workspace)
@@ -11,14 +11,14 @@ end
 
 if game.PlaceId == 3068144257 then -- base game
 	------------------------------- Event Checkers
-	
+
 	local halloweenbool = game.Workspace.halloween
 	local winterbool = game.Workspace.winter
 
 	local spookmap = game.Workspace.map.SpookyStuff
 
 	------------------------------- Cosmic Causeway Portal Buttons
-	
+
 	local spaceportal = game.Workspace.map.SpacePortal
 	local portalbutton1 = spaceportal.button1.button
 	local portalbutton2 = spaceportal.button2.button
@@ -197,11 +197,11 @@ if game.PlaceId == 3068144257 then -- base game
 			end
 		end
 	end
-	
+
 	------ Player ESP Funcs
-	
+
 	local plresp = false
-	
+
 	local function addHighlight(character)
 		if character and character:IsA("Model") then
 			local highlight = Instance.new("Highlight")
@@ -213,13 +213,13 @@ if game.PlaceId == 3068144257 then -- base game
 			highlight.Parent = character
 		end
 	end
-	
+
 	local function removeHighlight(character)
 		if character and character:FindFirstChildOfClass("Highlight") then
 			character:FindFirstChildOfClass("Highlight"):Destroy()
 		end
 	end
-	
+
 	for _, player in ipairs(game.Players:GetPlayers()) do
 		if plresp == true then
 			if player.Character then
@@ -227,19 +227,19 @@ if game.PlaceId == 3068144257 then -- base game
 			end
 		end
 	end
-	
+
 	game.Players.PlayerAdded:Connect(function(player)
 		player.CharacterAdded:Connect(function(character)
 			addHighlight(character)
 		end)
 	end)
 
-	if lpc.Character then
+	if lpc then
 		if plresp == true then
 			addHighlight(lpc.Character)
 		end
 	end
-	lpc.CharacterAdded:Connect(function(character)
+	lp.CharacterAdded:Connect(function(character)
 		if plresp == true then
 			addHighlight(character)
 		end
@@ -250,7 +250,7 @@ if game.PlaceId == 3068144257 then -- base game
 			removeHighlight(player.Character)
 		end
 	end)
-	
+
 	-------------------------------------------------------------------------------
 
 	local TS2MainWindow = Library:Load("Taxi Simulator 2 Hub", "Default")
@@ -261,11 +261,11 @@ if game.PlaceId == 3068144257 then -- base game
 
 	-------------------------------------------------------------- Tab | Testing Place
 	hometab.newLabel("Library Testing Place")
-	
+
 	hometab.newButton("Button", "Prints Hello!", function()
 		print('Hello!')
 	end)
-	
+
 	hometab.newToggle("Toggle", "Toggle! (prints the state)", true, function(toggleState)
 		if toggleState then
 			print("On")
@@ -273,18 +273,18 @@ if game.PlaceId == 3068144257 then -- base game
 			print("Off")
 		end
 	end)
-	
+
 	hometab.newInput("Input", "Prints your input.", function(text)
 		print("Entered text in Tab 1: " .. text)
 	end)
-	
+
 	hometab.newDropdown("Dropdown", "Select one of these options!", {"water", "dog", "air", "bb", "airplane", "wohhho", "yeay", "delete"}, function(selectedOption)
 		print(selectedOption)
 	end)
-	
+
 	-------------------------------------------------------------- Tab 1 | Driving Challenges
 	dctab.newLabel("Cosmic Causeway (CC)")
-	
+
 	dctab.newButton("Click Cosmic Causeway Buttons", "Clicks said driving challenge buttons", function()
 		fireclickdetector(portalbutton1.detect)
 		wait(0.15)
@@ -294,7 +294,7 @@ if game.PlaceId == 3068144257 then -- base game
 		wait(0.15)
 		fireclickdetector(portalbutton4.detect)
 	end)
-	
+
 	dctab.newToggle("Show CC Buttons", "Enables / Disables billboard guis on the buttons", false, function(showccbuttons)
 		if showccbuttons then
 			hlgtpbutton1.Enabled = true
@@ -316,7 +316,7 @@ if game.PlaceId == 3068144257 then -- base game
 			bill4.Enabled = false
 		end
 	end)
-	
+
 	dctab.newLabel("Sandy Avenue")
 	dctab.newButton("Click Sandy Avenue Buttons", "Clicks said driving challenge buttons", function()
 		fireclickdetector(sandyclicker1)
@@ -325,7 +325,7 @@ if game.PlaceId == 3068144257 then -- base game
 		wait(0.15)
 		fireclickdetector(sandyclicker3)
 	end)
-	
+
 	if spookmap then
 		if halloweenbool.Value == true then
 			dctab.newLabel("Spooky Drive")
@@ -379,22 +379,22 @@ if game.PlaceId == 3068144257 then -- base game
 			end)
 		end
 	end -- halloween stuff ends
-	
+
 	-------------------------------------------------------------- Tab 2 | Teleports
 	tptab.newLabel("Teleports | Main Island (5 Locations)")
-	
+
 	tptab.newButton("Teleport to Garage", "Teleports you to said Location", function()
 		if lpc.Humanoid.Sit == false then
-		lpc.HumanoidRootPart.CFrame = CFrame.new(824.588, 11.825, 675.77)
+			lpc.HumanoidRootPart.CFrame = CFrame.new(824.588, 11.825, 675.77)
 		elseif lpc.Humanoid.Sit == true then
-		game:GetService("StarterGui"):SetCore("SendNotification",{
-			Title = "Error";
-			Text = "Cannot teleport while sitting.";
-			Duration = 3;
+			game:GetService("StarterGui"):SetCore("SendNotification",{
+				Title = "Error";
+				Text = "Cannot teleport while sitting.";
+				Duration = 3;
 			})
 		end
 	end)
-	
+
 	tptab.newButton("Teleport to Part Store", "Teleports you to said Location", function()
 		if lpc.Humanoid.Sit == false then
 			lpc.HumanoidRootPart.CFrame = CFrame.new(869.063, 12.4, 675.758)
@@ -406,7 +406,7 @@ if game.PlaceId == 3068144257 then -- base game
 			})
 		end
 	end)
-	
+
 	tptab.newButton("Teleport to Taxi Shop", "Teleports you to said Location", function()
 		if lpc.Humanoid.Sit == false then
 			lpc.HumanoidRootPart.CFrame = CFrame.new(846.888, 11.825, 675.77)
@@ -418,9 +418,9 @@ if game.PlaceId == 3068144257 then -- base game
 			})
 		end
 	end)
-	
+
 	-----
-	
+
 	tptab.newButton("Teleport to Cool Katy's Taxi Parts", "Teleports you to said Location", function()
 		if lpc.Humanoid.Sit == false then
 			lpc.HumanoidRootPart.CFrame = CFrame.new(1479.911, 9.289, -87.287)
@@ -432,7 +432,7 @@ if game.PlaceId == 3068144257 then -- base game
 			})
 		end
 	end)
-	
+
 	tptab.newButton("Teleport to Garage (Cool Katy's Taxi Parts)", "Teleports you to said Location", function()
 		if lpc.Humanoid.Sit == false then
 			lpc.HumanoidRootPart.CFrame = CFrame.new(1438.488, 11.773, -89.705)
@@ -444,9 +444,9 @@ if game.PlaceId == 3068144257 then -- base game
 			})
 		end
 	end)
-	
+
 	tptab.newLabel("Teleports | Secondary Island (2 Locations)") ------------------------------------------------
-	
+
 	tptab.newButton("Teleport to Part World", "Teleports you to said Location", function()
 		if lpc.Humanoid.Sit == false then
 			lpc.HumanoidRootPart.CFrame = CFrame.new(454.366, 12.4, 3646.1)
@@ -458,7 +458,7 @@ if game.PlaceId == 3068144257 then -- base game
 			})
 		end
 	end)
-	
+
 	tptab.newButton("Teleport to Garage (Part World)", "Teleports you to said Location", function()
 		if lpc.Humanoid.Sit == false then
 			lpc.HumanoidRootPart.CFrame = CFrame.new(510.382, 11.825, 3643.592)
@@ -470,9 +470,9 @@ if game.PlaceId == 3068144257 then -- base game
 			})
 		end
 	end)
-	
+
 	-------------------------------------------------------------- Tab 3 | Misc
-	
+
 	dctab.newToggle("Player ESP", "Toggles Player Esps", false, function(plresp)
 		if plresp == true then
 			print("ye")

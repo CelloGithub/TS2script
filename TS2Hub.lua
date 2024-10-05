@@ -1,8 +1,3 @@
-if not game:IsLoaded() then
-	game.Loaded:Wait()
-end
-game:GetService("GuiService"):ClearError()
-
 local lp = game.Players.LocalPlayer
 local lpc = lp.Character
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))()
@@ -480,23 +475,7 @@ if game.PlaceId == 3068144257 then -- base game
 	
 	dctab.newToggle("Player ESP", "Toggles Player Esps", false, function(plresp)
 		if plresp
-			hlgtpbutton1.Enabled = true
-			bill1.Enabled = true
-			hlgtpbutton2.Enabled = true
-			bill2.Enabled = true
-			hlgtpbutton3.Enabled = true
-			bill3.Enabled = true
-			hlgtpbutton4.Enabled = true
-			bill4.Enabled = true
 		else
-			hlgtpbutton1.Enabled = false
-			bill1.Enabled = false
-			hlgtpbutton2.Enabled = false
-			bill2.Enabled = false
-			hlgtpbutton3.Enabled = false
-			bill3.Enabled = false
-			hlgtpbutton4.Enabled = false
-			bill4.Enabled = false
 		end
 	end)
 end

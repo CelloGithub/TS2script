@@ -242,7 +242,7 @@ if game.PlaceId == 3068144257 then -- base game
 	-------------------------------------------------------------- Tab 1 | Driving Challenges
 	dctab.newLabel("Cosmic Causeway (CC)")
 
-	dctab.newButton("Spawn CC Portal", "", function()
+	dctab.newButton("Spawn CC Portal", "Automatically Presses the buttons to open the CC Portal", function()
 		fireclickdetector(portalbutton1.detect)
 		fireclickdetector(portalbutton2.detect)
 		fireclickdetector(portalbutton3.detect)
@@ -251,7 +251,7 @@ if game.PlaceId == 3068144257 then -- base game
 		fireclickdetector(spawnportal)
 	end)
 
-	dctab.newToggle("Show CC Buttons", "Enables / Disables billboard guis on the buttons", false, function(showccbuttons)
+	dctab.newToggle("Show CC Buttons", "Enables / Disables billboard guis on the buttons (Textlabel uses internal button name)", false, function(showccbuttons)
 		if showccbuttons then
 			hlgtpbutton1.Enabled = true
 			bill1.Enabled = true
@@ -274,7 +274,7 @@ if game.PlaceId == 3068144257 then -- base game
 	end)
 
 	dctab.newLabel("Sandy Avenue")
-	dctab.newButton("Click Sandy Avenue Buttons", "", function()
+	dctab.newButton("Spawn Sandy Avenue Portal", "Automatically Presses the buttons to open the Sandy Avenue Portal", function()
 		fireclickdetector(sandyclicker1)
 		fireclickdetector(sandyclicker2)
 		fireclickdetector(sandyclicker3)
@@ -284,7 +284,7 @@ if game.PlaceId == 3068144257 then -- base game
 		if halloweenbool.Value == true then
 			dctab.newLabel("Spooky Drive")
 
-			dctab.newButton("Teleport to Skull A", "", function()
+			dctab.newButton("Teleport to Skull A", "Teleports your character to Skull A (Internal name)", function()
 				if lpc.Humanoid.Sit == false then
 					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skulla.Part.CFrame
 				elseif lpc.Humanoid.Sit == true then
@@ -296,7 +296,7 @@ if game.PlaceId == 3068144257 then -- base game
 				end
 			end)
 
-			dctab.newButton("Teleport to Skull B", "", function()
+			dctab.newButton("Teleport to Skull B", "Teleports your character to Skull B (Internal name)", function()
 				if lpc.Humanoid.Sit == false then
 					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skullb.Part.CFrame
 				elseif lpc.Humanoid.Sit == true then
@@ -308,7 +308,7 @@ if game.PlaceId == 3068144257 then -- base game
 				end
 			end)
 
-			dctab.newButton("Teleport to Skull C", "", function()
+			dctab.newButton("Teleport to Skull C", "Teleports your character to Skull C (Internal name)", function()
 				if lpc.Humanoid.Sit == false then
 					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skullc.Part.CFrame
 				elseif lpc.Humanoid.Sit == true then
@@ -320,7 +320,7 @@ if game.PlaceId == 3068144257 then -- base game
 				end
 			end)
 
-			dctab.newButton("Teleport to Skull D", "", function()
+			dctab.newButton("Teleport to Skull D", "Teleports your character to Skull D (Internal name)", function()
 				if lpc.Humanoid.Sit == false then
 					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skulld.Part.CFrame
 				elseif lpc.Humanoid.Sit == true then
@@ -426,7 +426,7 @@ if game.PlaceId == 3068144257 then -- base game
 	end)
 
 	-------------------------------------------------------------- Tab 3 | Misc
-	misctab.newButton("Collect all Collectable Wrench Parts", "", function()
+	misctab.newButton("Collect all Collectable Parts", "Automatically Teleports you to all collectable parts (Halloween Collectables Supported)", function()
 		ogc = lpc.HumanoidRootPart.CFrame
 		if lpc.Humanoid.Sit == false then
 			game:GetService("StarterGui"):SetCore("SendNotification",{

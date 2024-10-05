@@ -217,13 +217,17 @@ if game.PlaceId == 3068144257 then -- base game
 	local misctab = Library.newTab("Misc", "7743878358")
 
 	-------------------------------------------------------------- Tab | Testing Place
-	hometab.newLabel("Library Testing Place")
+	hometab.newLabel("Script created by fandy")
+	
+	hometab.newLabel("Update Log:")
+	hometab.newLabel("- Added Support for Spooky Drive")
+	hometab.newLabel("5/10/2024")
 
-	hometab.newButton("Button", "Prints Hello!", function()
+	--[[hometab.newButton("Button", "Prints Hello!", function()
 		print('Hello!')
 	end)
 
-	hometab.newToggle("Toggle", "Toggle! (prints the state)", true, function(toggleState)
+	hometab.newToggle("Toggle", "Toggle! (prints the state)", false, function(toggleState)
 		if toggleState then
 			print("On")
 		else
@@ -238,11 +242,11 @@ if game.PlaceId == 3068144257 then -- base game
 	hometab.newDropdown("Dropdown", "Select one of these options!", {"water", "dog", "air", "bb", "airplane", "wohhho", "yeay", "delete"}, function(selectedOption)
 		print(selectedOption)
 	end)
-
+	]]
 	-------------------------------------------------------------- Tab 1 | Driving Challenges
 	dctab.newLabel("Cosmic Causeway (CC)")
 
-	dctab.newButton("Spawn CC Portal", "", function()
+	dctab.newButton("Spawn CC Portal", "Automatically clicks the buttons to spawn the CC Portal", function()
 		fireclickdetector(portalbutton1.detect)
 		fireclickdetector(portalbutton2.detect)
 		fireclickdetector(portalbutton3.detect)
@@ -251,8 +255,13 @@ if game.PlaceId == 3068144257 then -- base game
 		fireclickdetector(spawnportal)
 	end)
 
-	dctab.newToggle("Show CC Buttons", "Enables / Disables billboard guis on the buttons", true, function(showccbuttons)
+	dctab.newToggle("Show CC Buttons", "Enables / Disables billboard guis on the buttons", false, function(showccbuttons)
 		if showccbuttons then
+			game:GetService("StarterGui"):SetCore("SendNotification",{
+				Title = "Success";
+				Text = "Enabled Billboard GUIs";
+				Duration = 2;
+			})
 			hlgtpbutton1.Enabled = true
 			bill1.Enabled = true
 			hlgtpbutton2.Enabled = true
@@ -262,6 +271,11 @@ if game.PlaceId == 3068144257 then -- base game
 			hlgtpbutton4.Enabled = true
 			bill4.Enabled = true
 		else
+			game:GetService("StarterGui"):SetCore("SendNotification",{
+				Title = "Success";
+				Text = "Disabled Billboard GUIs";
+				Duration = 2;
+			})
 			hlgtpbutton1.Enabled = false
 			bill1.Enabled = false
 			hlgtpbutton2.Enabled = false
@@ -274,7 +288,7 @@ if game.PlaceId == 3068144257 then -- base game
 	end)
 
 	dctab.newLabel("Sandy Avenue")
-	dctab.newButton("Click Sandy Avenue Buttons", "", function()
+	dctab.newButton("Spawn Sandy Avenue Portal", "Automatically clicks the buttons to spawn the Sandy Avenue Portal", function()
 		fireclickdetector(sandyclicker1)
 		fireclickdetector(sandyclicker2)
 		fireclickdetector(sandyclicker3)
@@ -284,7 +298,7 @@ if game.PlaceId == 3068144257 then -- base game
 		if halloweenbool.Value == true then
 			dctab.newLabel("Spooky Drive")
 
-			dctab.newButton("Teleport to Skull A", "", function()
+			dctab.newButton("Teleport to Skull A", "Teleports you to skull A (Internal Name)", function()
 				if lpc.Humanoid.Sit == false then
 					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skulla.Part.CFrame
 				elseif lpc.Humanoid.Sit == true then
@@ -296,7 +310,7 @@ if game.PlaceId == 3068144257 then -- base game
 				end
 			end)
 
-			dctab.newButton("Teleport to Skull B", "", function()
+			dctab.newButton("Teleport to Skull B", "Teleports you to skull B (Internal Name)", function()
 				if lpc.Humanoid.Sit == false then
 					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skullb.Part.CFrame
 				elseif lpc.Humanoid.Sit == true then
@@ -308,7 +322,7 @@ if game.PlaceId == 3068144257 then -- base game
 				end
 			end)
 
-			dctab.newButton("Teleport to Skull C", "", function()
+			dctab.newButton("Teleport to Skull C", "Teleports you to skull C (Internal Name)", function()
 				if lpc.Humanoid.Sit == false then
 					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skullc.Part.CFrame
 				elseif lpc.Humanoid.Sit == true then
@@ -320,7 +334,7 @@ if game.PlaceId == 3068144257 then -- base game
 				end
 			end)
 
-			dctab.newButton("Teleport to Skull D", "", function()
+			dctab.newButton("Teleport to Skull D", "Teleports you to skull D (Internal Name)", function()
 				if lpc.Humanoid.Sit == false then
 					lpc.HumanoidRootPart.CFrame = spookmap.spookportal.skulld.Part.CFrame
 				elseif lpc.Humanoid.Sit == true then
@@ -426,7 +440,7 @@ if game.PlaceId == 3068144257 then -- base game
 	end)
 
 	-------------------------------------------------------------- Tab 3 | Misc
-	misctab.newButton("Collect all Collectable Wrench Parts", "", function()
+	misctab.newButton("Collect all Collectable Parts", "Teleports your character to all known Collectable Parts", function()
 		ogc = lpc.HumanoidRootPart.CFrame
 		if lpc.Humanoid.Sit == false then
 			game:GetService("StarterGui"):SetCore("SendNotification",{
@@ -483,7 +497,7 @@ if game.PlaceId == 3068144257 then -- base game
 		end
 	end)
 
-	misctab.newToggle("Show Shortcuts", "Makes Shortcuts Visible / Invisible", true, function(showrtcuts)
+	misctab.newToggle("Show Shortcuts", "Makes Shortcuts Visible / Invisible", false, function(showrtcuts)
 		if showrtcuts then
 			game:GetService("StarterGui"):SetCore("SendNotification",{
 				Title = "Success";
@@ -511,7 +525,7 @@ if game.PlaceId == 3068144257 then -- base game
 		end
 	end)
 
-	misctab.newToggle("Safeguards", "Toggles Invisible parts on locations where your vechicle may be damaged", true, function(safeguard)
+	misctab.newToggle("Safeguards", "Toggles Invisible parts on locations where your vechicle may be damaged", false, function(safeguard)
 		if safeguard then
 			game:GetService("StarterGui"):SetCore("SendNotification",{
 				Title = "Success";
@@ -535,4 +549,97 @@ if game.PlaceId == 3068144257 then -- base game
 			end
 		end
 	end)
+elseif game.PlaceId == 13998146600 then -- cosmic causeway
+	local drace = Instance.new("Hint", workspace)
+	drace.Text = "Cosmic Causeway will have support soon!"
+	task.wait(5)
+	drace:Destroy()
+elseif game.PlaceId == 7060888292 then -- Sandy Avenue
+	local drace = Instance.new("Hint", workspace)
+	drace.Text = "Sandy Avenue will have support soon!"
+	task.wait(5)
+	drace:Destroy()
+elseif game.PlaceId == 4101035748 then -- death street
+	dcnotsupported()
+elseif game.PlaceId == 4581988516 then -- windy lane
+	dcnotsupported()
+elseif game.PlaceId == 5790960130 then -- spooky drive
+	local directroadfolder = Instance.new("Folder", workspace)
+	directroadfolder.Name = "directroad"
+	
+	local part1 = Instance.new("Part", directroadfolder)
+	local part2 = Instance.new("Part", directroadfolder)
+	
+	part1.Anchored = true
+	part2.Anchored = true
+	
+	part1.CFrame = CFrame.new(2266.793, 1607.867, 791.221)
+	part2.CFrame = CFrame.new(2785.572, 1804.61, -321.306)
+	
+	part1.Size = Vector3.new(104, 1.5, 2046.5)
+	part2.Size = Vector3.new(104, 1.5, 442)
+	
+	part1.Rotation = Vector3.new(10, -25, 0)
+	part2.Rotation = Vector3.new(5, -25, 0)
+	
+	part1.Transparency = 1
+	part2.Transparency = 1
+	
+	part1.CanCollide = false
+	part2.CanCollide = false
+	---------------------------------------------------------------------
+	local TS2SpookyWindow = Library:Load("Spooky Drive | TS2H", "Default")
+	local SpookyHome = Library.newTab("Home", "7733960981")
+	local SpookyDrive = Library.newTab("Spooky Drive", "7733708835")
+	
+	SpookyHome.newLabel("Script created by fandy")
+
+	SpookyHome.newLabel("Update Log:")
+	SpookyHome.newLabel("- Added Support for Spooky Drive")
+	SpookyHome.newLabel("5/10/2024")
+	
+	SpookyHome.newToggle("Direct End Road Access", "(Almost) A direct access to the end", false, function(directroad)
+		if directroad then
+			game:GetService("StarterGui"):SetCore("SendNotification",{
+				Title = "Success";
+				Text = "Enabled Direct End Road";
+				Duration = 2;
+			})
+			for _, child in pairs(game.Workspace.directroad:GetChildren()) do
+				child.CanCollide = true
+				child.Transparency = 0.8
+			end
+		else
+			game:GetService("StarterGui"):SetCore("SendNotification",{
+				Title = "Success";
+				Text = "Disabled Direct End Road";
+				Duration = 2;
+			})
+			for _, child in pairs(game.Workspace.directroad:GetChildren()) do
+				child.CanCollide = false
+				child.Transparency = 1
+			end
+		end
+	end)
+elseif game.PlaceId == 6037225278 then -- frosty road
+	dcnotsupported()
+elseif game.PlaceId == 6514486037 then -- burning boulevard
+	dcnotsupported()
+elseif game.PlaceId == 12131373233 then -- falling freeway
+	dcnotsupported()
+elseif game.PlaceId == 15553343420 then -- atmospheric alleyway
+	dcnotsupported()
+elseif game.PlaceId == 17756256295 then -- mysterious facility
+	dcnotsupported()
+elseif game.PlaceId == 4814869969 then -- delivery racing
+	local drace = Instance.new("Hint", workspace)
+	drace.Text = "Delivery Racing is not supported."
+	task.wait(5)
+	drace:Destroy()
+
+elseif game.PlaceId ~= 3068144257 or game.PlaceId ~= 3821470750 or game.PlaceId ~= 3830469901 or game.PlaceId ~= 3830928891 or game.PlaceId ~= 3831276218 or game.PlaceId ~= 3837353855 or game.PlaceId ~= 3859231454 or game.PlaceId ~= 3875639153 or game.PlaceId ~= 4101035748 or game.PlaceId ~= 4339979136 or game.PlaceId ~= 4581988516 or game.PlaceId ~= 4814869969 or game.PlaceId ~= 5790960130 or game.PlaceId ~= 6037225278 or game.PlaceId ~= 6514486037 or game.PlaceId ~= 7060888292 or game.PlaceId ~= 12131373233 or game.PlaceId ~= 13998146600 or game.PlaceId ~= 15553343420 or game.PlaceId ~= 17756256295 then
+	local aintts2 = Instance.new("Hint", workspace)
+	aintts2.Text = "This is not Taxi Simulator 2."
+	task.wait(5)
+	aintts2:Destroy()
 end

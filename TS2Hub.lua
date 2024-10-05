@@ -474,8 +474,10 @@ if game.PlaceId == 3068144257 then -- base game
 	-------------------------------------------------------------- Tab 3 | Misc
 	
 	dctab.newToggle("Player ESP", "Toggles Player Esps", false, function(plresp)
-		if plresp
+		if plresp then
+			print("ye")
 		else
+			print("nop")
 		end
 	end)
 end

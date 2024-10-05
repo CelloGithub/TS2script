@@ -569,24 +569,31 @@ elseif game.PlaceId == 5790960130 then -- spooky drive
 	
 	local part1 = Instance.new("Part", directroadfolder)
 	local part2 = Instance.new("Part", directroadfolder)
+	local part3 = Instance.new("Part", directroadfolder)
 	
 	part1.Anchored = true
 	part2.Anchored = true
+	part3.Anchored = true
 	
-	part1.CFrame = CFrame.new(2266.793, 1607.867, 791.221)
-	part2.CFrame = CFrame.new(2785.572, 1804.61, -321.306)
+	part1.CFrame = CFrame.new(2232.989, 1596.455, 773.798)
+	part2.CFrame = CFrame.new(2751.976, 1793.285, -339.175)
+	part3.CFrame = CFrame.new(1785.576, 1409.783, 1733.278)
 	
-	part1.Size = Vector3.new(104, 1.5, 2046.5)
+	part1.Size = Vector3.new(104, 1.5, 2047.5)
 	part2.Size = Vector3.new(104, 1.5, 442)
+	part3.Size = Vector3.new(104, 1.5, 103.5)
 	
 	part1.Rotation = Vector3.new(10, -25, 0)
 	part2.Rotation = Vector3.new(5, -25, 0)
+	part3.Rotation = Vector3.new(10, -25, 0)
 	
 	part1.Transparency = 1
 	part2.Transparency = 1
+	part3.Transparency = 1
 	
 	part1.CanCollide = false
 	part2.CanCollide = false
+	part3.CanCollide = false
 	---------------------------------------------------------------------
 	local TS2SpookyWindow = Library:Load("Spooky Drive | TS2H", "Default")
 	local SpookyHome = Library.newTab("Home", "7733960981")

@@ -2,10 +2,6 @@ local lp = game.Players.LocalPlayer
 local lpc = lp.Character
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))() --ty chill.z
 
---- colors
-local mainColor = Color3.fromRGB(10, 30, 10)
-local secondColor = Color3.fromRGB(50, 50, 10)
-
 function dcnotsupported()
 	local dcnotsupported = Instance.new("Hint", workspace)
 	dcnotsupported.Text = "This driving challenge is not supported yet. Sorry!"
@@ -21,8 +17,7 @@ if game.PlaceId == 3068144257 then -- base game
 	local dctab = Library.newTab("Challenges", "7733708835")
 	local tptab = Library.newTab("TPs", "7733746980")
 	local misctab = Library.newTab("Misc", "7743878358")
-	
-	TS2MainWindow:SetTheme(mainColor, secondColor)
+
 	
 	------------------------------------------------------------------------------- Event Checkers
 
@@ -612,8 +607,6 @@ elseif game.PlaceId == 5790960130 then -- spooky drive
 	local TS2SpookyWindow = Library:Load("Spooky Drive | TS2H", "Default")
 	local SpookyHome = Library.newTab("Home", "7733960981")
 	local SpookyDrive = Library.newTab("Spooky Drive", "7733708835")
-	
-	TS2SpookyWindow:SetTheme(mainColor, secondColor)
 	
 	-------------------------------------------------------------------------------
 	

@@ -42,7 +42,7 @@ function logMsg(Webhook, Player, Message)
         --["color"] = tonumber(0xdead43),
         --['description'] = "**"..Player..":** "..Message
         ['description'] = Message
-	['footer']: {
+	['footer'] = {
 		["text"]: ""..Player.."",
 		['icon_url']: "https://www.roblox.com/headshot-thumbnail/image?userId="..userId.."&width=420&height=420&format=png"
 	}
@@ -51,7 +51,7 @@ function logMsg(Webhook, Player, Message)
         ["color"] = tonumber(0x30c542),
         --['description'] = "**:sparkles: | "..Player..":** "..Message
 	['description'] = Message
-	['footer']: {
+	['footer'] = {
 		["text"]: "✨ | "..Player.."",
 		['icon_url']: "https://www.roblox.com/headshot-thumbnail/image?userId="..userId.."&width=420&height=420&format=png"
 	}
@@ -60,7 +60,7 @@ function logMsg(Webhook, Player, Message)
         ["color"] = tonumber(mainembedcolor),
         --['description'] = "**:crown: | "..Player..":** "..Message
 	['description'] = Message
-	['footer']: {
+	['footer'] = {
 		["text"]: "👑 | "..Player.."",
 		['icon_url']: "https://www.roblox.com/headshot-thumbnail/image?userId="..userId.."&width=420&height=420&format=png"
 	}

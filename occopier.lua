@@ -5,7 +5,7 @@ local Obbys = workspace.Obbies
 local myObby = Obbys:FindFirstChild(plr.Name)
 local myArea
 if myObby then
-	myArea = myObby:FindFirstChild("Area")
+	myArea = myObby:FindFirstChild("Area").Area
 end
 local font = Font.new(
 	"rbxasset://fonts/families/SourceSansPro.json",

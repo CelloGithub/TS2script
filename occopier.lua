@@ -1,489 +1,1109 @@
-local plrs=game:FindFirstChildOfClass("Players")
-local lp=plrs.LocalPlayer
-local ws=game:FindFirstChildOfClass("Workspace")
-local uis=game:FindFirstChildOfClass("UserInputService")
-local rs=game:FindFirstChildOfClass("RunService")
-local heartbeat=rs.Heartbeat
-local renderstepped=rs.RenderStepped
-local angles=CFrame.Angles
-local cf=CFrame.new
-local v3=Vector3.new
-local v3_010=v3(0,1,0)
-local v3_0=v3(0,0,0)
-local osclock=os.clock
-local twait=task.wait
-local slower=string.lower
-local ssub=string.sub
+local TextChatService = game:GetService("TextChatService")
+local LocalPLR = game.Players.LocalPlayer
 
-local speeding=32
-local maxspeed=75
-local off=angles(-1.5707963267948966,0,0)
+-- CONFIGURATION --
 
-local function gp(p,n,cl)
-	if typeof(p)=="Instance" then
-		local c=p:GetChildren()
-		for i=1,#c do
-			local v=c[i]
-			if (v.Name==n) and v:IsA(cl) then
-				return v
-			end
-		end
-	end
-	return nil
+getgenv().Prefix = "&" -- With what symbol the cmds should start with. (e.g. if its . then .cmds if its ; then ;cmds)
+getgenv().Username = "celloRoblox07" -- The username of the person you want to have full control over the bots.
+
+local bots = {"CitoRep"} -- The display names of the bots you gonna run the script on.
+
+local whitelist = {} -- Usernames of whitelisted people. You can leave empty and just use the whitelist command. (whitelisted people cant use certain commands like chat, shutdown, rejoin etc)
+
+-- CONFIGURATION --
+
+local index
+for i, bot in ipairs(bots) do
+    if LocalPLR.DisplayName == bot then
+        index = i
+        break
+    end
 end
 
-local i=Instance.new 
-local v2=Vector2.new 
-local bc=BrickColor.new 
-local c3=Color3.new 
-local u2=UDim2.new 
-local sc,mr=string.char,math.random 
-local function rs(l) 
-	l=l or mr(8,15) 
-	local s="" 
-	for i=1,l do 
-		if mr(1,2)==1 then 
-			s=s..sc(mr(65,90)) 
-		else 
-			s=s..sc(mr(97,122)) 
-		end 
-	end 
-	return s 
-end 
-local e=Enum 
-local i1=i("Frame") 
-local i2=i("TextLabel") 
-local i3=i("Frame") 
-local i4=i("TextBox") 
-local i5=i("TextButton") 
-local i6=i("TextLabel") 
-local i7=i("TextLabel") 
-local i8=i("ScreenGui") 
-i1.AnchorPoint=v2(0.5,0.5) 
-i1.BackgroundColor=bc(149) 
-i1.BackgroundColor3=c3(0.129412,0.129412,0.129412) 
-i1.BorderColor=bc(1003) 
-i1.BorderColor3=c3(0,0,0) 
-i1.BorderSizePixel=0 
-i1.Position=u2(0.5,0,0.5,0) 
-i1.Size=u2(0,250,0,140) 
-i1.Name=rs() 
-i1.Parent=i8 
-i2.Font=e.Font.SourceSans 
-i2.FontSize=e.FontSize.Size24 
-i2.Text="Epic gui" 
-i2.TextColor=bc(1002) 
-i2.TextColor3=c3(0.815686,0.815686,0.815686) 
-i2.TextSize=20 
-i2.BackgroundColor=bc(1001) 
-i2.BackgroundColor3=c3(1,1,1) 
-i2.BackgroundTransparency=1 
-i2.BorderColor=bc(1003) 
-i2.BorderColor3=c3(0,0,0) 
-i2.BorderSizePixel=0 
-i2.Size=u2(1,0,0,25) 
-i2.Name=rs() 
-i2.Parent=i1 
-i3.BackgroundColor=bc(26) 
-i3.BackgroundColor3=c3(0.192157,0.192157,0.192157) 
-i3.BorderColor=bc(1003) 
-i3.BorderColor3=c3(0,0,0) 
-i3.BorderSizePixel=0 
-i3.ClipsDescendants=true 
-i3.Position=u2(0,5,0,25) 
-i3.Size=u2(1,-10,1,-30) 
-i3.Name=rs() 
-i3.Parent=i1 
-i4.CursorPosition=-1 
-i4.Font=e.Font.SourceSans 
-i4.FontSize=e.FontSize.Size24 
-i4.PlaceholderColor3=c3(0.509804,0.509804,0.509804) 
-i4.PlaceholderText="DisplayName/Name" 
-i4.Text="" 
-i4.TextColor=bc(1) 
-i4.TextColor3=c3(0.952941,0.952941,0.952941) 
-i4.TextSize=20 
-i4.TextWrap=true 
-i4.AnchorPoint=v2(0.5,0) 
-i4.BackgroundColor=bc(364) 
-i4.BackgroundColor3=c3(0.266667,0.266667,0.266667) 
-i4.BorderColor=bc(1003) 
-i4.BorderColor3=c3(0,0,0) 
-i4.BorderSizePixel=0 
-i4.ClipsDescendants=true 
-i4.Position=u2(0.5,0,0,13) 
-i4.Size=u2(1,-30,0,32) 
-i4.Name=rs() 
-i4.Parent=i3 
-i5.AnchorPoint=v2(0.5,0) 
-i5.BackgroundColor=bc(364) 
-i5.BackgroundColor3=c3(0.266667,0.266667,0.266667) 
-i5.BorderColor=bc(1003) 
-i5.BorderColor3=c3(0,0,0) 
-i5.BorderSizePixel=0 
-i5.Position=u2(0.5,0,0,64) 
-i5.Size=u2(1,-30,0,32) 
-i5.Name=rs() 
-i5.Parent=i3 
-i5.Font=e.Font.FredokaOne 
-i5.FontSize=e.FontSize.Size24 
-i5.Text="Copy" 
-i5.TextColor3=c3(0.55,0.55,0.55) 
-i5.TextSize=23 
-i6.Font=e.Font.SourceSans 
-i6.FontSize=e.FontSize.Size14 
-i6.Text="by BLOCKCE" 
-i6.TextColor=bc(2) 
-i6.TextColor3=c3(0.635294,0.635294,0.635294) 
-i6.AnchorPoint=v2(1,1) 
-i6.AutomaticSize=e.AutomaticSize.XY 
-i6.BackgroundColor=bc(1001) 
-i6.BackgroundColor3=c3(1,1,1) 
-i6.BackgroundTransparency=1 
-i6.BorderColor=bc(1003) 
-i6.BorderColor3=c3(0,0,0) 
-i6.BorderSizePixel=0 
-i6.Position=u2(1,0,1,0) 
-i6.Name=rs() 
-i6.Parent=i3 
-i7.Font=e.Font.SourceSans 
-i7.FontSize=e.FontSize.Size14 
-i7.Text="" 
-i7.TextColor=bc(2) 
-i7.TextColor3=c3(0.635294,0.635294,0.635294) 
-i7.AnchorPoint=v2(0.5,0) 
-i7.AutomaticSize=e.AutomaticSize.XY 
-i7.BackgroundColor=bc(1001) 
-i7.BackgroundColor3=c3(1,1,1) 
-i7.BackgroundTransparency=1 
-i7.BorderColor=bc(1003) 
-i7.BorderColor3=c3(0,0,0) 
-i7.BorderSizePixel=0 
-i7.Position=u2(0.5,0,0,47) 
-i7.Name=rs() 
-i7.Parent=i3 
-i8.ZIndexBehavior=e.ZIndexBehavior.Sibling 
-i8.Name=rs() 
+function chat(msg)
 
-local function Draggable(window,obj)
-	local MB1enum = e.UserInputType.MouseButton1
-	local TOUCHenum = e.UserInputType.Touch
-	obj = obj or window
-	local activeEntered = 0
-	local mouseStart = nil
-	local dragStart = nil
-	local inputbegancon = nil
-	local rendersteppedcon = nil
-	local inputendedcon = nil
-	local function inputendedf(a)
-		a=a.UserInputType
-		if (a==MB1enum) or (a==TOUCHenum) then
-			rendersteppedcon:Disconnect()
-			inputendedcon:Disconnect()
-		end
-	end
-	local function rendersteppedf()
-		local off = uis:GetMouseLocation()-mouseStart
-		window.Position=dragStart+u2(0,off.X,0,off.Y)
-	end
-	local function inputbeganf(a)
-		a=a.UserInputType
-		if ((a==MB1enum) or (a==TOUCHenum)) and (activeEntered==0) and not uis:GetFocusedTextBox() then
-			mouseStart=uis:GetMouseLocation()
-			dragStart=window.Position
-			if rendersteppedcon then rendersteppedcon:Disconnect() end
-			rendersteppedcon = renderstepped:Connect(rendersteppedf)
-			if inputendedcon then inputendedcon:Disconnect() end
-			inputendedcon = uis.InputEnded:Connect(inputendedf)
-		end
-	end
-	obj.MouseEnter:Connect(function()
-		if inputbegancon then inputbegancon:Disconnect() end
-		inputbegancon = uis.InputBegan:Connect(inputbeganf)
-	end)
-	obj.MouseLeave:Connect(function()
-		inputbegancon:Disconnect()
-	end)
-	local function ondes(d)
-		if d:IsA("GuiObject") then
-			local thisEntered = false
-			local thisAdded = false
-			local con0 = d.MouseEnter:Connect(function()
-				thisEntered = true
-				if (not thisAdded) and d.Active then
-					activeEntered = activeEntered + 1
-					thisAdded = true
-				end
-			end)
-			local con1 = d.MouseLeave:Connect(function()
-				thisEntered = false
-				if thisAdded then
-					activeEntered = activeEntered - 1
-					thisAdded = false
-				end
-			end)
-			local con2 = d:GetPropertyChangedSignal("Active"):Connect(function()
-				if thisEntered then
-					if thisAdded and not d.Active then
-						activeEntered = activeEntered - 1
-						thisAdded = false
-					elseif d.Active and not thisAdded then
-						activeEntered = activeEntered + 1
-						thisAdded = true
-					end
-				end
-			end)
-			local con3 = nil
-			con3 = d.AncestryChanged:Connect(function()
-				if not d:IsDescendantOf(window) then
-					if thisEntered then
-						activeEntered = activeEntered - 1
-					end
-					con0:Disconnect()
-					con1:Disconnect()
-					con2:Disconnect()
-					con3:Disconnect()
-				end
-			end)
-		end
-	end
-	window.DescendantAdded:Connect(ondes)
-	local des=window:GetDescendants()
-	for i=1,#des do 
-		ondes(des[i])
-	end
-end
-Draggable(i1)
+    if TextChatService.ChatVersion == Enum.ChatVersion.TextChatService then
+        TextChatService.TextChannels.RBXGeneral:SendAsync(msg)
+    else
+        game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
+    end
 
-local others={}
-for i,v in pairs(plrs:GetPlayers()) do
-	if v~=lp then
-		others[v]=true
-	end
 end
-plrs.PlayerAdded:Connect(function(plr)
-	others[plr]=true
+
+chat("ControlBotZ Running!")
+game:GetService("StarterGui"):SetCore("SendNotification", {
+    Title = "Thank You",
+    Text = "Thank you for using ControlBotZ!",
+    Time = 6
+})
+
+function showDefaultGui(enabled, text)
+
+    if enabled == true then
+        screenGui = Instance.new("ScreenGui")
+        screenGui.IgnoreGuiInset = true
+        screenGui.Parent = LocalPLR:WaitForChild("PlayerGui")
+
+        local frame = Instance.new("Frame")
+        frame.Size = UDim2.new(1, 0, 1, 0)
+        frame.BackgroundColor3 = Color3.fromRGB(0, 205, 216)
+        frame.Parent = screenGui
+
+        local textLabel = Instance.new("TextLabel")
+        textLabel.Size = UDim2.new(1, 0, 1, 0)
+        textLabel.Text = text
+        textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+        textLabel.BackgroundTransparency = 1
+        textLabel.Font = Enum.Font.SourceSansBold
+        textLabel.TextSize = 40
+        textLabel.TextScaled = true
+        textLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+        textLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
+        textLabel.Parent = frame
+    elseif enabled == false then
+        if screenGui then
+            screenGui:Destroy()
+        end
+    end
+
+end
+
+function specifyBots(sub, callback)
+
+    local botArgs = getArgs(sub)
+
+    if next(botArgs) ~= nil then
+        for _, arg in ipairs(botArgs) do
+            if index == tonumber(arg) then
+                callback()
+            end
+        end
+    else
+        callback()
+    end
+
+end
+
+function specifyBots2(argTable, tableStartIndex, callback)
+
+    local botArgs = {}
+
+    for i = tableStartIndex, #argTable do
+        table.insert(botArgs, argTable[i])
+    end
+
+    if #botArgs == 0 then
+        callback()
+    else
+        for _, botArg in ipairs(botArgs) do
+            if index == tonumber(botArg) then
+                callback()
+            end
+        end
+    end
+
+end
+
+function getArgs(command)
+
+    local args = {}
+
+    for arg in command:match("^%s*(.-)%s*$"):gmatch("%S+") do
+        table.insert(args, arg)
+    end
+
+    return args
+
+end
+
+function isR15(returnValTrue, returnValFalse)
+
+    if LocalPLR.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+        if returnValTrue then
+            return returnValTrue
+        else
+            return true
+        end
+    elseif LocalPLR.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+        if returnValFalse then
+            return returnValFalse
+        else
+            return false
+        end
+    end
+
+end
+
+function isWhitelisted(name)
+
+    if name == getgenv().Username then
+        return true
+    end
+
+    for _, whitelistedUser in pairs(whitelist) do
+        if name == whitelistedUser then
+            return true
+        end
+    end
+
+    return false
+end
+
+-- RANDOM VARS:
+local normalGravity = 196.2
+
+function commands(player, message)
+    local msg = message:lower()
+
+    if not isWhitelisted(player.Name) then
+        return
+    end
+
+    function getFullPlayerName(typedName)
+
+        if typedName == "me" then
+            return player.Name
+        end
+
+        for _, plr in pairs(game.Players:GetPlayers()) do
+            if string.find(plr.Name, typedName) then
+                return plr.Name
+            end
+        end
+
+    end
+
+    -- WHITELIST:
+    if msg:sub(1, 11) == getgenv().Prefix .. "whitelist+" then
+
+        if player.Name ~= getgenv().Username then
+            return
+        end
+
+        local targetPLR = message:sub(13)
+
+        if game.Players[targetPLR] then
+            table.insert(whitelist, targetPLR)
+
+            if index == 1 then
+                chat("Added Player To Whitelist!")
+            end
+        elseif index == 1 then
+            chat("Player Could Not Be Found!")
+        end
+    end
+
+    if msg:sub(1, 11) == getgenv().Prefix .. "whitelist-" then
+
+        if player.Name ~= getgenv().Username then
+            return
+        end
+
+        local targetPLR = message:sub(13)
+
+        for i, whitelistedUser in pairs(whitelist) do
+            if whitelistedUser == targetPLR then
+                table.remove(whitelist, i)
+
+                if index == 1 then
+                    chat("Removed Player From Whitelist!")
+                end
+
+            end
+        end
+    end
+
+    -- REJOIN:
+    if msg:sub(1, 7) == getgenv().Prefix .. 'rejoin' then
+
+        if player.Name ~= getgenv().Username then
+            return
+        end
+
+        function runCode()
+            LocalPLR:Kick("REJOINING...")
+            wait()
+            game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, game.JobId, LocalPLR)
+        end
+
+        specifyBots(msg:sub(9), runCode)
+
+    end
+
+    -- RESET:
+    if msg:sub(1, 6) == getgenv().Prefix .. "reset" then
+
+        function runCode()
+            LocalPLR.Character.Humanoid.Health = 0
+        end
+
+        specifyBots(msg:sub(8), runCode)
+
+    end
+
+    -- JUMP:
+    if msg:sub(1, 5) == getgenv().Prefix .. "jump" then
+
+        function runCode()
+            LocalPLR.Character.Humanoid.Jump = true
+        end
+
+        specifyBots(msg:sub(7), runCode)
+
+    end
+
+    -- BRING:
+    if msg:sub(1, 6) == getgenv().Prefix .. "bring" then
+
+        function runCode()
+            LocalPLR.Character:FindFirstChild("HumanoidRootPart").CFrame = game.Players[player.Name].Character:FindFirstChild("HumanoidRootPart").CFrame
+        end
+
+        specifyBots(msg:sub(8), runCode)
+
+    end
+
+    -- CHAT:
+    if msg:sub(1, 5) == getgenv().Prefix .. "chat" then
+
+        if player.Name ~= getgenv().Username then
+            return
+        end
+
+        chat(message:sub(7))
+
+    end
+
+    -- SIT:
+    if msg:sub(1, 4) == getgenv().Prefix .. "sit" then
+
+        function runCode()
+            LocalPLR.Character.Humanoid.Sit = true
+        end
+
+        specifyBots(msg:sub(6), runCode)
+
+    end
+
+    -- SPEED:
+    if msg:sub(1, 6) == getgenv().Prefix .. "speed" then
+        local args = getArgs(msg:sub(8))
+
+        function runCode()
+            LocalPLR.Character.Humanoid.WalkSpeed = args[1]
+        end
+
+        specifyBots2(args, 2, runCode)
+
+    end
+
+    -- LINEUP:
+    if msg:sub(1, 7) == getgenv().Prefix .. "lineup" then
+
+        local direction = msg:sub(9)
+        local spacing = 3
+
+        local targetHumanoidRootPart = game.Players[player.Name].Character.HumanoidRootPart
+
+        local directionVector
+        if direction == "front" then
+            spacing = 3
+            directionVector = targetHumanoidRootPart.CFrame.LookVector
+        elseif direction == "back" then
+            spacing = 3
+            directionVector = -targetHumanoidRootPart.CFrame.LookVector
+        elseif direction == "left" then
+            spacing = 5
+            directionVector = -targetHumanoidRootPart.CFrame.RightVector
+        elseif direction == "right" then
+            spacing = 5
+            directionVector = targetHumanoidRootPart.CFrame.RightVector
+        end
+
+        local offset = directionVector * (spacing * index)
+        LocalPLR.Character.HumanoidRootPart.CFrame = targetHumanoidRootPart.CFrame + offset
+
+    end
+
+    -- SHUTDOWN:
+    if msg:sub(1, 9) == getgenv().Prefix .. "shutdown" then
+
+        if player.Name ~= getgenv().Username then
+            return
+        end
+
+        function runCode()
+            game:Shutdown()
+        end
+
+        specifyBots(msg:sub(11), runCode)
+
+    end
+
+    -- SURROUND:
+    if msg:sub(1, 9) == getgenv().Prefix .. "surround" then -- LITERALY COPY PASTE OF ORBIT COMMAND(too lazy srry)
+
+        local args = getArgs(message:sub(11))
+        local targetPLR = getFullPlayerName(args[1])
+
+        local player = game.Players[targetPLR].Character.HumanoidRootPart
+        local lpr = LocalPLR.Character.HumanoidRootPart
+
+        local speed = 8
+        local radius = 8
+        local spacing = tonumber(args[2]) or 1
+        local eclipse = 1
+
+        local sin, cos = math.sin, math.cos
+        local rotspeed = math.pi*2/speed
+        eclipse = eclipse * radius
+
+        local rot = 0
+
+        rot = rot + rotspeed
+
+        local offsetAngle = rot - (index * spacing)
+        local offset = Vector3.new(sin(offsetAngle) * eclipse, 0, cos(offsetAngle) * radius)
+        local newPosition = player.Position + offset
+
+        lpr.CFrame = CFrame.new(newPosition, player.Position)
+
+    end
+
+    -- ORBIT:
+    if msg:sub(1, 6) == getgenv().Prefix .. "orbit" then
+
+        local args = getArgs(message:sub(8))
+        local targetPLR = getFullPlayerName(args[1])
+
+        local player = game.Players[targetPLR].Character.HumanoidRootPart
+        local lpr = LocalPLR.Character.HumanoidRootPart
+
+        local speed = tonumber(args[2]) or 8
+        local radius = 8
+        local spacing = 1
+        local eclipse = 1
+        local rotation = CFrame.Angles(0,0,0)
+
+        local sin, cos = math.sin, math.cos
+        local rotspeed = math.pi*2/speed
+        eclipse = eclipse * radius
+
+        local rot = 0
+
+        function runCode()
+            workspace.Gravity = 0
+
+            orbit1 = game:GetService('RunService').Stepped:connect(function(t, dt)
+                rot = rot + dt * rotspeed
+
+                local offsetAngle = rot - (index * spacing)  -- Delay based on index
+                local offset = Vector3.new(sin(offsetAngle) * eclipse, 0, cos(offsetAngle) * radius)
+                lpr.CFrame = rotation * CFrame.new(offset) + player.Position
+            end)
+        end
+
+        specifyBots2(args, 3, runCode)
+    end
+
+    if msg:sub(1, 8) == getgenv().Prefix .. "unorbit" then
+
+        function runCode()
+            orbit1:Disconnect()
+            workspace.Gravity = normalGravity
+        end
+
+        specifyBots(msg:sub(10), runCode)
+
+    end
+
+    -- ROCKET:
+    if msg:sub(1, 7) == getgenv().Prefix .. "rocket" then
+        local args = getArgs(msg:sub(9))
+        local studs = 500
+
+        if args[1] then
+            studs = tonumber(args[1])
+        end
+
+        if index == 1 then
+            chat("Target Height: " .. studs .. " studs")
+            wait()
+
+            chat("Launching In: 3")
+            wait(1)
+
+            chat("Launching In: 2")
+            wait(1)
+
+            chat("Launching In: 1")
+            wait(1)
+
+            chat("Lifting Up!")
+            wait(0.5)
+        else
+            wait()
+            wait(3.5)
+        end
+
+        local Spin = Instance.new("BodyAngularVelocity")
+        Spin.Name = "SpinningRocket"
+        Spin.Parent = LocalPLR.Character.HumanoidRootPart
+        Spin.MaxTorque = Vector3.new(0, math.huge, 0)
+        Spin.AngularVelocity = Vector3.new(0, 15 ,0)
+
+        while LocalPLR.Character.HumanoidRootPart.Position.Y <= studs do
+            wait()
+
+            LocalPLR.Character.HumanoidRootPart.Position += Vector3.new(0, 1.5, 0)
+        end
+
+        LocalPLR.Character.Humanoid.Health = 0
+
+    end
+
+    -- WALKTO:
+    if msg:sub(1, 7) == getgenv().Prefix .. "walkto" then
+        local args = getArgs(message:sub(9))
+
+        local targetPLR = getFullPlayerName(args[1])
+
+        function runCode()
+            if game.Players[targetPLR] then
+                LocalPLR.Character:FindFirstChild("Humanoid"):MoveTo(game.Players[targetPLR].Character:FindFirstChild("HumanoidRootPart").Position)
+            end
+        end
+
+        specifyBots2(args, 2, runCode)
+
+    end
+
+    -- GOTO:
+    if msg:sub(1, 5) == getgenv().Prefix .. "goto" then
+        local args = getArgs(message:sub(7))
+
+        local targetPLR = getFullPlayerName(args[1])
+
+        function runCode()
+            if game.Players[targetPLR] then
+                LocalPLR.Character.HumanoidRootPart.CFrame = game.Players[targetPLR].Character.HumanoidRootPart.CFrame
+            end
+        end
+
+        specifyBots2(args, 2, runCode)
+
+    end
+
+    -- FOLLOW:
+    if msg:sub(1, 7) == getgenv().Prefix .. "follow" then
+        local args = getArgs(message:sub(9))
+
+        local targetPLR = getFullPlayerName(args[1])
+
+        function runCode()
+            followF = game:GetService("RunService").Heartbeat:Connect(function()
+                LocalPLR.Character:FindFirstChild("Humanoid"):MoveTo(game.Players[targetPLR].Character:FindFirstChild("HumanoidRootPart").Position)
+            end)
+        end
+
+        specifyBots2(args, 2, runCode)
+
+    end
+
+    if msg:sub(1, 9) == getgenv().Prefix .. "unfollow" then
+
+        function runCode()
+            followF:Disconnect()
+        end
+
+        specifyBots(msg:sub(11), runCode)
+
+    end
+
+    -- LINEFOLLOW:
+    if msg:sub(1, 11) == getgenv().Prefix .. "linefollow" then
+        local args = getArgs(message:sub(13))
+
+        local spacing = 3
+        local targetPLR = getFullPlayerName(args[1])
+
+        function runCode()
+            linefollowF = game:GetService("RunService").Heartbeat:Connect(function()
+                LocalPLR.Character:FindFirstChild("Humanoid"):MoveTo(game.Players[targetPLR].Character:FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0, 0, spacing * index).Position)
+
+                LocalPLR.Character.HumanoidRootPart.CFrame = CFrame.new(LocalPLR.Character.HumanoidRootPart.Position, game.Players[targetPLR].Character.HumanoidRootPart.Position)
+            end)
+        end
+
+        specifyBots2(args, 2, runCode)
+
+    end
+
+    if msg:sub(1, 13) == getgenv().Prefix .. "unlinefollow" then
+
+        function runCode()
+            linefollowF:Disconnect()
+        end
+
+        specifyBots(msg:sub(15), runCode)
+
+    end
+
+    -- ANTI-BANG:
+    if msg:sub(1, 9) == getgenv().Prefix .. "antibang" then
+
+            function runCode()
+
+                local root = LocalPLR.Character:WaitForChild("HumanoidRootPart")
+
+                workspace.FallenPartsDestroyHeight = -1000
+                local originalPosition = root.CFrame
+                root.CFrame = CFrame.new(Vector3.new(0, -500, 0))
+
+                wait(1)
+
+                root.CFrame = originalPosition
+                workspace.FallenPartsDestroyHeight = -500
+
+            end
+
+            specifyBots(msg:sub(11), runCode)
+
+    end
+
+    -- SPIN:
+    if msg:sub(1, 5) == getgenv().Prefix .. "spin" then
+        local args = getArgs(msg:sub(7))
+
+        local spinSpeed = args[1]
+
+        function runCode()
+            local Spin = Instance.new("BodyAngularVelocity")
+            Spin.Name = "Spinning"
+            Spin.Parent = LocalPLR.Character.HumanoidRootPart
+            Spin.MaxTorque = Vector3.new(0, math.huge, 0)
+            Spin.AngularVelocity = Vector3.new(0, spinSpeed, 0)
+        end
+
+        specifyBots2(args, 2, runCode)
+
+    end
+
+    if msg:sub(1, 7) == getgenv().Prefix .. "unspin" then
+
+        function runCode()
+            for _, v in pairs(LocalPLR.Character.HumanoidRootPart:GetChildren()) do
+                if v.Name == "Spinning" then
+                    v:Destroy()
+                end
+            end
+        end
+
+        specifyBots(msg:sub(9), runCode)
+
+    end
+
+    -- STACK:
+    if msg:sub(1, 6) == getgenv().Prefix .. "stack" then
+        local args = getArgs(message:sub(8))
+
+        local targetPLR = getFullPlayerName(args[1])
+
+        function runCode()
+            if game.Players[targetPLR].Character:FindFirstChild("HumanoidRootPart") then
+                workspace.Gravity = 0
+
+                local stackHeight = 3
+                local offset = (index - 1) * stackHeight
+
+                stackF = game:GetService("RunService").Heartbeat:Connect(function()
+
+                    if LocalPLR.Character.Humanoid.Sit == false then
+                        LocalPLR.Character.Humanoid.Sit = true
+                    end
+
+                    LocalPLR.Character.HumanoidRootPart.CFrame = game.Players[targetPLR].Character.Head.CFrame * CFrame.new(0, offset, 0)
+
+                end)
+            end
+        end
+
+        specifyBots2(args, 2, runCode)
+
+    end
+
+    if msg:sub(1, 8) == getgenv().Prefix .. "unstack" then
+
+        function runCode()
+            stackF:Disconnect();
+            LocalPLR.Character.Humanoid.Sit = false
+
+            workspace.Gravity = normalGravity
+        end
+
+        specifyBots(msg:sub(10), runCode)
+
+    end
+
+    -- LOOKAT:
+    if msg:sub(1, 7) == getgenv().Prefix .. "lookat" then
+        local args = getArgs(message:sub(9))
+
+        local targetPLR = getFullPlayerName(args[1])
+
+        function runCode()
+            LocalPLR.CameraMode = Enum.CameraMode.LockFirstPerson
+            lookatF = game:GetService("RunService").Heartbeat:Connect(function()
+                workspace.CurrentCamera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.p, game.Players[targetPLR].Character.Head.Position)
+                wait(0.1)
+            end)
+        end
+
+        specifyBots2(args, 2, runCode)
+
+    end
+
+    if msg:sub(1, 9) == getgenv().Prefix .. "unlookat" then
+
+        function runCode()
+            lookatF:Disconnect()
+            lookatF = nil
+
+            LocalPLR.CameraMode = Enum.CameraMode.Classic
+            LocalPLR.CameraMaxZoomDistance = 25
+            LocalPLR.CameraMinZoomDistance = 25
+
+            LocalPLR.CameraMaxZoomDistance = 128
+            LocalPLR.CameraMinZoomDistance = 0.5
+        end
+
+        specifyBots(msg:sub(11), runCode)
+
+    end
+
+    -- FLING:
+    if msg:sub(1, 6) == getgenv().Prefix .. "fling" then
+        local args = getArgs(message:sub(8))
+
+        lastCFRAME = LocalPLR.Character.HumanoidRootPart.CFrame
+
+        local targetPLR = getFullPlayerName(args[1])
+        local flingSpeed = 1000
+
+        function runCode()
+            Spin = Instance.new("BodyAngularVelocity")
+            Spin.Name = "Flinging"
+            Spin.Parent = LocalPLR.Character.HumanoidRootPart
+            Spin.MaxTorque = Vector3.new(math.huge, math.huge, math.huge)
+            Spin.AngularVelocity = Vector3.new(0, flingSpeed, 0)
+
+            FlingVelocity = Instance.new("BodyVelocity")
+            FlingVelocity.Name = "FlingVelocity"
+            FlingVelocity.Parent = LocalPLR.Character.HumanoidRootPart
+            FlingVelocity.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+            FlingVelocity.Velocity = Vector3.new(flingSpeed, flingSpeed, flingSpeed)
+
+            followF = game:GetService("RunService").Heartbeat:Connect(function()
+                LocalPLR.Character.HumanoidRootPart.CFrame = game.Players[targetPLR].Character.HumanoidRootPart.CFrame
+            end)
+        end
+
+        specifyBots2(args, 2, runCode)
+
+    end
+
+    if msg:sub(1, 8) == getgenv().Prefix .. "unfling" then
+
+        function runCode()
+            Spin:Destroy()
+            followF:Disconnect()
+            FlingVelocity:Destroy()
+
+            LocalPLR.Character.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
+            LocalPLR.Character.HumanoidRootPart.RotVelocity = Vector3.new(0, 0, 0)
+
+            LocalPLR.Character.HumanoidRootPart.CFrame = lastCFRAME
+        end
+
+        specifyBots(msg:sub(10), runCode)
+
+    end
+
+    -- BANG:
+    if msg:sub(1, 5) == getgenv().Prefix .. "bang" then
+
+        local args = getArgs(message:sub(7))
+        local targetPLR = getFullPlayerName(args[1])
+
+        local bangSpeed = tonumber(args[2]) or 10
+
+        function runCode()
+            if game.Players[targetPLR] then
+
+                bangAnim = Instance.new('Animation')
+                bangAnim.AnimationId = "rbxassetid://" .. isR15(5918726674, 148840371)
+                plrHum = LocalPLR.Character.Humanoid
+
+                anim = plrHum:LoadAnimation(bangAnim)
+                anim:Play()
+                anim:AdjustSpeed(bangSpeed)
+
+                bangLoop = game:GetService("RunService").Stepped:Connect(function()
+                    wait()
+                    LocalPLR.Character.HumanoidRootPart.CFrame = game.Players[targetPLR].Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 1.1)
+                end)
+            end
+
+        end
+
+        specifyBots2(args, 3, runCode)
+
+    end
+
+    -- FACEBANG:
+    if msg:sub(1, 9) == getgenv().Prefix .. "facebang" then
+
+        local args = getArgs(message:sub(11))
+        local targetPLR = getFullPlayerName(args[1])
+
+        local bangSpeed = tonumber(args[2]) or 10
+        local bangOffet = CFrame.new(0, 2.3, -1.1)
+
+        function runCode()
+            if game.Players[targetPLR] then
+
+                bangAnim2 = Instance.new('Animation')
+                bangAnim2.AnimationId = "rbxassetid://" .. isR15(5918726674, 148840371)
+                plrHum = LocalPLR.Character.Humanoid
+
+                anim2 = plrHum:LoadAnimation(bangAnim2)
+                anim2:Play(0.1, 1, 1)
+                anim2:AdjustSpeed(bangSpeed)
+
+                facebangLoop = game:GetService("RunService").Stepped:Connect(function()
+                    wait()
+
+                    local targetRoot = LocalPLR.Character:FindFirstChild("HumanoidRootPart")
+                    targetRoot.CFrame = game.Players[targetPLR].Character:FindFirstChild("HumanoidRootPart").CFrame * bangOffet * CFrame.Angles(0,3.15,0)
+                    targetRoot.Velocity = Vector3.new(0,0,0)
+                end)
+
+            end
+        end
+
+        specifyBots2(args, 3, runCode)
+
+    end
+
+    if msg:sub(1, 7) == getgenv().Prefix .. "unbang" then
+
+        function runCode()
+            if anim then
+                anim:Stop()
+                bangAnim:Destroy()
+            end
+            if bangLoop then
+                bangLoop:Disconnect()
+            end
+        end
+
+        specifyBots(msg:sub(9), runCode)
+
+    end
+
+    if msg:sub(1, 8) == getgenv().Prefix .. "unfbang" then
+
+        function runCode()
+            if anim2 then
+                anim2:Stop()
+                bangAnim2:Destroy()
+            end
+            if facebangLoop then
+                facebangLoop:Disconnect()
+            end
+        end
+
+        specifyBots(msg:sub(10), runCode)
+
+    end
+
+    -- CLEARCHAT (CREDITS TO @thereal_asu):
+    if msg == getgenv().Prefix .. "clearchat" then
+
+        if player.Name ~= getgenv().Username then
+            return
+        end
+
+        if index == 1 then
+            if TextChatService.ChatVersion ~= Enum.ChatVersion.TextChatService then
+                chat("Clearchat doesnt work on old chat!")
+                return
+            end
+
+            blob = "\u{000D}"
+            chat("." .. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. " ".. blob .. "----Chat Cleared----")
+        end
+
+    end
+
+    -- ANNOUNCE:
+    if msg:sub(1, 9) == getgenv().Prefix .. "announce" then
+
+        if player.Name ~= getgenv().Username then
+            return
+        end
+
+        if index == 1 then
+            if TextChatService.ChatVersion ~= Enum.ChatVersion.TextChatService then
+                chat("Announce doesnt work on old chat!")
+                return
+            end
+
+            blob = "\u{000D}"
+            chat("." .. blob .. " " .. blob .. " " .. blob .. " " .. blob .. " " .. blob .. " " .. blob .. " " .. blob .. " " .. blob .. "🚨 Important Announcement: " .. msg:sub(11) ..  " 🚨" .. blob .. " " .. blob .. " " .. blob .. " " .. blob .. " " .. blob .. " " .. blob .. ".")
+        end
+    end
+
+    -- RIZZ:
+    if msg:sub(1, 4) == getgenv().Prefix .. "riz" then
+
+        local rizzlines = {
+            "Can I be your snowflake? I promise to never melt away from your heart.",
+            "Are you a Wi-Fi signal? Because I’m feeling a strong connection.",
+            "Are you a heart? Because I'd never stop beating for you.",
+            "I believe in following my dreams, so you lead the way.",
+            "If being beautiful was a crime, you’d be on the most wanted list.",
+            "Are you iron? Because I don’t get enough of you.",
+            "You should be Jasmine without the 'Jas'.",
+            "Are you a Disney ride? Because I'd wait forever for you.",
+            "Hey, I’m sorry to bother you, but my phone must be broken because it doesn’t seem to have your number in it.",
+            "Are you good at math? Me neither, the only number I care about is yours.",
+            "Is your name Elsa? Because I can't let you go.",
+            "Do you know the difference between history and you? History is the past and you are my future.",
+            "Do you work for NASA? Because your beauty is out of this world.",
+            "Math is so confusing. It's always talking about x and y and never you and I.",
+            "Are you Christmas morning? Because I’ve been waiting all year for you to arrive.",
+            "Are you from Tennessee? Because you're the only ten I see.",
+            "Are you Nemo? Because I've been trying to find you.",
+            "Are you a bank loan? Because you have my interest.",
+            "I hope you know CPR, because you just took my breath away.",
+            "Are you the sun? Because I could stare at you all day, and it’d be worth the risk.",
+            "Are you a keyboard? Because you're just my type.",
+            "My mom said sharing is caring but, no...you're all mine!",
+            "It's time to pay up. It's the first of the month, and you've been living in my mind rent-free.",
+            "Are you a light? Because you always make me feel bright.",
+            "Do you have a bandaid? My knees hurt from falling for you.",
+            "We may not be pants, but we'd make a great pair.",
+            "You know what's beautiful? Repeat the first word.",
+            "Your eyes remind me of Ikea: easy to get lost in.",
+            "If you were a Transformer, you'd be Optimus Fine.",
+            "I must be a time traveler, because I can't imagine my future without you.",
+            "Are you a light switch? Because you turn me on.",
+            "Are you a doctor? Because you instantly make me feel better.",
+            "You must be a masterpiece, because I can't take my eyes off of you.",
+            "Are you my favorite song? Because I can't get you out of my head.",
+            "I'm no photographer, but I can picture us together."
+        }
+
+        local targetPLR = getFullPlayerName(message:sub(6))
+        local randomrizzline = math.random(1, #rizzlines)
+        local originalCFrame = LocalPLR.Character.HumanoidRootPart.CFrame
+
+        if not game.Players[targetPLR] then
+            return
+        end
+
+        wait(5 * (index - 1))
+
+        rizzFollow = game:GetService("RunService").Heartbeat:Connect(function()
+            LocalPLR.Character.HumanoidRootPart.CFrame = CFrame.lookAt((game.Players[targetPLR].Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -2)).Position, game.Players[targetPLR].Character.HumanoidRootPart.Position)
+        end)
+        chat(rizzlines[randomrizzline])
+
+        wait(5)
+
+        rizzFollow:Disconnect()
+        LocalPLR.Character.HumanoidRootPart.CFrame = originalCFrame
+
+    end
+
+    -- CARPET:
+    if msg:sub(1, 7) == getgenv().Prefix .. "carpet" then
+
+        local args = getArgs(message:sub(9))
+        local targetPLR = getFullPlayerName(args[1])
+
+        function runCode()
+            carpetAnim = Instance.new("Animation")
+            carpetAnim.AnimationId = "rbxassetid://282574440"
+            carpet = LocalPLR.Character.Humanoid:LoadAnimation(carpetAnim)
+            carpet:Play(0.1, 1, 1)
+
+            carpetF = game:GetService("RunService").Heartbeat:Connect(function()
+                LocalPLR.Character.HumanoidRootPart.CFrame = game.Players[targetPLR].Character.HumanoidRootPart.CFrame
+            end)
+        end
+
+        specifyBots2(args, 2, runCode)
+
+    end
+
+    if msg:sub(1, 9) == getgenv().Prefix .. "uncarpet" then
+
+        function runCode()
+            carpetF:Disconnect()
+            carpet:Stop()
+            carpetAnim:Destroy()
+        end
+
+        specifyBots(msg:sub(11), runCode)
+
+    end
+
+    -- DANCE:
+    if msg:sub(1, 6) == getgenv().Prefix .. "dance" then
+        local args = getArgs(msg:sub(8))
+        local pickedEmote = nil
+        local loopAnim = false
+
+        if not args[1] then
+            pickedEmote = nil
+        else
+            if isR15() then
+            else
+                if args[1] == "party" then
+                    pickedEmote = 33796059
+                    loopAnim = true
+                elseif args[1] == "punch" then
+                    pickedEmote = 204062532
+                    loopAnim = false
+                elseif args[1] == "dance3" then
+                    pickedEmote = 182436935
+                    loopAnim = true
+                end
+            end
+        end
+
+        function runCode()
+            if pickedEmote == nil then
+                if index == 1 then
+                    chat("Pick emote!")
+                end
+
+                return
+            end
+
+            danceAnim = Instance.new("Animation")
+            danceAnim.AnimationId = 'rbxassetid://' .. pickedEmote
+
+            anim = LocalPLR.Character.Humanoid:LoadAnimation(danceAnim)
+            anim.Looped = loopAnim
+            anim:Play()
+        end
+
+        specifyBots2(args, 2, runCode)
+
+    end
+
+    if msg:sub(1, 8) == getgenv().Prefix .. "undance" then
+
+        function runCode()
+            anim:Stop()
+            danceAnim:Destroy()
+        end
+
+        specifyBots(msg:sub(10), runCode)
+
+    end
+
+    -- CREDITS (CANT ADD IN CMDS COMMAND BC IT GETS TAGGED):
+    if msg == getgenv().Prefix .. "credits" then
+
+        if index == 1 then
+            chat("This is a open source controlbot script made by sixpenny_fox4. Ḍ̲ị̲ṣ̲с̲ọ̲ṛ̲ḍ̲: Ẉ̲ɡ̲Ạ̲с̲Ṭ̲Ẓ̲ẓ̲Ṣ̲ṭ̲Ḅ̲")
+        end
+
+    end
+
+    -- SETTING COMMANDS --
+
+    -- 3dRendering:
+    if msg:sub(1, 9) == getgenv().Prefix .. "3drender" then
+
+        if player.Name ~= getgenv().Username then
+            return
+        end
+
+        local switch = msg:sub(11)
+
+        if switch == "disable" then
+            game:GetService("RunService"):Set3dRenderingEnabled(false)
+
+            showDefaultGui(true, "ControlBotZ Running (3drender disabled)")
+
+            chat("3D Rendering Has Been Disabled On Bot " .. index .. "!")
+        elseif switch == "enable" then
+            game:GetService("RunService"):Set3dRenderingEnabled(true)
+
+            showDefaultGui(false)
+
+            chat("3D Rendering Has Been Enabled On Bot " .. index .. "!")
+        end
+
+    end
+
+    -- PRIVACYMODE
+    if msg:sub(1, 12) == getgenv().Prefix .. "privacymode" then
+
+        if player.Name ~= getgenv().Username then
+            return
+        end
+
+        local switch = msg:sub(14)
+
+        if switch == "disable" then
+            showDefaultGui(false)
+
+            chat("Privacy Mode Has Been Disabled On Bot " .. index .. "!")
+        elseif switch == "enable" then
+            showDefaultGui(true, "ControlBotZ Running (privacy mode enabled)")
+
+            chat("Privacy Mode Has Been Enabled On Bot " .. index .. "!")
+        end
+    end
+
+    -- CMDS:
+    if msg:sub(1, 5) == getgenv().Prefix .. "cmds" then
+        local page = msg:sub(7)
+
+        if index == 1 then
+            if page == "1" then
+                chat("rejoin, jump, reset, sit, chat (message), shutdown, orbit (username) (speed)/unorbit, bang (username) (speed)/unbang, walkto (username), speed (number), bring, clearchat, privacymode (enable/disable)")
+
+                wait(0.2)
+                chat("spin (number)/unspin, lineup (direction), 3drender (enable/disable), dance (emote)/undance, fling (username)/unfling, follow (username)/unfollow, lookat (username)/unlookat, stack (username)/unstack")
+
+                wait(0.2)
+                chat("goto (username), carpet (username)/uncarpet, linefollow (username)/unlinefollow, riz (username), facebang (username) (speed)/unfbang, announce (message), rocket (studs), antibang")
+            elseif page == "2" then
+                chat("surround (username) (spacing)")
+            else
+                chat("Please select a page 1 or 2!")
+            end
+        end
+
+    end
+
+end
+
+for _, player in pairs(game.Players:GetPlayers()) do
+    player.Chatted:Connect(function(message)
+        commands(player, message)
+    end)
+end
+
+game.Players.PlayerAdded:Connect(function(player)
+    player.Chatted:Connect(function(message)
+        commands(player, message)
+    end)
 end)
-local function findplr(txt)
-	if txt=="" then
-		return nil
-	end
-	for v,_ in pairs(others) do
-		if v.DisplayName==txt then
-			return v
-		end
-	end
-	for v,_ in pairs(others) do
-		if v.Name==txt then
-			return v
-		end
-	end
-	local lower=slower(txt)
-	for v,_ in pairs(others) do
-		if slower(v.DisplayName)==lower then
-			return v
-		end
-	end
-	for v,_ in pairs(others) do
-		if slower(v.Name)==lower then
-			return v
-		end
-	end
-	local l=#txt
-	for v,_ in pairs(others) do
-		if ssub(v.DisplayName,1,l)==txt then
-			return v
-		end
-	end
-	for v,_ in pairs(others) do
-		if ssub(v.Name,1,l)==txt then
-			return v
-		end
-	end
-	for v,_ in pairs(others) do
-		if slower(ssub(v.DisplayName,1,l))==lower then
-			return v
-		end
-	end
-	for v,_ in pairs(others) do
-		if slower(ssub(v.Name,1,l))==lower then
-			return v
-		end
-	end
-	return nil
-end
-local target=nil
-i4:GetPropertyChangedSignal("Text"):Connect(function()
-	local txt=i4.Text
-	target=findplr(txt)
-	if target then
-		if (target.DisplayName) and (target.DisplayName~="") and (target.DisplayName~=target.Name) then
-			i7.Text=target.DisplayName.." @"..target.Name
-		else
-			i7.Text="@"..target.Name
-		end
-		i5.TextColor3=c3(0.301961,1,0) 
-	else
-		i7.Text=""
-		i5.TextColor3=c3(0.55,0.55,0.55) 
-	end
-end)
-plrs.PlayerRemoving:Connect(function(plr)
-	others[plr]=nil
-	if plr==target then
-		target=nil
-		i7.Text=""
-		i5.TextColor3=c3(0.55,0.55,0.55) 
-	end
-end)
-local notifyid=0
-local function notify(txt)
-	notifyid=notifyid+1
-	local thisid=notifyid
-	i6.Text=txt
-	twait(2)
-	if notifyid==thisid then
-		i6.Text="by BLOCKCE"
-	end
-end
-local bringing=false
-i5.MouseButton1Click:Connect(function()
-	i5.Text="copying" 
-	local obby = game.Workspace.Obbies:WaitForChild(target.name)
-	local myobby = game.Workspace.Obbies:WaitForChild(game.Players.LocalPlayer.name)
-	print(obby)
-	if obby.StartingSpawn.StartingPart.Rotation == myobby.StartingSpawn.StartingPart.Rotation then
-		for i, v in pairs(obby.Items.Parts:GetChildren()) do
-			if v.Name == "Part" then
-
-
-				local args = {
-					[1] = "Part",
-					[2] = myobby.Area.CFrame				
-				}
-				game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("AddObject"):InvokeServer(unpack(args))
-				local count = 0
-				repeat 
-					wait()
-					count = count + 1
-					if count >= 100 then
-						local args = {
-							[1] = "Part",
-							[2] = myobby.Area.CFrame				
-						}
-						game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("AddObject"):InvokeServer(unpack(args))
-						count = 0
-					end
-				until myobby.Items.Parts:FindFirstChild("Part")
-				print("e")
-				wait(0.5)
-				myobby.Items.Parts.Part.Name = "Part"..tostring(i)
-				args = {
-					[1] = {
-						[1] = {
-							[1] = myobby.Items.Parts:WaitForChild("Part"..tostring(i)),
-							[2] = CFrame.new(myobby.StartingSpawn.StartingPart.Position.X + (v.Position.X - obby.StartingSpawn.StartingPart.Position.X), myobby.StartingSpawn.StartingPart.Position.Y + (v.Position.Y - obby.StartingSpawn.StartingPart.Position.Y) , myobby.StartingSpawn.StartingPart.Position.Z + (v.Position.Z - obby.StartingSpawn.StartingPart.Position.Z)) * CFrame.Angles(math.rad(v.Rotation.X), math.rad(v.Rotation.Y), math.rad(v.Rotation.Z)),
-							[3] = v.Size
-						}
-					}
-				}
-				game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("MoveObject"):InvokeServer(unpack(args))
-				args = {
-					[1] = {
-						[1] = myobby.Items.Parts:WaitForChild("Part"..tostring(i))
-					},
-					[2] = "Color",
-					[3] = v.Color
-				}
-				game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer(unpack(args))
-				args = {
-					[1] = {
-						[1] = myobby.Items.Parts:WaitForChild("Part"..tostring(i))
-					},
-					[2] = "CanCollide",
-					[3] = v.CanCollide
-				}
-				game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer(unpack(args))
-				local function FindCharacterInString(String, CharacterToFind, Start, End)
-					if not String or not CharacterToFind or not Start then return end
-					if not End then End = string.len(String) end
-					local CharacterPos
-					for i = Start, End do
-						if string.sub(String, i, i) == CharacterToFind then
-							CharacterPos = i
-							break
-						end
-					end
-					return CharacterPos
-				end
-				local function GetMaterialOfPartAsString(Part)
-					if not Part then return end
-					local EnumAsString = tostring(Part.Material)
-					local FirstDotPos = FindCharacterInString(EnumAsString, ".", 1)
-					if FirstDotPos then
-						local SecondDotPos = FindCharacterInString(EnumAsString, ".", FirstDotPos + 1)
-						if SecondDotPos then
-							local MaterialOfPart = string.sub(EnumAsString, SecondDotPos + 1)
-							return MaterialOfPart
-						end
-					end
-				end
-				args = {
-					[1] = {
-						[1] = myobby.Items.Parts:WaitForChild("Part"..tostring(i))
-					},
-					[2] = "Material",
-					[3] = GetMaterialOfPartAsString(v)
-				}
-				game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer(unpack(args))
-				args = {
-					[1] = {
-						[1] = myobby.Items.Parts:WaitForChild("Part"..tostring(i))
-					},
-					[2] = "Reflectance",
-					[3] = v.Reflectance
-				}
-				game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer(unpack(args))
-				args = {
-					[1] = {
-						[1] = myobby.Items.Parts:WaitForChild("Part"..tostring(i))
-					},
-					[2] = "Surface",
-					[3] = v.TopSurface
-				}
-				game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer(unpack(args))
-				args = {
-					[1] = {
-						[1] = myobby.Items.Parts:WaitForChild("Part"..tostring(i))
-					},
-					[2] = "Transparency",
-					[3] = v.Transparency
-				}
-				game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer(unpack(args))
-				args = {
-					[1] = {
-						[1] = myobby.Items.Parts:WaitForChild("Part"..tostring(i))
-					},
-					[2] = "Shape",
-					[3] = v.Shape
-				}
-				game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer(unpack(args))
-
-
-			end
-
-
-			
-		end
-	else
-
-	end
-
-end)
-local iscg,_=pcall(function()
-	i8.Parent=game:FindFirstChildOfClass("CoreGui")
-end)
-if not iscg then
-	i8.Parent=lp:FindFirstChildOfClass("PlayerGui")
-end
-

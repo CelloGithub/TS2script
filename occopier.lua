@@ -3,7 +3,7 @@ local LocalPLR = game.Players.LocalPlayer
 
 -- CONFIGURATION --
 
-getgenv().Prefix = "&" -- With what symbol the cmds should start with. (e.g. if its . then .cmds if its ; then ;cmds)
+getgenv().Prefix = "^" -- With what symbol the cmds should start with. (e.g. if its . then .cmds if its ; then ;cmds)
 getgenv().Username = "celloRoblox07" -- The username of the person you want to have full control over the bots.
 
 local bots = {"CitoRep"} -- The display names of the bots you gonna run the script on.

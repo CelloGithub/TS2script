@@ -24,7 +24,7 @@ if game.PlaceId == 3068144257 then -- base game
 	local halloweenbool = game.Workspace.halloween
 	local winterbool = game.Workspace.winter
 
-	local spookmap = game.Workspace.map.SpookyStuff
+	local spookmap = game.Workspace.map:FindFirstChild("SpookyStuff")
 
 	------------------------------- Cosmic Causeway Portal Buttons
 

@@ -224,7 +224,7 @@ if game.PlaceId == 3068144257 then -- base game
 	hometab.newLabel("UI Library by Chill.z")
 
 	hometab.newLabel("5/10/2024 | Update Log")
-	hometab.newLabel("- Added Support for Spooky Drive")
+	hometab.newLabel("- Added Support for Cosmic Causeway")
 
 	--[[hometab.newButton("Button", "Prints Hello!", function()
 		print('Hello!')
@@ -553,10 +553,128 @@ if game.PlaceId == 3068144257 then -- base game
 		end
 	end)
 elseif game.PlaceId == 13998146600 then -- cosmic causeway
-	local drace = Instance.new("Hint", workspace)
-	drace.Text = "Cosmic Causeway will have support soon!"
-	task.wait(5)
-	drace:Destroy()
+	local TS2SpookyWindow = Library:Load("Cosmic Causeway | TS2H", "Default")
+	local CosmicHome = Library.newTab("Home", "7733960981")
+	local CosmicCauseway = Library.newTab("Cosmic Causeway", "7733708835")
+
+	CosmicHome.newLabel("Script created by fandy")
+	CosmicHome.newLabel("UI Library by Chill.z")
+
+	CosmicHome.newLabel("5/10/2024 | Update Log")
+	CosmicHome.newLabel("- Added Support for Cosmic Causeway")
+
+	local modelNameToModify = "door"
+	local function destroymodelcollision(name)
+		local model = workspace.map.Model:FindFirstChild(name)
+		if model and model:IsA("Model") then
+			for _, child in pairs(model:GetChildren()) do
+				if child:IsA("Part") then
+					child.CanCollide = false
+					child.Transparency = 0.5
+				end
+			end
+		end
+	end
+
+	local function readdmodelcollision(name)
+		local model = workspace.map.Model:FindFirstChild(name)
+		if model and model:IsA("Model") then
+			for _, child in pairs(model:GetChildren()) do
+				if child:IsA("Part") then
+					child.CanCollide = true
+					child.Transparency = 0
+				end
+			end
+		end
+	end
+
+	local safeguardfolder = Instance.new("Folder", workspace)
+	safeguardfolder.Name = "Safeguards"
+	local safepart1 = Instance.new("Part", safeguardfolder)
+	safepart1.Anchored = true
+	safepart1.CFrame = CFrame.new(1181.46, 1180.05, 2239.274)
+	safepart1.Size = Vector3.new(55.129, 0.75, 159.848)
+	local safepart2 = Instance.new("Part", safeguardfolder)
+	safepart2.Anchored = true
+	safepart2.CFrame = CFrame.new(1181.454, 1205.3, 2096.998)
+	safepart2.Size = Vector3.new(55.113, 49.25, 2)
+	local safewedge1 = Instance.new("WedgePart", safeguardfolder)
+	safewedge1.Anchored = true
+	safewedge1.CFrame = CFrame.new(1860.699, 1187.075, 1609.081)
+	safewedge1.Size = Vector3.new(47.05, 12.8, 92.739)
+	safewedge1.Rotation = Vector3.new(0, 180, 0)
+	local safepart3 = Instance.new("Part", safeguardfolder)
+	safepart3.Anchored = true
+	safepart3.CFrame = CFrame.new(1170.796, 1205.3, 629.523)
+	safepart3.Size = Vector3.new(88, 49.25, 2)
+	local safepart4 = Instance.new("Part", safeguardfolder)
+	safepart4.Anchored = true
+	safepart4.CFrame = CFrame.new(3267.11, 1225.25, 272.655)
+	safepart4.Size = Vector3.new(282.753, 89.05, 2)
+	local safepart5 = Instance.new("Part", safeguardfolder)
+	safepart5.Anchored = true
+	safepart5.CFrame = CFrame.new(3702.532, 1180.125, 126.965)
+	safepart5.Size = Vector3.new(47.05, 1, 49.315)
+	local safewedge2 = Instance.new("WedgePart", safeguardfolder)
+	safewedge2.Anchored = true
+	safewedge2.CFrame = CFrame.new(3702.565, 1180.175, -437.329)
+	safewedge2.Size = Vector3.new(1, 46.996, 49.375)
+	safewedge2.Rotation = Vector3.new(0, 0, 90)
+	local safepart5 = Instance.new("Part", safeguardfolder)
+	safepart5.Anchored = true
+	safepart5.CFrame = CFrame.new(4126.447, 1179.152, -1516.618)
+	safepart5.Size = Vector3.new(917.25, 53.75, 1455.75)
+	safepart5.Rotation = Vector3.new(5, 0, 0)
+	local safepart6 = Instance.new("Part", safeguardfolder)
+	safepart6.Anchored = true
+	safepart6.CFrame = CFrame.new(3267.11, 1225.225, 223.577)
+	safepart6.Size = Vector3.new(282.754, 89.1, 2)
+
+	CosmicCauseway.newToggle("Safeguards", "Toggles Invisible parts on locations where your vechicle may be damaged", false, function(safeguard)
+		if safeguard then
+			game:GetService("StarterGui"):SetCore("SendNotification",{
+				Title = "Success";
+				Text = "Enabled Safeguards";
+				Duration = 2;
+			})
+			for _, child in pairs(game.Workspace.Safeguards:GetChildren()) do
+				if child:IsA("Part") then
+					child.CanCollide = true
+					child.Transparency = 0
+				end
+			end
+		else
+			game:GetService("StarterGui"):SetCore("SendNotification",{
+				Title = "Success";
+				Text = "Disabled Safeguards";
+				Duration = 2;
+			})
+			for _, child in pairs(game.Workspace.Safeguards:GetChildren()) do
+				if child:IsA("Part") then
+					child.CanCollide = false
+					child.Transparency = 1
+				end
+			end
+		end
+	end)
+
+	CosmicCauseway.newToggle("Door Collision", "Toggles Collisions on the doors (Some may not be disabled)", false, function(doorcollision)
+		if doorcollision then
+			game:GetService("StarterGui"):SetCore("SendNotification",{
+				Title = "Success";
+				Text = "Disabled Door Collisions";
+				Duration = 2;
+			})
+			readdmodelcollision(modelNameToModify)
+		else
+			game:GetService("StarterGui"):SetCore("SendNotification",{
+				Title = "Success";
+				Text = "Enabled Door Collisions";
+				Duration = 2;
+			})
+			destroymodelcollision(modelNameToModify)
+		end
+	end)
 elseif game.PlaceId == 7060888292 then -- Sandy Avenue
 	local drace = Instance.new("Hint", workspace)
 	drace.Text = "Sandy Avenue will have support soon!"
@@ -610,7 +728,7 @@ elseif game.PlaceId == 5790960130 then -- spooky drive
 	SpookyHome.newLabel("UI Library by Chill.z")
 
 	SpookyHome.newLabel("5/10/2024 | Update Log")
-	SpookyHome.newLabel("- Added Support for Spooky Drive")
+	SpookyHome.newLabel("- Added Support for Cosmic Causeway")
 	
 	--------------------------------------------------------
 

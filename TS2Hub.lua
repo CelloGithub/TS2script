@@ -788,7 +788,7 @@ elseif game.PlaceId == 6514486037 then -- burning boulevard
 	part4.CFrame = CFrame.new(1483.774, 1987.254, 4850.27)
 	part5.CFrame = CFrame.new(2467.107, 1678.61, 4037.957)
 
-	part1.Size = Vector3.new(72232.989, 1596.455, 773.798)
+	part1.Size = Vector3.new(73.4, 14.85, 1824.3)
 	part2.Size = Vector3.new(1282.9, 14.85, 92.45)
 	part3.Size = Vector3.new(1225.25, 39.25, 0.05)
 	part4.Size = Vector3.new(0.05, 53.05, 92.45)

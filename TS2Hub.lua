@@ -2,6 +2,9 @@ local lp = game.Players.LocalPlayer
 local lpc = lp.Character
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))() --ty chill.z
 
+local upds = "- Added support for Burning Boulevard"
+local updlog = "10/11/2024 | Update Log"
+
 function dcnotsupported()
 	local dcnotsupported = Instance.new("Hint", workspace)
 	dcnotsupported.Text = "This driving challenge is not supported yet. Sorry!"
@@ -18,7 +21,7 @@ if game.PlaceId == 3068144257 then -- base game
 	local tptab = Library.newTab("TPs", "7733746980")
 	local misctab = Library.newTab("Misc", "7743878358")
 
-	
+
 	------------------------------------------------------------------------------- Event Checkers
 
 	local halloweenbool = game.Workspace.halloween
@@ -219,12 +222,12 @@ if game.PlaceId == 3068144257 then -- base game
 	end
 
 	-------------------------------------------------------------- Tab | Testing Place
-	
+
 	hometab.newLabel("Script created by fandy")
 	hometab.newLabel("UI Library by Chill.z")
 
-	hometab.newLabel("5/10/2024 | Update Log")
-	hometab.newLabel("- Added Support for Cosmic Causeway")
+	hometab.newLabel(updlog)
+	hometab.newLabel(upds)
 
 	--[[hometab.newButton("Button", "Prints Hello!", function()
 		print('Hello!')
@@ -560,8 +563,10 @@ elseif game.PlaceId == 13998146600 then -- cosmic causeway
 	CosmicHome.newLabel("Script created by fandy")
 	CosmicHome.newLabel("UI Library by Chill.z")
 
-	CosmicHome.newLabel("5/10/2024 | Update Log")
-	CosmicHome.newLabel("- Added Support for Cosmic Causeway")
+	CosmicHome.newLabel(updlog)
+	CosmicHome.newLabel(upds)
+	
+	-------------------------------------------------------------------------------
 
 	local modelNameToModify = "door"
 	local function destroymodelcollision(name)
@@ -587,6 +592,8 @@ elseif game.PlaceId == 13998146600 then -- cosmic causeway
 			end
 		end
 	end
+	
+	-------------------------------------------------------------------------------
 
 	local safeguardfolder = Instance.new("Folder", workspace)
 	safeguardfolder.Name = "Safeguards"
@@ -629,6 +636,8 @@ elseif game.PlaceId == 13998146600 then -- cosmic causeway
 	safepart6.Anchored = true
 	safepart6.CFrame = CFrame.new(3267.11, 1225.225, 223.577)
 	safepart6.Size = Vector3.new(282.754, 89.1, 2)
+	
+	-------------------------------------------------------------------------------
 
 	CosmicCauseway.newToggle("Safeguards", "Toggles Invisible parts on locations where your vechicle may be damaged", false, function(safeguard)
 		if safeguard then
@@ -687,49 +696,49 @@ elseif game.PlaceId == 4581988516 then -- windy lane
 elseif game.PlaceId == 5790960130 then -- spooky drive
 	local directroadfolder = Instance.new("Folder", workspace)
 	directroadfolder.Name = "directroad"
-	
+
 	local part1 = Instance.new("Part", directroadfolder)
 	local part2 = Instance.new("Part", directroadfolder)
 	local part3 = Instance.new("Part", directroadfolder)
-	
+
 	part1.Anchored = true
 	part2.Anchored = true
 	part3.Anchored = true
-	
+
 	part1.CFrame = CFrame.new(2232.989, 1596.455, 773.798)
 	part2.CFrame = CFrame.new(2751.976, 1793.285, -339.175)
 	part3.CFrame = CFrame.new(1785.576, 1409.783, 1733.278)
-	
+
 	part1.Size = Vector3.new(104, 1.5, 2047.5)
 	part2.Size = Vector3.new(104, 1.5, 442)
 	part3.Size = Vector3.new(104, 1.5, 103.5)
-	
+
 	part1.Rotation = Vector3.new(10, -25, 0)
 	part2.Rotation = Vector3.new(5, -25, 0)
 	part3.Rotation = Vector3.new(10, -25, 0)
-	
+
 	part1.Transparency = 1
 	part2.Transparency = 1
 	part3.Transparency = 1
-	
+
 	part1.CanCollide = false
 	part2.CanCollide = false
 	part3.CanCollide = false
-	
+
 	-------------------------------------------------------------------------------
-	
+
 	local TS2SpookyWindow = Library:Load("Spooky Drive | TS2H", "Default")
 	local SpookyHome = Library.newTab("Home", "7733960981")
 	local SpookyDrive = Library.newTab("Spooky Drive", "7733708835")
-	
+
 	-------------------------------------------------------------------------------
-	
+
 	SpookyHome.newLabel("Script created by fandy")
 	SpookyHome.newLabel("UI Library by Chill.z")
 
-	SpookyHome.newLabel("5/10/2024 | Update Log")
-	SpookyHome.newLabel("- Added Support for Cosmic Causeway")
-	
+	SpookyHome.newLabel(updlog)
+	SpookyHome.newLabel(upds)
+
 	--------------------------------------------------------
 
 	SpookyDrive.newToggle("Direct End Road Access", "(Almost) A direct access to the end", false, function(directroad)
@@ -758,7 +767,90 @@ elseif game.PlaceId == 5790960130 then -- spooky drive
 elseif game.PlaceId == 6037225278 then -- frosty road
 	dcnotsupported()
 elseif game.PlaceId == 6514486037 then -- burning boulevard
-	dcnotsupported()
+	local directroadfolder = Instance.new("Folder", workspace)
+	directroadfolder.Name = "directroad"
+
+	local part1 = Instance.new("Part", directroadfolder)
+	local part2 = Instance.new("Part", directroadfolder)
+	local part3 = Instance.new("Part", directroadfolder)
+	local part4 = Instance.new("Part", directroadfolder)
+	local part5 = Instance.new("Part", directroadfolder)
+
+	part1.Anchored = true
+	part2.Anchored = true
+	part3.Anchored = true
+	part4.Anchored = true
+	part5.Anchored = true
+
+	part1.CFrame = CFrame.new(1840.464, 1452.641, 3411.315)
+	part2.CFrame = CFrame.new(1947.722, 1807.519, 4445.005)
+	part3.CFrame = CFrame.new(1937.123, 1801.34, 4390.565)
+	part4.CFrame = CFrame.new(1483.774, 1987.254, 4850.27)
+	part5.CFrame = CFrame.new(2467.107, 1678.61, 4037.957)
+
+	part1.Size = Vector3.new(72232.989, 1596.455, 773.798)
+	part2.Size = Vector3.new(1282.9, 14.85, 92.45)
+	part3.Size = Vector3.new(1225.25, 39.25, 0.05)
+	part4.Size = Vector3.new(0.05, 53.05, 92.45)
+	part5.Size = Vector3.new(73.4, 56.5, 4.45)
+
+	part1.Rotation = Vector3.new(-13, 45, 0)
+	part2.Rotation = Vector3.new(-13, 45, -15)
+	part3.Rotation = Vector3.new(-13, 45, -15)
+	part4.Rotation = Vector3.new(-13, 45, -15)
+	part5.Rotation = Vector3.new(-13, 45, 0)
+	
+	part1.Transparency = 1
+	part2.Transparency = 1
+	part3.Transparency = 1
+	part4.Transparency = 1
+	part5.Transparency = 1
+
+	part1.CanCollide = false
+	part2.CanCollide = false
+	part3.CanCollide = false
+	part4.CanCollide = false
+	part5.CanCollide = false
+	
+	-------------------------------------------------------------------------------
+	
+	local TS2BurningWindow = Library:Load("Burning Boulevard | TS2H", "Default")
+	local BurningHome = Library.newTab("Home", "7733960981")
+	local BurningBoulevard = Library.newTab("Burning Boulevard", "7733708835")
+
+	-------------------------------------------------------------------------------
+
+	BurningHome.newLabel("Script created by fandy")
+	BurningHome.newLabel("UI Library by Chill.z")
+
+	BurningHome.newLabel(updlog)
+	BurningHome.newLabel(upds)
+	
+	-------------------------------------------------------------------------------
+	
+	BurningBoulevard.newToggle("Direct End Road Access", "A direct access to the end", false, function(directroad)
+		if directroad then
+			game:GetService("StarterGui"):SetCore("SendNotification",{
+				Title = "Success";
+				Text = "Enabled Direct End Road";
+				Duration = 2;
+			})
+			for _, child in pairs(game.Workspace.directroad:GetChildren()) do
+				child.CanCollide = true
+				child.Transparency = 0.8
+			end
+		else
+			game:GetService("StarterGui"):SetCore("SendNotification",{
+				Title = "Success";
+				Text = "Disabled Direct End Road";
+				Duration = 2;
+			})
+			for _, child in pairs(game.Workspace.directroad:GetChildren()) do
+				child.CanCollide = false
+				child.Transparency = 1
+			end
+		end
+	end)
 elseif game.PlaceId == 12131373233 then -- falling freeway
 	dcnotsupported()
 elseif game.PlaceId == 15553343420 then -- atmospheric alleyway

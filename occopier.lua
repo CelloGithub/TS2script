@@ -1,9 +1,13 @@
 -- Instances
 
-local StaffPanneldecoy = Instance.new("ScreenGui")
+local DummyCluc = Instance.new("ScreenGui")
 local Pannel = Instance.new("Frame")
 local ExitFrame = Instance.new("Frame")
 local qb = Instance.new("UICorner")
+local rb = Instance.new("UIStroke")
+local zb = Instance.new("UIStroke")
+local zb_2 = Instance.new("UIStroke")
+local yc = Instance.new("UIStroke")
 local Exit = Instance.new("TextButton")
 local Amounttoclon = Instance.new("TextLabel")
 local Obby = Instance.new("Frame")
@@ -20,11 +24,11 @@ local Clonet = Instance.new("TextButton")
 
 -- Properties
 
-StaffPanneldecoy.Name = "StaffPanneldecoy"
-StaffPanneldecoy.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+DummyCluc.Name = "DummyCluc"
+DummyCluc.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
 Pannel.Name = "Pannel"
-Pannel.Parent = StaffPanneldecoy
+Pannel.Parent = DummyCluc
 Pannel.BackgroundColor3 = Color3.new(0, 0, 0)
 Pannel.BorderColor3 = Color3.new(0, 0, 0)
 Pannel.BorderSizePixel = 0
@@ -42,6 +46,34 @@ ExitFrame.Size = UDim2.new(0, 23, 0, 20)
 qb.Name = "qb"
 qb.Parent = ExitFrame
 qb.CornerRadius = UDim.new(0, 9)
+
+rb.Name = "rb"
+rb.Parent = ExitFrame
+rb.Color = Color3.new(1, 0, 0.0156863)
+rb.ApplyStrokeMode.Value = "Contextual"
+rb.Thickness = 2.4
+rb.Transparency = 0
+
+yc.Name = "yc"
+yc.Parent = Obby
+yc.Color = Color3.new(1, 1, 1)
+yc.ApplyStrokeMode.Value = "Contextual"
+yc.Thickness = 2.4
+yc.Transparency = 0
+
+zb.Name = "zb"
+zb.Parent = UnahcnorDummnies
+zb.Color = Color3.new(0, 1, 0.0666667)
+zb.ApplyStrokeMode.Value = "Contextual"
+zb.Thickness = 2.4
+zb.Transparency = 0
+
+zb_2.Name = "rb"
+zb_2.Parent = CloneDummies
+zb_2.Color = Color3.new(0, 1, 0.0666667)
+zb_2.ApplyStrokeMode.Value = "Contextual"
+zb_2.Thickness = 2.4
+zb_2.Transparency = 0
 
 Exit.Name = "Exit"
 Exit.Parent = ExitFrame
@@ -188,10 +220,10 @@ Clonet.MouseButton1Click:Connect(function()
 	if cloneval == nil then
 		cloneval = 200
 	end
-	
+
 	game:GetService("Players").LocalPlayer.PlayerGui.LocalOutput:Fire("Cloning "..cloneval.." Dummies", Color3.new(0, 1, 0))
-	
-	for i = 1, cloneval do
+
+	for i = 1, tonumber(cloneval) do
 		local main = workspace.Obbies[game.Players.LocalPlayer.Name].Items.Special:FindFirstChild("Mannequin") or workspace.Obbies[game.Players.LocalPlayer.Name].Items.Special:FindFirstChild("Character Model")
 		table.insert(tab, {main:GetChildren()[1], main.PrimaryPart.CFrame, Vector3.zero})
 	end
@@ -206,4 +238,12 @@ Unc.MouseButton1Click:Connect(function()
 		end
 	end
 	game.ReplicatedStorage.Events.DeleteObject:InvokeServer(tab)
+end)
+
+Exit.MouseButton1Click:Connect(function()
+	task.wait(0.01)
+	game:GetService("Players").LocalPlayer.PlayerGui.LocalOutput:Fire("Panel Closed", Color3.new(1, 0.823529, 0.184314))
+	DummyCluc:Destroy()
+	task.wait(1)
+	script:Destroy()
 end)
